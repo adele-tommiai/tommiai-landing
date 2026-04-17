@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tommi.AI — Ecosistema inteligente para ninos con autismo y TDAH</title>
+  <meta name="description" content="Tommi.AI es un ecosistema inteligente que acompana emocional y sensorialmente a ninos con autismo y TDAH. Integra sensores, IA y herramientas para familias y especialistas." />
+  <link rel="icon" type="image/png" href="assets/logo-icon.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #1e1b4b;
+      background: #faf9ff;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ─── Color Palette (Soft Periwinkle) ─── */
+    :root {
+      --pw-50:  #f0eeff;
+      --pw-100: #e0ddff;
+      --pw-200: #c6c1f7;
+      --pw-300: #a9a1f0;
+      --pw-400: #8b7fe8;
+      --pw-500: #6e5ddc;
+      --pw-600: #5a47c4;
+      --pw-700: #4a3aa6;
+      --pw-800: #3a2d85;
+      --pw-900: #2a2064;
+      --pw-950: #1e1b4b;
+    }
+
+    /* ─── Navbar ─── */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(250, 249, 255, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--pw-100);
+      transition: box-shadow 0.3s;
+    }
+    .navbar.scrolled { box-shadow: 0 2px 24px rgba(30,27,75,0.08); }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.75rem 1.5rem;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-logo img { height: 40px; width: auto; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links a {
+      font-size: 0.9rem; font-weight: 500; color: var(--pw-700);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--pw-500); }
+    .btn-platform {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.6rem 1.4rem;
+      background: var(--pw-500); color: #fff;
+      border-radius: 999px; font-size: 0.9rem; font-weight: 600;
+      transition: background 0.2s, transform 0.2s;
+      border: none; cursor: pointer;
+    }
+    .btn-platform:hover { background: var(--pw-600); transform: translateY(-1px); }
+    .btn-platform svg { width: 16px; height: 16px; }
+
+    /* Mobile menu */
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+    .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--pw-700); margin: 5px 0; transition: 0.3s; }
+
+    /* ─── Hero ─── */
+    .hero {
+      padding: 8rem 1.5rem 4rem;
+      text-align: center;
+      background: linear-gradient(180deg, var(--pw-50) 0%, #faf9ff 100%);
+    }
+    .hero-inner { max-width: 900px; margin: 0 auto; }
+    .hero-badge {
+      display: inline-block;
+      padding: 0.35rem 1rem;
+      background: var(--pw-100); color: var(--pw-700);
+      border-radius: 999px; font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800; line-height: 1.15;
+      color: var(--pw-950);
+    }
+    .hero h1 span { color: var(--pw-500); }
+    .hero p {
+      margin-top: 1.25rem; font-size: 1.15rem;
+      color: #4a4570; max-width: 680px; margin-left: auto; margin-right: auto;
+    }
+    .hero-cta {
+      display: flex; gap: 1rem; justify-content: center;
+      margin-top: 2.5rem; flex-wrap: wrap;
+    }
+    .btn-primary {
+      padding: 0.85rem 2rem;
+      background: var(--pw-500); color: #fff;
+      border-radius: 999px; font-size: 1rem; font-weight: 600;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(110,93,220,0.25);
+    }
+    .btn-primary:hover { background: var(--pw-600); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(110,93,220,0.3); }
+    .btn-secondary {
+      padding: 0.85rem 2rem;
+      background: #fff; color: var(--pw-700);
+      border: 2px solid var(--pw-200);
+      border-radius: 999px; font-size: 1rem; font-weight: 600;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--pw-400); color: var(--pw-500); }
+
+    /* ─── Hero Banner Image ─── */
+    .hero-banner {
+      margin-top: 3rem;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(30,27,75,0.12);
+    }
+    .hero-banner img {
+      width: 100%; height: auto; display: block;
+    }
+
+    /* ─── Video Section ─── */
+    .video-section {
+      padding: 4rem 1.5rem;
+      background: #fff;
+    }
+    .video-inner {
+      max-width: 900px; margin: 0 auto;
+    }
+    .video-wrapper {
+      position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+      border-radius: 1.25rem;
+      box-shadow: 0 8px 40px rgba(30,27,75,0.1);
+    }
+    .video-wrapper iframe {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      border: none; border-radius: 1.25rem;
+    }
+    /* YouTube thumbnail + click-to-play */
+    .video-thumb {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      display: block; border-radius: 1.25rem; overflow: hidden;
+      cursor: pointer;
+    }
+    .video-thumb img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .video-play-btn {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      transition: transform 0.2s, opacity 0.2s; opacity: 0.85;
+    }
+    .video-play-btn svg { width: 68px; height: 48px; }
+    .video-thumb:hover .video-play-btn { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+
+    /* ─── Ecosystem Section ─── */
+    .ecosystem {
+      padding: 5rem 1.5rem;
+      background: #faf9ff;
+    }
+    .section-header {
+      text-align: center; max-width: 700px; margin: 0 auto 3rem;
+    }
+    .section-header h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+      font-weight: 700; color: var(--pw-950);
+    }
+    .section-header p { margin-top: 0.75rem; color: #6b6190; font-size: 1.05rem; }
+    .eco-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; max-width: 1100px; margin: 0 auto;
+    }
+    .eco-card {
+      background: #fff; border-radius: 1.25rem;
+      padding: 2rem; border: 1px solid var(--pw-100);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .eco-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(30,27,75,0.08); }
+    .eco-icon {
+      width: 56px; height: 56px; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.75rem; margin-bottom: 1.25rem;
+    }
+    .eco-card h3 { font-size: 1.15rem; font-weight: 700; color: var(--pw-950); }
+    .eco-card p { margin-top: 0.5rem; font-size: 0.95rem; color: #6b6190; line-height: 1.6; }
+
+    /* ─── Mission ─── */
+    .mission {
+      padding: 5rem 1.5rem;
+      background: linear-gradient(135deg, var(--pw-800), var(--pw-950));
+      color: #fff; text-align: center;
+    }
+    .mission-inner { max-width: 800px; margin: 0 auto; }
+    .mission blockquote {
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      font-weight: 500; line-height: 1.5;
+      font-style: italic; opacity: 0.95;
+    }
+    .mission blockquote::before { content: open-quote; font-size: 3rem; line-height: 0; vertical-align: -0.5em; color: var(--pw-300); margin-right: 0.25rem; }
+    .mission blockquote::after { content: close-quote; font-size: 3rem; line-height: 0; vertical-align: -0.5em; color: var(--pw-300); margin-left: 0.25rem; }
+    .mission p {
+      margin-top: 2rem; font-size: 1.05rem; opacity: 0.8; max-width: 650px; margin-left: auto; margin-right: auto;
+    }
+
+    /* ─── Platform Preview ─── */
+    .platform-preview {
+      padding: 5rem 1.5rem;
+      background: #fff;
+    }
+    .preview-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+    }
+    .preview-text h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700; color: var(--pw-950);
+    }
+    .preview-text p {
+      margin-top: 1rem; color: #6b6190; font-size: 1rem; line-height: 1.7;
+    }
+    .preview-features {
+      margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;
+    }
+    .preview-features li {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      font-size: 0.95rem; color: #4a4570; list-style: none;
+    }
+    .preview-features li .check {
+      flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+      background: var(--pw-100); color: var(--pw-600);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700; margin-top: 2px;
+    }
+    .preview-mockup {
+      background: linear-gradient(135deg, var(--pw-50), var(--pw-100));
+      border-radius: 1.25rem; padding: 2rem;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 360px; position: relative; overflow: hidden;
+    }
+    .mockup-browser {
+      background: #fff; border-radius: 0.75rem; width: 100%;
+      box-shadow: 0 4px 24px rgba(30,27,75,0.1); overflow: hidden;
+    }
+    .mockup-bar {
+      background: var(--pw-50); padding: 0.5rem 1rem;
+      display: flex; align-items: center; gap: 0.5rem;
+      border-bottom: 1px solid var(--pw-100);
+    }
+    .mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .mockup-dot:nth-child(1) { background: #fca5a5; }
+    .mockup-dot:nth-child(2) { background: #fcd34d; }
+    .mockup-dot:nth-child(3) { background: #6ee7b7; }
+    .mockup-url {
+      flex: 1; margin-left: 0.5rem;
+      background: #fff; border-radius: 4px; padding: 0.2rem 0.6rem;
+      font-size: 0.7rem; color: var(--pw-400); border: 1px solid var(--pw-100);
+    }
+    .mockup-body {
+      padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem;
+    }
+    .mockup-line {
+      height: 10px; border-radius: 4px; background: var(--pw-100);
+    }
+    .mockup-line.short { width: 60%; }
+    .mockup-line.medium { width: 80%; }
+    .mockup-card-row { display: flex; gap: 0.75rem; }
+    .mockup-card {
+      flex: 1; height: 60px; border-radius: 8px;
+      background: var(--pw-50); border: 1px solid var(--pw-100);
+    }
+
+    /* ─── Team ─── */
+    .team {
+      padding: 5rem 1.5rem;
+      background: #faf9ff;
+    }
+    .team-grid {
+      display: flex; justify-content: center; gap: 2rem;
+      max-width: 900px; margin: 0 auto; flex-wrap: wrap;
+    }
+    .team-card {
+      background: #fff; border-radius: 1.25rem;
+      padding: 2.5rem 2rem; text-align: center;
+      border: 1px solid var(--pw-100); width: 320px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .team-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(30,27,75,0.08); }
+    .team-avatar {
+      width: 100px; height: 100px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--pw-200), var(--pw-400));
+      margin: 0 auto 1.25rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem; color: #fff;
+      border: 4px solid var(--pw-100);
+      overflow: hidden;
+    }
+    .team-avatar img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .team-card h3 { font-size: 1.2rem; font-weight: 700; color: var(--pw-950); }
+    .team-card .role {
+      display: inline-block; margin-top: 0.5rem;
+      padding: 0.25rem 0.85rem;
+      background: var(--pw-100); color: var(--pw-600);
+      border-radius: 999px; font-size: 0.8rem; font-weight: 600;
+    }
+    .team-card p {
+      margin-top: 1rem; font-size: 0.9rem; color: #6b6190; line-height: 1.6;
+    }
+    .team-linkedin {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      margin-top: 1.25rem; padding: 0.5rem 1.2rem;
+      background: #0a66c2; color: #fff;
+      border-radius: 999px; font-size: 0.85rem; font-weight: 600;
+      transition: background 0.2s;
+    }
+    .team-linkedin:hover { background: #004182; }
+    .team-linkedin svg { width: 16px; height: 16px; fill: currentColor; }
+
+    /* ─── Contact ─── */
+    .contact {
+      padding: 5rem 1.5rem;
+      background: #fff;
+    }
+    .contact-inner {
+      max-width: 600px; margin: 0 auto; text-align: center;
+    }
+    .contact-inner h2 {
+      font-size: 1.75rem; font-weight: 700; color: var(--pw-950);
+    }
+    .contact-inner > p { margin-top: 0.75rem; color: #6b6190; }
+    .contact-form { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%; padding: 0.85rem 1rem;
+      border: 2px solid var(--pw-100); border-radius: 0.75rem;
+      font-family: inherit; font-size: 0.95rem;
+      transition: border-color 0.2s;
+      background: #faf9ff;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none; border-color: var(--pw-400);
+    }
+    .contact-form textarea { resize: vertical; min-height: 120px; }
+    .contact-form button {
+      padding: 0.85rem 2rem;
+      background: var(--pw-500); color: #fff;
+      border: none; border-radius: 999px;
+      font-size: 1rem; font-weight: 600; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .contact-form button:hover { background: var(--pw-600); }
+
+    /* ─── Footer ─── */
+    .footer {
+      padding: 3rem 1.5rem 2rem;
+      background: var(--pw-950); color: rgba(255,255,255,0.7);
+      text-align: center;
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-logo { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem; }
+    .footer-logo img { height: 36px; filter: brightness(0) invert(1); }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .footer-links a { font-size: 0.9rem; color: rgba(255,255,255,0.6); transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-social { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; }
+    .footer-social a {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .footer-social a:hover { background: rgba(255,255,255,0.2); }
+    .footer-social a svg { width: 18px; height: 18px; fill: #fff; }
+    .footer-copy { font-size: 0.8rem; opacity: 0.5; }
+
+    /* ─── Tommi Chat Widget ─── */
+    .tommi-fab {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200;
+      width: 64px; height: 64px; border-radius: 50%;
+      background: var(--pw-500);
+      border: none; cursor: pointer;
+      box-shadow: 0 4px 20px rgba(110,93,220,0.4);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      overflow: hidden;
+    }
+    .tommi-fab:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(110,93,220,0.5); }
+    .tommi-fab img { width: 46px; height: 46px; object-fit: contain; border-radius: 50%; }
+    .tommi-fab .fab-close { display: none; color: #fff; font-size: 1.75rem; line-height: 1; }
+    .tommi-fab.open img { display: none; }
+    .tommi-fab.open .fab-close { display: block; }
+
+    /* Pulse ring */
+    .tommi-fab::before {
+      content: ''; position: absolute; inset: -4px;
+      border-radius: 50%; border: 3px solid var(--pw-300);
+      animation: tommi-pulse 2s ease-out infinite;
+    }
+    .tommi-fab.open::before { animation: none; opacity: 0; }
+    @keyframes tommi-pulse {
+      0% { transform: scale(1); opacity: 0.6; }
+      100% { transform: scale(1.35); opacity: 0; }
+    }
+
+    .tommi-chat {
+      position: fixed; bottom: 6.5rem; right: 1.5rem; z-index: 199;
+      width: 380px; max-width: calc(100vw - 2rem);
+      background: #fff; border-radius: 1.25rem;
+      box-shadow: 0 12px 48px rgba(30,27,75,0.15);
+      display: flex; flex-direction: column;
+      overflow: hidden;
+      transform: scale(0.9) translateY(20px); opacity: 0;
+      pointer-events: none;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      max-height: min(520px, calc(100vh - 9rem));
+    }
+    .tommi-chat.open {
+      transform: scale(1) translateY(0); opacity: 1;
+      pointer-events: auto;
+    }
+
+    .tommi-chat-header {
+      background: linear-gradient(135deg, var(--pw-500), var(--pw-700));
+      padding: 1rem 1.25rem;
+      display: flex; align-items: center; gap: 0.75rem;
+      color: #fff;
+    }
+    .tommi-chat-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; flex-shrink: 0;
+    }
+    .tommi-chat-avatar img { width: 36px; height: 36px; object-fit: contain; }
+    .tommi-chat-header-text h4 { font-size: 0.95rem; font-weight: 700; }
+    .tommi-chat-header-text p { font-size: 0.75rem; opacity: 0.8; margin-top: 1px; }
+
+    .tommi-chat-body {
+      flex: 1; overflow-y: auto; padding: 1rem;
+      display: flex; flex-direction: column; gap: 0.75rem;
+      min-height: 200px;
+      background: var(--pw-50);
+    }
+
+    .tommi-msg {
+      max-width: 85%; padding: 0.7rem 1rem;
+      border-radius: 1rem; font-size: 0.88rem; line-height: 1.5;
+      animation: msg-in 0.3s ease;
+    }
+    @keyframes msg-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .tommi-msg.bot {
+      background: #fff; color: var(--pw-950);
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+      box-shadow: 0 1px 4px rgba(30,27,75,0.06);
+    }
+    .tommi-msg.user {
+      background: var(--pw-500); color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+    .tommi-msg.bot .msg-name {
+      font-size: 0.7rem; font-weight: 700; color: var(--pw-500);
+      margin-bottom: 2px;
+    }
+
+    .tommi-typing {
+      display: flex; gap: 4px; align-items: center;
+      padding: 0.7rem 1rem; align-self: flex-start;
+    }
+    .tommi-typing span {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--pw-300);
+      animation: typing-dot 1.2s ease-in-out infinite;
+    }
+    .tommi-typing span:nth-child(2) { animation-delay: 0.15s; }
+    .tommi-typing span:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes typing-dot {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30% { transform: translateY(-5px); opacity: 1; }
+    }
+
+    .tommi-chat-input {
+      display: flex; gap: 0.5rem; padding: 0.75rem;
+      border-top: 1px solid var(--pw-100); background: #fff;
+    }
+    .tommi-chat-input input {
+      flex: 1; padding: 0.6rem 0.85rem;
+      border: 2px solid var(--pw-100); border-radius: 999px;
+      font-family: inherit; font-size: 0.88rem;
+      outline: none; transition: border-color 0.2s;
+    }
+    .tommi-chat-input input:focus { border-color: var(--pw-400); }
+    .tommi-chat-input button {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: var(--pw-500); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .tommi-chat-input button:hover { background: var(--pw-600); }
+    .tommi-chat-input button svg { width: 18px; height: 18px; color: #fff; }
+
+    .tommi-suggestions {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      padding: 0 1rem 0.75rem; background: var(--pw-50);
+    }
+    .tommi-suggestions button {
+      padding: 0.35rem 0.75rem;
+      background: #fff; color: var(--pw-700);
+      border: 1px solid var(--pw-200); border-radius: 999px;
+      font-size: 0.78rem; font-family: inherit; cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .tommi-suggestions button:hover { background: var(--pw-100); border-color: var(--pw-400); }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: rgba(250, 249, 255, 0.98); backdrop-filter: blur(16px);
+        padding: 1.5rem; gap: 1rem;
+        border-bottom: 1px solid var(--pw-100);
+      }
+      .nav-toggle { display: block; }
+      .preview-inner { grid-template-columns: 1fr; }
+      .preview-mockup { min-height: 280px; }
+      .hero { padding: 7rem 1.5rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ Navbar ═══ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="assets/logo-icon.png" alt="Tommi.AI" />
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="#ecosistema">Ecosistema</a>
+      <a href="#plataforma">Plataforma</a>
+      <a href="#equipo">Equipo</a>
+      <a href="#contacto">Contacto</a>
+      <a href="https://dev.tommiai.com" class="btn-platform" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m9 12 2 2 4-4"/></svg>
+        Ingresar a la plataforma
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ Hero ═══ -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-badge">Ecosistema inteligente para la neurodiversidad</span>
+    <h1>El ecosistema de <span>Tommi.AI</span></h1>
+    <p>
+      Tommi.AI es un ecosistema inteligente creado para acompanar emocional y sensorialmente a ninos
+      con autismo y TDAH. Integra dispositivos como una pulsera biometrica, juguetes sensoriales y un
+      peluche interactivo, todos conectados a una app que personaliza la experiencia de cada nino.
+    </p>
+    <div class="hero-cta">
+      <a href="https://dev.tommiai.com" class="btn-primary" target="_blank" rel="noopener">
+        Ingresar a la plataforma
+      </a>
+      <a href="#ecosistema" class="btn-secondary">
+        Conocer mas
+      </a>
+    </div>
+    <div class="hero-banner">
+      <img src="images/rs=w_1280,h_720.webp" alt="Tommi.AI — Tecnologia con proposito para comprender mejor a ninos neurodivergentes. 2do lugar Startup Competition eCommerce day 2026. Proyecto apoyado por CORFO." />
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Video ═══ -->
+<section class="video-section" id="video">
+  <div class="video-inner">
+    <div class="video-wrapper">
+      <div class="video-thumb" id="videoThumb" role="button" tabindex="0" aria-label="Reproducir video">
+        <img src="https://img.youtube.com/vi/lz4Sd9EF9I0/maxresdefault.jpg" alt="Video Tommi.AI" />
+        <div class="video-play-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.64 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="red"/><path d="M45 24 27 14v20" fill="#fff"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Ecosistema ═══ -->
+<section class="ecosystem" id="ecosistema">
+  <div class="section-header">
+    <h2>Un ecosistema completo para cada nino</h2>
+    <p>Tecnologia que se adapta a las necesidades sensoriales y emocionales de cada nino.</p>
+  </div>
+  <div class="eco-grid">
+    <div class="eco-card">
+      <div class="eco-icon" style="background: #ede9fe;">&#129302;</div>
+      <h3>Enfoque en el Usuario</h3>
+      <p>En Tommi.AI, el usuario siempre es nuestra prioridad. Proporcionamos una experiencia intuitiva y accesible para todos, sin importar su nivel de habilidad tecnica.</p>
+    </div>
+    <div class="eco-card">
+      <div class="eco-icon" style="background: #fef3c7;">&#129504;</div>
+      <h3>Innovacion en IA</h3>
+      <p>Estamos revolucionando la forma en que interactuamos con la inteligencia artificial. Nuestra mision es ofrecer soluciones innovadoras que faciliten la vida diaria y mejoren el bienestar.</p>
+    </div>
+    <div class="eco-card">
+      <div class="eco-icon" style="background: #d1fae5;">&#9889;</div>
+      <h3>Tecnologia de Vanguardia</h3>
+      <p>Utilizamos las ultimas tecnologias en machine learning y procesamiento de lenguaje natural para crear herramientas que se adaptan a las necesidades de cada nino.</p>
+    </div>
+    <div class="eco-card">
+      <div class="eco-icon" style="background: #fce7f3;">&#128150;</div>
+      <h3>Pulsera Biometrica</h3>
+      <p>Monitorea frecuencia cardiaca, movimiento y patrones de sueno en tiempo real. Datos que alimentan el motor de inteligencia artificial para generar alertas personalizadas.</p>
+    </div>
+    <div class="eco-card">
+      <div class="eco-icon" style="background: #e0f2fe;">&#129528;</div>
+      <h3>Juguetes Sensoriales</h3>
+      <p>Juguetes interactivos conectados que responden al estado emocional del nino, ofreciendo estimulos calmantes cuando detectan sobrecarga sensorial.</p>
+    </div>
+    <div class="eco-card">
+      <div class="eco-icon" style="background: #fef9c3;">&#128202;</div>
+      <h3>Insights con IA</h3>
+      <p>Motor de inteligencia artificial que analiza patrones emocionales, sensoriales y conductuales para generar recomendaciones personalizadas para familias y especialistas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Mission ═══ -->
+<section class="mission">
+  <div class="mission-inner">
+    <blockquote>
+      Creemos que cada nino siente el mundo de manera unica. Nuestra mision es crear tecnologia que lo comprenda y lo acompane.
+    </blockquote>
+    <p>
+      Tommi.AI nace de la conviccion de que la tecnologia puede ser un puente entre el mundo
+      sensorial de cada nino y las personas que lo cuidan. No reemplazamos al especialista —
+      lo potenciamos con datos.
+    </p>
+  </div>
+</section>
+
+<!-- ═══ Platform Preview ═══ -->
+<section class="platform-preview" id="plataforma">
+  <div class="preview-inner">
+    <div class="preview-text">
+      <h2>La plataforma que conecta todo</h2>
+      <p>
+        Una plataforma web y mobile donde cuidadores y especialistas registran, analizan
+        y dan seguimiento a patrones emocionales, perfiles sensoriales y datos de sensores,
+        con soporte de inteligencia artificial.
+      </p>
+      <ul class="preview-features">
+        <li>
+          <span class="check">&#10003;</span>
+          <span>Diario emocional con analisis de patrones y triggers</span>
+        </li>
+        <li>
+          <span class="check">&#10003;</span>
+          <span>Perfil sensorial personalizado por cada nino</span>
+        </li>
+        <li>
+          <span class="check">&#10003;</span>
+          <span>Datos de sensores en tiempo real (FC, movimiento, ruido, sueno)</span>
+        </li>
+        <li>
+          <span class="check">&#10003;</span>
+          <span>Especialistas AI que responden con evidencia y plan de accion</span>
+        </li>
+        <li>
+          <span class="check">&#10003;</span>
+          <span>Alertas inteligentes por severidad con multiples canales</span>
+        </li>
+        <li>
+          <span class="check">&#10003;</span>
+          <span>Dashboard con insights y tendencias semanales</span>
+        </li>
+      </ul>
+      <div style="margin-top: 2rem;">
+        <a href="https://dev.tommiai.com" class="btn-primary" target="_blank" rel="noopener">
+          Explorar la plataforma
+        </a>
+      </div>
+    </div>
+    <div class="preview-mockup">
+      <div class="mockup-browser">
+        <div class="mockup-bar">
+          <span class="mockup-dot"></span>
+          <span class="mockup-dot"></span>
+          <span class="mockup-dot"></span>
+          <span class="mockup-url">dev.tommiai.com/dashboard</span>
+        </div>
+        <div class="mockup-body">
+          <div class="mockup-line short"></div>
+          <div class="mockup-line medium"></div>
+          <div class="mockup-card-row">
+            <div class="mockup-card"></div>
+            <div class="mockup-card"></div>
+            <div class="mockup-card"></div>
+          </div>
+          <div class="mockup-line"></div>
+          <div class="mockup-card-row">
+            <div class="mockup-card" style="height:80px;"></div>
+            <div class="mockup-card" style="height:80px;"></div>
+          </div>
+          <div class="mockup-line short"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Team ═══ -->
+<section class="team" id="equipo">
+  <div class="section-header">
+    <h2>Nuestro equipo</h2>
+    <p>Las personas detras de Tommi.AI</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-avatar">
+        <img src="images/adelaida.jpg" alt="Adelaida Aguayo" />
+      </div>
+      <h3>Adelaida Aguayo</h3>
+      <span class="role">CEO &amp; Co-Fundadora</span>
+      <p>
+        Liderando la vision de Tommi.AI para transformar el acompanamiento
+        de ninos con autismo y TDAH a traves de tecnologia e inteligencia artificial.
+      </p>
+      <a href="https://www.linkedin.com/in/adelaidaaguayov/" class="team-linkedin" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Contact ═══ -->
+<section class="contact" id="contacto">
+  <div class="contact-inner">
+    <h2>Comunicate con nosotros</h2>
+    <p>Nos encantaria saber de ti. Escribe tu mensaje y te responderemos a la brevedad.</p>
+    <form class="contact-form" action="mailto:contacto@tommiai.com" method="post" enctype="text/plain">
+      <input type="text" name="nombre" placeholder="Tu nombre" required />
+      <input type="email" name="email" placeholder="Tu email" required />
+      <textarea name="mensaje" placeholder="Tu mensaje..." required></textarea>
+      <button type="submit">Enviar mensaje</button>
+    </form>
+  </div>
+</section>
+
+<!-- ═══ Footer ═══ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <img src="assets/logo-icon.png" alt="Tommi.AI" />
+    </div>
+    <div class="footer-links">
+      <a href="#ecosistema">Ecosistema</a>
+      <a href="#plataforma">Plataforma</a>
+      <a href="#equipo">Equipo</a>
+      <a href="#contacto">Contacto</a>
+      <a href="https://dev.tommiai.com" target="_blank" rel="noopener">Ingresar</a>
+    </div>
+    <div class="footer-social">
+      <a href="https://www.linkedin.com/company/tommi-ai/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Tommi.AI — Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<!-- ═══ Tommi Chat Widget ═══ -->
+<button class="tommi-fab" id="tommiFab" aria-label="Hablar con Tommi">
+  <img src="assets/logo-icon.png" alt="Tommi" />
+  <span class="fab-close">&times;</span>
+</button>
+
+<div class="tommi-chat" id="tommiChat">
+  <div class="tommi-chat-header">
+    <div class="tommi-chat-avatar">
+      <img src="assets/logo-icon.png" alt="Tommi" />
+    </div>
+    <div class="tommi-chat-header-text">
+      <h4>Tommi</h4>
+      <p>Asistente virtual de Tommi.AI</p>
+    </div>
+  </div>
+  <div class="tommi-chat-body" id="tommiBody"></div>
+  <div class="tommi-suggestions" id="tommiSuggestions"></div>
+  <div class="tommi-chat-input">
+    <input type="text" id="tommiInput" placeholder="Escribe tu pregunta..." />
+    <button id="tommiSend" aria-label="Enviar">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ═══ Scripts ═══ -->
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  // Mobile menu toggle
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    links.classList.toggle('open');
+  });
+
+  // Close menu on link click
+  links.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => links.classList.remove('open'));
+  });
+
+  /* ─── Tommi Chat ─── */
+  (function() {
+    const fab = document.getElementById('tommiFab');
+    const chat = document.getElementById('tommiChat');
+    const body = document.getElementById('tommiBody');
+    const input = document.getElementById('tommiInput');
+    const sendBtn = document.getElementById('tommiSend');
+    const sugBox = document.getElementById('tommiSuggestions');
+
+    // ── Toggle ──
+    fab.addEventListener('click', () => {
+      const open = chat.classList.toggle('open');
+      fab.classList.toggle('open');
+      if (open && body.children.length === 0) initChat();
+      if (open) input.focus();
+    });
+
+    // ── Knowledge base ──
+    const KNOWLEDGE = {
+      que_es: "Tommi.AI es un ecosistema inteligente creado para acompanar emocional y sensorialmente a ninos con autismo y TDAH. Integra una pulsera biometrica, juguetes sensoriales, un peluche interactivo y una plataforma digital con inteligencia artificial.",
+      plataforma: "La plataforma permite registrar emociones, crear perfiles sensoriales, visualizar datos de sensores en tiempo real, recibir alertas automaticas y consultar especialistas virtuales con IA. Funciona en web y mobile. Puedes explorarla en dev.tommiai.com",
+      sensores: "Monitoreamos frecuencia cardiaca, movimiento, ruido ambiental, calidad de sueno, tiempo de pantalla y mas. Los datos llegan desde wearables (Garmin, Fitbit, Apple Watch), HealthKit, Health Connect, sensores del telefono o ingreso manual.",
+      alertas: "El sistema genera alertas automaticas cuando detecta valores criticos: frecuencia cardiaca elevada (>120 bpm), ruido alto (>80 dB), sueno insuficiente (<5.5 hrs), etc. Las alertas llegan por push, email, WhatsApp o in-app segun la configuracion del usuario.",
+      ia: "Nuestro motor de IA analiza patrones emocionales, datos de sensores y notas clinicas para generar insights personalizados. Tambien puedes consultar especialistas virtuales (neurologo, terapeuta ocupacional, psicologo) que responden con evidencia y plan de accion.",
+      diario: "El diario emocional permite registrar que emocion siente el nino, su intensidad (1-5), detonantes, contexto (casa, escuela, terapia), tipo de episodio (meltdown, shutdown, tantrum) y tiempo de recuperacion.",
+      sensorial: "El perfil sensorial mapea las sensibilidades del nino en 6 canales: auditivo, visual, tactil, olfativo, propioceptivo y vestibular. Tambien registra estimulos que lo calman y los que lo sobrecargan.",
+      equipo: "Tommi.AI fue fundado por Adelaida Aguayo. El proyecto es apoyado por CORFO a traves del programa Semilla Inicia Mujeres, y obtuvo el 2do lugar en la Startup Competition eCommerce day 2026.",
+      corfo: "Si, Tommi.AI es un proyecto apoyado por CORFO a traves del programa Semilla Inicia Mujeres. Esto nos permite desarrollar tecnologia de vanguardia para familias y especialistas en Chile.",
+      prueba: "Puedes explorar la plataforma ahora mismo en dev.tommiai.com. Registrate, crea el perfil de un nino y descubre como funciona el diario emocional, el perfil sensorial y los insights con IA.",
+      privacidad: "Tommi.AI cumple con la Ley 21.719 de proteccion de datos personales de Chile. Los datos de salud de menores tienen el maximo nivel de proteccion con encriptacion, consentimiento parental obligatorio y derecho a borrado.",
+      pulsera: "La pulsera biometrica de Tommi.AI monitorea frecuencia cardiaca, movimiento y patrones de sueno en tiempo real. Estos datos alimentan el motor de IA para generar alertas y recomendaciones personalizadas.",
+      peluche: "El peluche interactivo de Tommi.AI responde al estado emocional del nino, ofreciendo estimulos calmantes (vibracion suave, sonidos relajantes) cuando detecta sobrecarga sensorial a traves de los datos del ecosistema.",
+    };
+
+    function findAnswer(q) {
+      const lower = q.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      const keywords = {
+        que_es: ['que es', 'que hace', 'tommiai', 'tommi ai', 'quienes son', 'de que se trata', 'startup'],
+        plataforma: ['plataforma', 'app', 'aplicacion', 'web', 'mobile', 'funciona', 'como funciona', 'dev.tommiai'],
+        sensores: ['sensor', 'wearable', 'healthkit', 'garmin', 'fitbit', 'frecuencia cardiaca', 'monitoreo', 'datos', 'medir', 'recolecta'],
+        alertas: ['alerta', 'notificacion', 'aviso', 'critico', 'umbral', 'emergencia', 'riesgo'],
+        ia: ['ia', 'inteligencia artificial', 'ai', 'insight', 'especialista', 'recomendacion', 'analisis', 'neurologo', 'terapeuta', 'psicologo'],
+        diario: ['diario', 'emocional', 'emocion', 'registro', 'crisis', 'meltdown', 'shutdown'],
+        sensorial: ['sensorial', 'sensibilidad', 'auditivo', 'tactil', 'visual', 'estimulo', 'calma', 'sobrecarga'],
+        equipo: ['equipo', 'fundador', 'adelaida', 'quien creo', 'detras'],
+        corfo: ['corfo', 'semilla', 'financiamiento', 'apoyo', 'gobierno'],
+        prueba: ['probar', 'prueba', 'demo', 'registrar', 'cuenta', 'empezar', 'comenzar', 'acceder', 'ingresar'],
+        privacidad: ['privacidad', 'datos', 'seguridad', 'ley', 'consentimiento', 'proteccion', 'borrar'],
+        pulsera: ['pulsera', 'biometrica', 'biometrico', 'banda', 'reloj'],
+        peluche: ['peluche', 'juguete', 'muneco', 'interactivo'],
+      };
+
+      let best = null;
+      let bestScore = 0;
+      for (const [key, words] of Object.entries(keywords)) {
+        let score = 0;
+        for (const w of words) {
+          if (lower.includes(w)) score += w.length;
+        }
+        if (score > bestScore) { bestScore = score; best = key; }
+      }
+      return best && bestScore >= 2 ? KNOWLEDGE[best] : null;
+    }
+
+    const FALLBACK = "Que buena pregunta. Te invito a explorar la plataforma en dev.tommiai.com donde podras ver todo en accion, o escribenos a contacto@tommiai.com para que un humano te ayude con mas detalle.";
+
+    // ── Render ──
+    function addMsg(text, type) {
+      const div = document.createElement('div');
+      div.className = 'tommi-msg ' + type;
+      if (type === 'bot') {
+        div.innerHTML = '<div class="msg-name">Tommi</div>' + text;
+      } else {
+        div.textContent = text;
+      }
+      body.appendChild(div);
+      body.scrollTop = body.scrollHeight;
+    }
+
+    function showTyping() {
+      const div = document.createElement('div');
+      div.className = 'tommi-typing';
+      div.id = 'tommiTyping';
+      div.innerHTML = '<span></span><span></span><span></span>';
+      body.appendChild(div);
+      body.scrollTop = body.scrollHeight;
+    }
+
+    function hideTyping() {
+      const el = document.getElementById('tommiTyping');
+      if (el) el.remove();
+    }
+
+    function showSuggestions(items) {
+      sugBox.innerHTML = '';
+      items.forEach(text => {
+        const btn = document.createElement('button');
+        btn.textContent = text;
+        btn.addEventListener('click', () => handleSend(text));
+        sugBox.appendChild(btn);
+      });
+    }
+
+    // ── Init ──
+    function initChat() {
+      addMsg('Hola! Soy Tommi, el oso guardian de Tommi.AI. Estoy aqui para contarte todo sobre nuestro ecosistema para ninos con autismo y TDAH. Que te gustaria saber?', 'bot');
+      showSuggestions([
+        'Que es Tommi.AI?',
+        'Como funciona la plataforma?',
+        'Que sensores usan?',
+        'Puedo probarlo?',
+      ]);
+    }
+
+    // ── Send ──
+    function handleSend(text) {
+      if (!text || !text.trim()) return;
+      const q = text.trim();
+      addMsg(q, 'user');
+      input.value = '';
+      sugBox.innerHTML = '';
+
+      showTyping();
+      const delay = 600 + Math.random() * 800;
+      setTimeout(() => {
+        hideTyping();
+        const answer = findAnswer(q) || FALLBACK;
+        addMsg(answer, 'bot');
+
+        // Context-aware suggestions
+        const lower = q.toLowerCase();
+        if (lower.includes('sensor') || lower.includes('datos') || lower.includes('medir'))
+          showSuggestions(['Como funcionan las alertas?', 'Que es la pulsera?', 'Puedo probarlo?']);
+        else if (lower.includes('ia') || lower.includes('insight') || lower.includes('especialista'))
+          showSuggestions(['Que sensores usan?', 'Como funciona el diario?', 'Es seguro?']);
+        else if (lower.includes('probar') || lower.includes('prueba') || lower.includes('demo'))
+          showSuggestions(['Que es Tommi.AI?', 'Quien esta detras?', 'Es seguro?']);
+        else
+          showSuggestions(['Como funciona la plataforma?', 'Que sensores usan?', 'Como funciona la IA?', 'Puedo probarlo?']);
+      }, delay);
+    }
+
+    sendBtn.addEventListener('click', () => handleSend(input.value));
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') handleSend(input.value);
+    });
+  })();
+
+  // Click-to-play: replace thumbnail with YouTube iframe
+  const thumb = document.getElementById('videoThumb');
+  if (thumb) {
+    function playVideo() {
+      const wrapper = thumb.parentElement;
+      const iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube.com/embed/lz4Sd9EF9I0?start=1&autoplay=1';
+      iframe.title = 'Tommi.AI';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:1.25rem;';
+      thumb.remove();
+      wrapper.appendChild(iframe);
+    }
+    thumb.addEventListener('click', playVideo);
+    thumb.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); playVideo(); }
+    });
+  }
+</script>
+
+</body>
+</html>
