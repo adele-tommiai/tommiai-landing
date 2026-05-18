@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eliminar cuenta — Tommi.AI</title>
+  <meta name="description" content="Como solicitar la eliminacion de tu cuenta Tommi.AI y los datos asociados. Proceso conforme a la Ley 21.719 de Chile." />
+  <link rel="icon" type="image/png" href="../assets/logo-icon.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #1e1b4b;
+      background: #faf9ff;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--pw-600); text-decoration: underline; text-underline-offset: 2px; }
+    a:hover { color: var(--pw-700); }
+
+    :root {
+      --pw-50:  #f0eeff;
+      --pw-100: #e0ddff;
+      --pw-200: #c6c1f7;
+      --pw-300: #a9a1f0;
+      --pw-400: #8b7fe8;
+      --pw-500: #6e5ddc;
+      --pw-600: #5a47c4;
+      --pw-700: #4a3aa6;
+      --pw-800: #3a2d85;
+      --pw-900: #2a2064;
+      --pw-950: #1e1b4b;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250, 249, 255, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--pw-100);
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.75rem 1.5rem;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-logo img { height: 40px; width: auto; }
+    .nav-logo span { font-weight: 800; color: var(--pw-700); font-size: 1.05rem; }
+    .nav-back {
+      font-size: 0.9rem; font-weight: 600; color: var(--pw-600);
+      text-decoration: none;
+    }
+    .nav-back:hover { color: var(--pw-700); }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(180deg, var(--pw-50) 0%, #faf9ff 100%);
+      padding: 3rem 1.5rem 2.5rem;
+      border-bottom: 1px solid var(--pw-100);
+    }
+    .hero-inner {
+      max-width: 720px; margin: 0 auto; text-align: left;
+    }
+    .hero-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      background: var(--pw-100);
+      color: var(--pw-700);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      color: var(--pw-950);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+    .hero-meta {
+      font-size: 0.9rem;
+      color: var(--pw-700);
+      margin-top: 0.5rem;
+    }
+
+    /* Container */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    /* Quick summary box */
+    .summary-box {
+      background: #fff;
+      border: 1px solid var(--pw-200);
+      border-left: 4px solid var(--pw-500);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .summary-box strong { color: var(--pw-700); }
+    .summary-box a {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-weight: 600;
+    }
+
+    /* Sections */
+    section { margin-bottom: 2.5rem; }
+    section h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--pw-800);
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid var(--pw-100);
+    }
+    section h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--pw-700);
+      margin-top: 1.5rem;
+      margin-bottom: 0.6rem;
+    }
+    section p { margin-bottom: 1rem; color: var(--pw-950); }
+    section ul, section ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    section li { margin-bottom: 0.5rem; color: var(--pw-950); }
+
+    /* Steps */
+    .steps {
+      counter-reset: step;
+      list-style: none;
+      margin-left: 0 !important;
+    }
+    .steps > li {
+      counter-increment: step;
+      position: relative;
+      padding: 1.2rem 1.2rem 1.2rem 4rem;
+      background: var(--pw-50);
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+    .steps > li::before {
+      content: counter(step);
+      position: absolute;
+      left: 1rem;
+      top: 1.2rem;
+      width: 2.2rem;
+      height: 2.2rem;
+      background: var(--pw-500);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+    .steps > li strong { color: var(--pw-800); display: block; margin-bottom: 0.25rem; font-size: 1.05rem; }
+    .steps code {
+      display: inline-block;
+      background: #fff;
+      border: 1px solid var(--pw-200);
+      padding: 0.15rem 0.5rem;
+      border-radius: 6px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+      color: var(--pw-800);
+    }
+
+    /* Data tables */
+    .data-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    @media (min-width: 720px) {
+      .data-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .data-card {
+      background: #fff;
+      border: 1px solid var(--pw-100);
+      border-radius: 12px;
+      padding: 1.2rem;
+    }
+    .data-card.kept { border-left: 4px solid #f5c030; }
+    .data-card.deleted { border-left: 4px solid #6e5ddc; }
+    .data-card h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--pw-800);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .data-card.kept h4 { color: #a87d1a; }
+    .data-card ul { margin-left: 1.2rem; }
+    .data-card li { font-size: 0.92rem; margin-bottom: 0.3rem; }
+
+    /* Timeline */
+    .timeline {
+      background: #fff;
+      border: 1px solid var(--pw-100);
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem;
+      margin: 1rem 0;
+    }
+    .timeline-row {
+      display: flex;
+      gap: 1rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px dashed var(--pw-100);
+    }
+    .timeline-row:last-child { border-bottom: none; }
+    .timeline-when {
+      flex: 0 0 130px;
+      font-weight: 700;
+      color: var(--pw-700);
+      font-size: 0.9rem;
+    }
+    .timeline-what {
+      flex: 1;
+      color: var(--pw-950);
+      font-size: 0.95rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--pw-950);
+      color: #fff;
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    footer p { margin-bottom: 0.4rem; font-size: 0.9rem; }
+    footer .footer-meta { font-size: 0.82rem; opacity: 0.7; }
+    footer a { color: #fff; }
+
+    /* Print */
+    @media print {
+      .navbar, .nav-back { display: none; }
+      .hero { background: none; padding: 1rem 0; border: none; }
+      body { background: #fff; color: #000; }
+      .container { padding: 0; }
+      .summary-box, .steps li, .data-card, .timeline {
+        background: none !important;
+        border: 1px solid #ccc !important;
+        page-break-inside: avoid;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../" class="nav-logo">
+      <img src="../assets/logo-icon.png" alt="Tommi.AI" />
+      <span>Tommi.AI</span>
+    </a>
+    <a href="../" class="nav-back">&larr; Volver al sitio</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="hero-badge">Gestion de cuenta</span>
+    <h1>Eliminar mi cuenta de Tommi.AI</h1>
+    <p class="hero-meta">
+      Vigente desde <strong>12 de mayo de 2026</strong> &middot;
+      Aplica a usuarios de la app Tommi.AI (Android e iOS) y de <a href="https://app.tommiai.com">app.tommiai.com</a>
+    </p>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="summary-box">
+    <strong>Resumen:</strong> Para eliminar tu cuenta de Tommi.AI envia un correo a
+    <a href="mailto:soporte@tommiai.com?subject=Eliminar%20cuenta">soporte@tommiai.com</a>
+    con el asunto <strong>"Eliminar cuenta"</strong> desde el correo registrado.
+    Procesamos la solicitud en hasta <strong>20 dias habiles</strong>. Eliminamos
+    todos los datos personales y de los menores bajo tu cuidado, salvo los registros
+    de auditoria que la ley exige conservar.
+    <br>
+    <a href="#pasos">Ver pasos detallados &darr;</a>
+  </div>
+
+  <section id="quien">
+    <h2>Quien puede solicitar la eliminacion</h2>
+    <p>
+      Puede solicitar la eliminacion de la cuenta unicamente <strong>el titular de la cuenta</strong>,
+      es decir, la persona caregiver, especialista o administrador que la creo originalmente,
+      escribiendo desde el correo electronico registrado.
+    </p>
+    <p>
+      Si eres especialista o administrador con cuenta organizacional, debes solicitar la eliminacion
+      a traves del administrador de tu organizacion o validando tu identidad con documentacion
+      adicional.
+    </p>
+  </section>
+
+  <section id="pasos">
+    <h2>Como solicitar la eliminacion</h2>
+    <ol class="steps">
+      <li>
+        <strong>Envia el correo</strong>
+        Desde el correo asociado a tu cuenta de Tommi.AI, envia un mensaje a
+        <code>soporte@tommiai.com</code> con el asunto <strong>"Eliminar cuenta"</strong>.
+      </li>
+      <li>
+        <strong>Incluye en el cuerpo</strong>
+        Indica tu nombre completo, el correo de la cuenta a eliminar, y opcionalmente
+        el motivo de la solicitud. Si tienes menores asociados a tu cuenta, indica
+        sus nombres registrados para que confirmemos que estamos eliminando los datos
+        correctos.
+      </li>
+      <li>
+        <strong>Verificamos tu identidad</strong>
+        Por la sensibilidad de los datos (salud de menores, Tier 4 segun nuestra
+        <a href="../privacy/">politica de privacidad</a>), podemos pedirte una verificacion
+        adicional: respuesta desde el mismo correo registrado, o respuesta a una pregunta
+        sobre el contenido de tu cuenta.
+      </li>
+      <li>
+        <strong>Confirmamos y procesamos</strong>
+        Te respondemos con un correo de confirmacion dentro de <strong>20 dias habiles</strong>.
+        El proceso de eliminacion es definitivo y no se puede revertir despues de la confirmacion.
+      </li>
+      <li>
+        <strong>Tu cuenta queda eliminada</strong>
+        Recibes un correo final cuando la eliminacion esta completa. A partir de ese momento
+        no podras acceder con esas credenciales.
+      </li>
+    </ol>
+  </section>
+
+  <section id="que-se-elimina">
+    <h2>Que datos se eliminan y cuales se retienen</h2>
+    <p>
+      Conforme a la <strong>Ley N&deg; 21.719</strong> de Chile y nuestra
+      <a href="../privacy/">politica de privacidad</a>, eliminamos toda la informacion
+      personal asociada a tu cuenta. Sin embargo, hay registros que la ley exige conservar.
+    </p>
+
+    <div class="data-grid">
+      <div class="data-card deleted">
+        <h4>Se elimina (todos)</h4>
+        <ul>
+          <li>Datos personales del titular: nombre, correo, telefono, password</li>
+          <li>Perfil y datos de los menores asociados: nombre, edad, diagnostico, RUT</li>
+          <li>Diario emocional: emociones, intensidad, notas, fechas</li>
+          <li>Notas clinicas y documentos cargados</li>
+          <li>Registros de sensores: sueno, frecuencia cardiaca, actividad, etc.</li>
+          <li>Logs de medicacion y dosis</li>
+          <li>Evaluaciones semanales y perfil integrado generado por IA</li>
+          <li>Vinculaciones con especialistas</li>
+          <li>Consultas al asistente AI</li>
+          <li>Notificaciones y preferencias</li>
+          <li>Tokens de autenticacion y sesiones</li>
+        </ul>
+      </div>
+
+      <div class="data-card kept">
+        <h4>Se retiene (por obligacion legal)</h4>
+        <ul>
+          <li><strong>Registros de auditoria:</strong> 7 anos (estandar ISO 27001 y exigencias medico legales). Estos registros estan anonimizados al hash del usuario y no permiten identificar a la persona ni a los menores.</li>
+          <li><strong>Registros de facturacion:</strong> conforme exigencias del SII chileno, los comprobantes de pago se conservan por el plazo tributario aplicable (6 anos).</li>
+          <li><strong>Comunicaciones por reclamos:</strong> los correos de la solicitud de eliminacion en si, por trazabilidad del cumplimiento de la solicitud.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="margin-top: 1rem; font-size: 0.92rem; color: var(--pw-700);">
+      <strong>Nota:</strong> los datos retenidos por obligacion legal estan
+      desidentificados o pseudonimizados al maximo posible, y no se utilizan para
+      ningun otro fin distinto al cumplimiento legal o regulatorio.
+    </p>
+  </section>
+
+  <section id="plazos">
+    <h2>Plazos del proceso</h2>
+    <div class="timeline">
+      <div class="timeline-row">
+        <div class="timeline-when">Dia 0</div>
+        <div class="timeline-what">Recibimos tu correo de solicitud.</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-when">Dia 1 a 5</div>
+        <div class="timeline-what">Verificacion de identidad y confirmacion al titular.</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-when">Dia 5 a 20</div>
+        <div class="timeline-what">Soft-delete: la cuenta y los datos asociados se marcan como eliminados y dejan de ser accesibles. Plazo de gracia para recuperacion en caso de error.</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-when">Dia 20 a 30</div>
+        <div class="timeline-what">Confirmacion final al titular y, si no hay reversion, comienza el hard-delete.</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-when">Dia 30 a 60</div>
+        <div class="timeline-what">Hard-delete: eliminacion fisica de los datos en bases de datos productivas, copias de respaldo activas y caches.</div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-when">Mes 6 a 12</div>
+        <div class="timeline-what">Backups y archivos historicos: las copias de seguridad existentes al momento de la solicitud se rotan y eliminan en sus ciclos normales (maximo 12 meses).</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="alternativas">
+    <h2>Alternativas a la eliminacion total</h2>
+    <p>Si no necesitas eliminar la cuenta completa, puedes ejercer otros derechos sin perder acceso:</p>
+    <ul>
+      <li><strong>Eliminar solo los datos de un menor</strong> (manteniendo tu cuenta activa): escribe a <a href="mailto:soporte@tommiai.com?subject=Eliminar%20datos%20de%20menor">soporte@tommiai.com</a> con asunto <strong>"Eliminar datos de menor"</strong>.</li>
+      <li><strong>Excluir el procesamiento por IA</strong> manteniendo el registro de datos: asunto <strong>"Excluir procesamiento IA"</strong>. La app sigue funcionando para registro y visualizacion, pero no genera el perfil integrado.</li>
+      <li><strong>Rectificar datos incorrectos:</strong> asunto <strong>"Rectificacion ARCO"</strong>.</li>
+      <li><strong>Solicitar copia portable de tus datos:</strong> asunto <strong>"Portabilidad de datos"</strong>.</li>
+    </ul>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto y reclamos</h2>
+    <p>
+      Para cualquier consulta sobre el proceso de eliminacion:
+    </p>
+    <ul>
+      <li><strong>Correo:</strong> <a href="mailto:soporte@tommiai.com">soporte@tommiai.com</a></li>
+      <li><strong>Plazo de respuesta:</strong> 20 dias habiles conforme Ley N&deg; 21.719</li>
+      <li><strong>Responsable de datos:</strong> Tommi.AI SpA (RUT 78.279.633-K), Pedro Lagos 1390 Casa 1031, Santiago, Chile</li>
+      <li><strong>Representante legal:</strong> Adelaida Aguayo Villanueva (CEO)</li>
+    </ul>
+    <p>
+      Si consideras que tu solicitud no fue atendida adecuadamente, tienes derecho a presentar
+      un reclamo ante la <strong>Agencia de Proteccion de Datos Personales de Chile</strong>
+      una vez que se encuentre operativa, conforme a la entrada en vigencia plena de la Ley
+      N&deg; 21.719 en diciembre de 2026.
+    </p>
+  </section>
+
+  <section id="relacion">
+    <h2>Relacion con la politica de privacidad</h2>
+    <p>
+      Esta pagina describe el proceso operacional de eliminacion de cuenta y complementa
+      lo establecido en nuestra <a href="../privacy/">Politica de Privacidad v1.1</a>,
+      especificamente las secciones 11 (Retencion), 12 (Derechos ARCO) y 13 (Revocacion
+      de consentimiento). En caso de discrepancia, prevalece lo establecido en la
+      politica de privacidad.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>Tommi.AI SpA</strong> &middot; RUT 78.279.633-K</p>
+  <p class="footer-meta">Pedro Lagos 1390 Casa 1031 &middot; Santiago, Chile</p>
+  <p class="footer-meta">Soporte: <a href="mailto:soporte@tommiai.com">soporte@tommiai.com</a></p>
+  <p class="footer-meta">Esta pagina cumple los requisitos de Google Play User Data Policy y de la Ley N&deg; 21.719 de Chile.</p>
+</footer>
+
+</body>
+</html>
