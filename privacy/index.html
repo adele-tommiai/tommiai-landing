@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Politica de Privacidad — Tommi.AI</title>
+  <meta name="description" content="Politica de Privacidad de Tommi.AI: como recolectamos, usamos, almacenamos y protegemos los datos personales de cuidadores, especialistas y datos sensibles de salud de menores con autismo y TDAH." />
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" type="image/png" href="../assets/logo-icon.png" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Reset & Base */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: #1e1b4b;
+      background: #faf9ff;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--pw-600); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible { outline: 2px solid var(--pw-500); outline-offset: 2px; border-radius: 2px; }
+
+    /* Color Palette (Soft Periwinkle) — mirrors home/index.html */
+    :root {
+      --pw-50:  #f0eeff;
+      --pw-100: #e0ddff;
+      --pw-200: #c6c1f7;
+      --pw-300: #a9a1f0;
+      --pw-400: #8b7fe8;
+      --pw-500: #6e5ddc;
+      --pw-600: #5a47c4;
+      --pw-700: #4a3aa6;
+      --pw-800: #3a2d85;
+      --pw-900: #2a2064;
+      --pw-950: #1e1b4b;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250, 249, 255, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--pw-100);
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.75rem 1.5rem;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-logo img { height: 40px; width: auto; }
+    .nav-back {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.55rem 1.1rem;
+      background: transparent; color: var(--pw-700);
+      border: 2px solid var(--pw-200);
+      border-radius: 999px; font-size: 0.9rem; font-weight: 600;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .nav-back:hover { border-color: var(--pw-400); color: var(--pw-500); text-decoration: none; }
+    .nav-back svg { width: 16px; height: 16px; }
+
+    /* Hero */
+    .hero {
+      padding: 4rem 1.5rem 3rem;
+      text-align: center;
+      background: linear-gradient(180deg, var(--pw-50) 0%, #faf9ff 100%);
+    }
+    .hero-inner { max-width: 760px; margin: 0 auto; }
+    .hero-badge {
+      display: inline-block;
+      padding: 0.35rem 1rem;
+      background: var(--pw-100); color: var(--pw-700);
+      border-radius: 999px; font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 {
+      font-size: clamp(1.75rem, 4vw, 2.6rem);
+      font-weight: 800; line-height: 1.2;
+      color: var(--pw-950);
+    }
+    .hero-meta {
+      margin-top: 1rem; font-size: 0.95rem; color: #6b6190;
+    }
+    .hero-meta strong { color: var(--pw-700); font-weight: 600; }
+
+    /* Article container */
+    .doc-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    /* Table of contents */
+    .toc {
+      background: #fff;
+      border: 1px solid var(--pw-100);
+      border-radius: 1rem;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 2px 12px rgba(30,27,75,0.04);
+    }
+    .toc h2 {
+      font-size: 1rem; font-weight: 700; color: var(--pw-700);
+      text-transform: uppercase; letter-spacing: 0.04em;
+      margin-bottom: 0.75rem;
+    }
+    .toc ol {
+      list-style: decimal;
+      padding-left: 1.25rem;
+      column-count: 1;
+    }
+    .toc li {
+      padding: 0.2rem 0;
+      font-size: 0.93rem;
+      color: var(--pw-800);
+    }
+    .toc a { color: var(--pw-700); }
+    .toc a:hover { color: var(--pw-500); }
+
+    @media (min-width: 720px) {
+      .toc ol { column-count: 2; column-gap: 1.5rem; }
+    }
+
+    /* Executive summary callout */
+    .summary {
+      background: linear-gradient(135deg, var(--pw-50), #fff);
+      border: 1px solid var(--pw-100);
+      border-left: 4px solid var(--pw-500);
+      border-radius: 0.75rem;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 2.5rem;
+    }
+    .summary h2 {
+      font-size: 1.15rem; font-weight: 700; color: var(--pw-700);
+      margin-bottom: 0.75rem;
+    }
+    .summary p { color: #4a4570; font-size: 0.98rem; }
+    .summary ul { margin: 1rem 0 0; padding-left: 1.25rem; }
+    .summary li { margin: 0.4rem 0; color: #4a4570; font-size: 0.95rem; }
+    .summary strong { color: var(--pw-800); font-weight: 600; }
+
+    /* Article typography */
+    article section {
+      margin-bottom: 2.5rem;
+      scroll-margin-top: 5rem; /* anchor offset */
+    }
+    article h2 {
+      font-size: clamp(1.3rem, 2.5vw, 1.65rem);
+      font-weight: 700;
+      color: var(--pw-950);
+      margin: 0 0 1rem;
+      padding-top: 0.5rem;
+      border-bottom: 2px solid var(--pw-100);
+      padding-bottom: 0.5rem;
+    }
+    article h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--pw-800);
+      margin: 1.75rem 0 0.75rem;
+    }
+    article h4 {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--pw-700);
+      margin: 1.25rem 0 0.5rem;
+    }
+    article p { margin: 0 0 1rem; color: #2a2064; }
+    article ul, article ol {
+      margin: 0 0 1.25rem 1.25rem;
+      color: #2a2064;
+    }
+    article li { margin: 0.4rem 0; }
+    article strong { color: var(--pw-900); font-weight: 600; }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 1rem 0 1.5rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--pw-100);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      background: #fff;
+    }
+    th, td {
+      padding: 0.7rem 0.85rem;
+      text-align: left;
+      border-bottom: 1px solid var(--pw-100);
+      vertical-align: top;
+    }
+    th {
+      background: var(--pw-50);
+      color: var(--pw-800);
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.02em;
+    }
+    tr:last-child td { border-bottom: none; }
+
+    /* Callouts / blockquotes */
+    blockquote {
+      border-left: 4px solid var(--pw-300);
+      background: var(--pw-50);
+      padding: 0.85rem 1.1rem;
+      margin: 1rem 0 1.5rem;
+      border-radius: 0 0.5rem 0.5rem 0;
+      color: var(--pw-900);
+      font-size: 0.95rem;
+    }
+    blockquote strong { color: var(--pw-800); }
+
+    /* Code */
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.88em;
+      background: var(--pw-50);
+      color: var(--pw-800);
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+    }
+
+    /* Placeholder marker */
+    .placeholder {
+      display: inline-block;
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px dashed #f59e0b;
+      padding: 0.05rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85em;
+      font-weight: 600;
+    }
+
+    /* Disclaimer banner */
+    .disclaimer {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-left: 4px solid #f97316;
+      border-radius: 0.5rem;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+      color: #7c2d12;
+    }
+    .disclaimer strong { color: #7c2d12; }
+
+    /* Footer */
+    .footer {
+      padding: 3rem 1.5rem 2rem;
+      background: var(--pw-950);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-logo {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0.5rem; margin-bottom: 1rem;
+    }
+    .footer-logo img { height: 36px; filter: brightness(0) invert(1); }
+    .footer-links {
+      display: flex; justify-content: center;
+      gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap;
+    }
+    .footer-links a { font-size: 0.9rem; color: rgba(255,255,255,0.7); }
+    .footer-links a:hover { color: #fff; text-decoration: none; }
+    .footer-meta { font-size: 0.85rem; opacity: 0.6; margin-bottom: 0.5rem; }
+    .footer-copy { font-size: 0.8rem; opacity: 0.5; }
+
+    /* Print-friendly */
+    @media print {
+      body { background: #fff; color: #000; }
+      .navbar, .footer, .nav-back { display: none !important; }
+      .hero { padding: 1rem 0; background: none; text-align: left; }
+      .doc-wrap { padding: 0; max-width: 100%; }
+      article section { page-break-inside: avoid; }
+      a { color: #000; text-decoration: underline; }
+      .toc { box-shadow: none; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar" aria-label="Navegacion principal">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo" aria-label="Tommi.AI inicio">
+      <img src="../assets/logo-icon.png" alt="Tommi.AI" />
+    </a>
+    <a href="../index.html" class="nav-back">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Volver al inicio
+    </a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="hero-inner">
+    <span class="hero-badge">Documento legal</span>
+    <h1>Politica de Privacidad</h1>
+    <p class="hero-meta">
+      Version <strong>1.0</strong> &middot;
+      Vigente desde <strong>12 de mayo de 2026</strong> &middot;
+      Actualizada el <strong>12 de mayo de 2026</strong>
+    </p>
+  </div>
+</header>
+
+<div class="doc-wrap">
+
+  <!-- Executive summary -->
+  <aside class="summary" aria-labelledby="resumen-titulo">
+    <h2 id="resumen-titulo">Resumen ejecutivo</h2>
+    <p>
+      Tommi.AI es una plataforma chilena que acompana emocional, sensorial y conductualmente a ninos, ninas y adolescentes con Trastorno del Espectro Autista (TEA) y Trastorno por Deficit Atencional con o sin Hiperactividad (TDAH). Para hacerlo, recolectamos y procesamos <strong>datos sensibles de salud</strong> sobre los menores que estan bajo el cuidado de los usuarios cuidadores (&quot;caregivers&quot;).
+    </p>
+    <ul>
+      <li><strong>Consentimiento parental obligatorio.</strong> Para menores de 14 anos siempre exigimos consentimiento explicito de su madre, padre o representante legal.</li>
+      <li><strong>No vendemos datos.</strong> Jamas compartimos informacion personal con anunciantes ni la comercializamos.</li>
+      <li><strong>Transferencia internacional declarada.</strong> Almacenamos y procesamos datos en infraestructura de AWS en Estados Unidos y en proveedores de IA (OpenAI) tambien en EE.UU.</li>
+      <li><strong>Tommi.AI no es un dispositivo medico.</strong> Los analisis con IA <strong>no reemplazan el diagnostico ni el criterio clinico</strong> de profesionales habilitados.</li>
+      <li><strong>Derechos garantizados.</strong> Puedes acceder, rectificar, oponerte, cancelar y portar los datos personales escribiendo a <a href="mailto:contacto@tommiai.com">contacto@tommiai.com</a>.</li>
+    </ul>
+  </aside>
+
+  <!-- Table of contents -->
+  <nav class="toc" aria-label="Tabla de contenidos">
+    <h2>Contenido</h2>
+    <ol>
+      <li><a href="#sec-1">Identificacion del responsable de datos</a></li>
+      <li><a href="#sec-2">Datos personales que recolectamos</a></li>
+      <li><a href="#sec-3">Finalidades del tratamiento</a></li>
+      <li><a href="#sec-4">Base legal del tratamiento</a></li>
+      <li><a href="#sec-5">Tratamiento de datos de menores</a></li>
+      <li><a href="#sec-6">Compartir datos con terceros</a></li>
+      <li><a href="#sec-7">Transferencias internacionales</a></li>
+      <li><a href="#sec-8">Seguridad de los datos</a></li>
+      <li><a href="#sec-9">Retencion de datos</a></li>
+      <li><a href="#derechos-arco">Derechos del titular (ARCO + portabilidad)</a></li>
+      <li><a href="#sec-11">Revocacion de consentimiento</a></li>
+      <li><a href="#sec-12">Notificacion de incidentes de seguridad</a></li>
+      <li><a href="#sec-13">Inteligencia artificial</a></li>
+      <li><a href="#sec-14">Cookies y tecnologias similares</a></li>
+      <li><a href="#sec-15">Cambios a esta politica</a></li>
+      <li><a href="#sec-16">Contacto y reclamos</a></li>
+      <li><a href="#sec-17">Jurisdiccion y ley aplicable</a></li>
+    </ol>
+  </nav>
+
+  <article>
+
+    <!-- 1 -->
+    <section id="sec-1">
+      <h2>1. Identificacion del responsable de datos</h2>
+      <p>
+        El responsable del tratamiento de los datos personales recolectados a traves de la plataforma Tommi.AI, en cumplimiento del articulo 2 letra v) de la Ley N&deg; 21.719, es:
+      </p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Campo</th><th>Valor</th></tr>
+          <tr><td>Razon social</td><td>Tommi.AI SpA</td></tr>
+          <tr><td>RUT</td><td>78.279.633-K</td></tr>
+          <tr><td>Domicilio postal</td><td>Pedro Lagos 1390, Casa 1031, Santiago, Region Metropolitana, Chile</td></tr>
+          <tr><td>Representante legal</td><td>Adelaida Aguayo Villanueva (CEO y Co-Founder)</td></tr>
+          <tr><td>DUNS</td><td>776186741</td></tr>
+          <tr><td>Sitio web</td><td><a href="https://tommiai.com">https://tommiai.com</a></td></tr>
+          <tr><td>Correo de contacto</td><td><a href="mailto:contacto@tommiai.com">contacto@tommiai.com</a></td></tr>
+          <tr><td>Encargado de proteccion de datos (DPO)</td><td>Adelaida Aguayo Villanueva (contacto provisorio mientras se formaliza el cargo)</td></tr>
+        </table>
+      </div>
+      <blockquote>
+        <strong>Nota sobre DPO.</strong> Tommi.AI tiene la intencion de formalizar la designacion de un Delegado de Proteccion de Datos (DPO) conforme a la Ley N&deg; 21.719 antes del 1 de diciembre de 2026. Mientras tanto, el punto unico de contacto para todo asunto de privacidad es <a href="mailto:contacto@tommiai.com">contacto@tommiai.com</a> y la representante legal arriba indicada.
+      </blockquote>
+    </section>
+
+    <!-- 2 -->
+    <section id="sec-2">
+      <h2>2. Datos personales que recolectamos</h2>
+      <p>
+        Tommi.AI recolecta categorias de datos diferenciadas segun su clasificacion de sensibilidad. Internamente clasificamos los datos en cuatro niveles (Tier 1 publico, Tier 2 interno, Tier 3 confidencial / PII, Tier 4 restringido / salud de menores). Esta politica se enfoca en los datos personales (Tier 3 y Tier 4).
+      </p>
+
+      <h3>2.1 Datos de cuidadores y especialistas (Tier 3 — datos personales)</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Dato</th><th>Origen</th><th>Proposito</th><th>Obligatorio</th></tr>
+          <tr><td>Nombre y apellido</td><td>Ingreso manual en registro</td><td>Identificacion del usuario</td><td>Si</td></tr>
+          <tr><td>Correo electronico</td><td>Ingreso manual en registro</td><td>Autenticacion, comunicaciones operacionales</td><td>Si</td></tr>
+          <tr><td>Contrasena (almacenada como hash con Argon2 o gestionada por Amazon Cognito)</td><td>Ingreso manual</td><td>Autenticacion</td><td>Si</td></tr>
+          <tr><td>Rol asignado (caregiver / specialist / admin)</td><td>Asignado por el sistema o invitacion</td><td>Control de acceso basado en roles (RBAC)</td><td>Si</td></tr>
+          <tr><td>Numero de telefono</td><td>Ingreso manual</td><td>Notificaciones por SMS y verificacion (opcional)</td><td>No</td></tr>
+          <tr><td>Tokens de sesion (JWT en servidor; almacenamiento seguro <code>expo-secure-store</code> en mobile)</td><td>Generados por el sistema</td><td>Mantener sesion activa</td><td>Si</td></tr>
+          <tr><td>Datos profesionales del especialista (especialidad, identificador profesional opcional, biografia)</td><td>Ingreso manual</td><td>Perfil publico dentro de la plataforma</td><td>No</td></tr>
+        </table>
+      </div>
+
+      <h3>2.2 Datos del menor bajo cuidado (Tier 4 — datos sensibles de salud)</h3>
+      <blockquote>
+        Los siguientes datos son tratados con el <strong>maximo nivel de proteccion</strong> y requieren consentimiento parental explicito antes de ser recolectados (ver seccion <a href="#sec-5">5</a>).
+      </blockquote>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Dato</th><th>Origen</th><th>Proposito</th></tr>
+          <tr><td>Nombre, fecha de nacimiento y edad del menor</td><td>Ingreso manual por el caregiver</td><td>Personalizacion de seguimiento</td></tr>
+          <tr><td>RUT del menor (opcional)</td><td>Ingreso manual</td><td>Identificacion clinica si el caregiver lo desea</td></tr>
+          <tr><td>Diagnostico declarado (TEA, TDAH, en evaluacion, otro)</td><td>Ingreso manual o referencia del especialista</td><td>Personalizacion del analisis y filtros clinicos</td></tr>
+          <tr><td>Nivel de apoyo TEA (cuando aplica)</td><td>Ingreso manual</td><td>Personalizacion</td></tr>
+          <tr><td>Especialista tratante primario (opcional)</td><td>Ingreso manual</td><td>Coordinacion de cuidado</td></tr>
+          <tr><td>Diagnosticos medicos formales (codigos clinicos)</td><td>Ingreso manual por especialista</td><td>Registro clinico</td></tr>
+          <tr><td>Entradas del diario emocional: emocion, intensidad (1-5), detonante, contexto, tipo de episodio (meltdown / shutdown / tantrum), tiempo de recuperacion, nota narrativa, fecha</td><td>Ingreso manual por el caregiver</td><td>Monitoreo emocional</td></tr>
+          <tr><td>Notas clinicas narrativas y, opcionalmente, embeddings vectoriales derivados</td><td>Ingreso por especialistas</td><td>Registro clinico, busqueda semantica</td></tr>
+          <tr><td>Eventos de sensores: frecuencia cardiaca, frecuencia cardiaca en reposo, variabilidad cardiaca (HRV), duracion del sueno, calidad del sueno, nivel de ruido ambiental, nivel de movimiento, tiempo de pantalla, nivel de luz, temperatura, alteraciones de rutina, conteo de pasos, energia activa</td><td>Manual, sensores del telefono, Apple HealthKit, Google Health Connect, wearables (Garmin, Fitbit, Apple Watch), dispositivos IoT</td><td>Deteccion de patrones, alertas predictivas</td></tr>
+          <tr><td>Registros de sueno detallados (duracion, calidad, despertares, siestas, notas)</td><td>Ingreso manual o sincronizacion HealthKit / Health Connect</td><td>Analisis del patron de sueno</td></tr>
+          <tr><td>Registros de medicacion (medicamento, dosis, via, frecuencia, fechas de inicio y termino, prescriptor, notas)</td><td>Ingreso manual por caregiver o especialista</td><td>Seguimiento de adherencia y respuesta a tratamiento</td></tr>
+          <tr><td>Evaluaciones semanales (PSC-17 u otras escalas validadas)</td><td>Ingreso manual</td><td>Seguimiento longitudinal</td></tr>
+          <tr><td>Perfil conductual integrado (sintesis generada por IA): regulacion basal, patrones de crisis, mapa de detonantes, respuesta a medicacion, comorbilidades observadas, estrategias efectivas, banderas de escalamiento</td><td>Generado por modelo de lenguaje a partir de los datos arriba listados</td><td>Apoyo a decisiones del caregiver y del especialista</td></tr>
+          <tr><td>Consultas al asistente de especialistas: pregunta del especialista, salida del modelo (nivel de riesgo, plan, referencias de evidencia)</td><td>Ingreso por especialista</td><td>Asistencia clinica basada en evidencia</td></tr>
+          <tr><td>Eventos de notificacion (alertas, severidad, categoria de origen)</td><td>Generados por el sistema</td><td>Auditoria y trazabilidad</td></tr>
+          <tr><td>Documentos clinicos cargados (PDF, imagenes — opcionales)</td><td>Carga manual del caregiver o especialista</td><td>Registro clinico complementario</td></tr>
+        </table>
+      </div>
+
+      <h3>2.3 Datos tecnicos y de uso</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Dato</th><th>Proposito</th></tr>
+          <tr><td>Identificador del dispositivo (anonimizado)</td><td>Diagnostico tecnico, prevencion de fraude</td></tr>
+          <tr><td>Version de la aplicacion (web / mobile)</td><td>Soporte y compatibilidad</td></tr>
+          <tr><td>Sistema operativo y version</td><td>Soporte y compatibilidad</td></tr>
+          <tr><td>Idioma y zona horaria</td><td>Localizacion</td></tr>
+          <tr><td>Logs de acceso (IP, timestamp, recurso accedido, identidad)</td><td>Auditoria de seguridad (ver seccion <a href="#sec-8">8</a>)</td></tr>
+        </table>
+      </div>
+
+      <h3>2.4 Datos que no recolectamos</h3>
+      <ul>
+        <li><strong>No</strong> recolectamos ubicacion GPS continua del menor ni del cuidador.</li>
+        <li><strong>No</strong> accedemos a la camara, microfono, contactos, agenda ni galeria del dispositivo, salvo cuando el usuario elija explicitamente cargar una foto o documento.</li>
+        <li><strong>No</strong> rastreamos al usuario a traves de aplicaciones de terceros ni utilizamos identificadores publicitarios (IDFA / AAID).</li>
+        <li><strong>No</strong> recolectamos datos biometricos faciales, huellas dactilares ni reconocimiento de voz.</li>
+      </ul>
+    </section>
+
+    <!-- 3 -->
+    <section id="sec-3">
+      <h2>3. Finalidades del tratamiento</h2>
+      <p>Tratamos los datos exclusivamente para las siguientes finalidades, declaradas conforme al articulo 12 de la Ley N&deg; 21.719:</p>
+      <ol>
+        <li><strong>Monitoreo emocional, sensorial y conductual del menor.</strong> Permitir al caregiver registrar emociones, episodios de desregulacion y eventos relevantes, y visualizar tendencias a lo largo del tiempo.</li>
+        <li><strong>Generacion del perfil integrado del menor.</strong> Sintetizar mediante inteligencia artificial los datos ingresados en un panorama clinico-conductual estructurado que apoye decisiones del caregiver y del especialista.</li>
+        <li><strong>Apoyo a especialistas mediante consultas con IA contextualizada.</strong> Permitir a profesionales habilitados realizar consultas al modelo con el contexto del menor bajo su cuidado, recibiendo respuestas con referencias a literatura cientifica curada.</li>
+        <li><strong>Notificaciones operacionales y alertas predictivas.</strong> Emitir avisos cuando los datos de sensores o registros manuales superen umbrales relevantes.</li>
+        <li><strong>Soporte al usuario y mejora del servicio.</strong> Atender consultas, diagnosticar fallas tecnicas, mejorar la usabilidad y el desempeno de la plataforma.</li>
+        <li><strong>Cumplimiento de obligaciones legales.</strong> Responder a requerimientos de autoridades competentes en los terminos que la ley establece.</li>
+        <li><strong>Seguridad de la plataforma.</strong> Detectar y prevenir accesos no autorizados, fraude, abuso o ataques.</li>
+      </ol>
+      <p>No usamos los datos con fines publicitarios, de marketing dirigido ni de elaboracion de perfiles para terceros.</p>
+    </section>
+
+    <!-- 4 -->
+    <section id="sec-4">
+      <h2>4. Base legal del tratamiento</h2>
+      <p>Conforme a la Ley N&deg; 21.719 (Chile), las bases legales que invocamos son:</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Tratamiento</th><th>Base legal</th><th>Norma</th></tr>
+          <tr><td>Datos de cuidadores y especialistas (cuenta, autenticacion, comunicaciones)</td><td>Consentimiento informado del titular y ejecucion de la relacion contractual</td><td>Art. 12 letras a) y d), Ley N&deg; 21.719</td></tr>
+          <tr><td>Datos sensibles de salud del menor</td><td>Consentimiento parental explicito otorgado por madre, padre o representante legal</td><td>Art. 12 letra a) y art. 16, Ley N&deg; 21.719; Ley N&deg; 20.584; Ley N&deg; 21.430</td></tr>
+          <tr><td>Logs de seguridad y auditoria</td><td>Interes legitimo en la seguridad y obligacion legal de trazabilidad</td><td>Art. 12 letra f), Ley N&deg; 21.719; art. 13 Ley N&deg; 20.584</td></tr>
+          <tr><td>Conservacion post-cierre de cuenta</td><td>Obligacion legal y deslinde de responsabilidades</td><td>Art. 12 letra c) y art. 14 quinquies, Ley N&deg; 21.719</td></tr>
+        </table>
+      </div>
+      <p>El consentimiento para datos sensibles es <strong>explicito, especifico, informado y revocable</strong>, y se solicita de forma granular dentro de la aplicacion al momento de habilitar cada funcionalidad (perfil del menor, sincronizacion de sensores, consultas con IA, compartir con especialistas).</p>
+    </section>
+
+    <!-- 5 -->
+    <section id="sec-5">
+      <h2>5. Tratamiento de datos de menores</h2>
+      <p>Tommi.AI maneja, por diseno, datos de menores. Aplicamos los siguientes principios y reglas, alineados con la Ley N&deg; 21.719 (art. 16), la Ley N&deg; 21.430 sobre garantias y proteccion integral de los derechos de la ninez y la adolescencia, y los lineamientos de la Convencion sobre los Derechos del Nino.</p>
+
+      <h3>5.1 Edades y consentimiento</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Edad del menor</th><th>Quien consiente</th></tr>
+          <tr><td>Menores de 14 anos</td><td><strong>Siempre</strong> se requiere consentimiento explicito de madre, padre o representante legal</td></tr>
+          <tr><td>De 14 a 16 anos</td><td>Consentimiento parental obligatorio para datos sensibles de salud (toda la plataforma cae en esta categoria)</td></tr>
+          <tr><td>De 16 a 18 anos</td><td>El menor puede consentir autonomamente la mayoria de tratamientos, pero para datos clinicos sigue recomendandose el consentimiento parental</td></tr>
+        </table>
+      </div>
+      <p>Dado que Tommi.AI procesa integramente datos sensibles de salud, <strong>en la practica todo perfil de menor requiere consentimiento parental verificable</strong>, otorgado por el caregiver al momento de crear el perfil del menor.</p>
+
+      <h3>5.2 Rol del caregiver</h3>
+      <p>El caregiver actua como <strong>representante legal</strong> del menor frente a la plataforma. Asume las siguientes responsabilidades:</p>
+      <ul>
+        <li>Acreditar su vinculo legal con el menor cuando sea requerido.</li>
+        <li>Otorgar y revocar consentimiento en nombre del menor.</li>
+        <li>Decidir que especialistas tienen acceso al perfil del menor.</li>
+        <li>Recibir notificaciones de incidentes de seguridad que afecten al menor.</li>
+        <li>Solicitar el ejercicio de los derechos del titular en nombre del menor.</li>
+      </ul>
+
+      <h3>5.3 Acceso por especialistas</h3>
+      <p>Los especialistas <strong>solo</strong> acceden a datos del menor si el caregiver autoriza expresamente esa vinculacion dentro de la aplicacion. La autorizacion es revocable en cualquier momento, lo que corta de inmediato el acceso del especialista a nuevos datos del menor.</p>
+
+      <h3>5.4 Disclaimer clinico</h3>
+      <div class="disclaimer">
+        <strong>Importante.</strong> Los analisis y recomendaciones generados por la plataforma — incluyendo el perfil integrado, las alertas predictivas y las respuestas del asistente de especialistas con IA — son <strong>herramientas de apoyo</strong>. <strong>No constituyen diagnostico medico, no reemplazan la evaluacion de profesionales habilitados, ni sustituyen tratamientos clinicos prescritos.</strong> En caso de duda clinica, urgencia o crisis, el caregiver debe contactar a su equipo de salud o servicios de emergencia.
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section id="sec-6">
+      <h2>6. Compartir datos con terceros</h2>
+      <p>Tommi.AI <strong>no vende datos personales</strong> y <strong>no los comparte con anunciantes</strong> bajo ninguna circunstancia. Unicamente recurrimos a los proveedores tecnologicos estrictamente necesarios para operar el servicio, en calidad de <strong>encargados del tratamiento (subprocesadores)</strong>, sujetos a obligaciones contractuales de confidencialidad y seguridad.</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Proveedor</th><th>Rol</th><th>Datos a los que accede</th><th>Ubicacion</th></tr>
+          <tr><td>Amazon Web Services (AWS) — Lambda, DynamoDB, S3, Cognito, CloudFront, KMS</td><td>Infraestructura cloud (computo, almacenamiento, autenticacion, CDN, gestion de llaves)</td><td>Todos los datos en reposo y en transito de la plataforma</td><td>Estados Unidos (region <code>us-east-1</code>)</td></tr>
+          <tr><td>OpenAI — API de modelos de lenguaje y embeddings (<code>gpt-4o-mini</code>, <code>text-embedding-3-small</code>)</td><td>Procesamiento de IA para el perfil integrado y el asistente de especialistas</td><td>Resumenes de texto de diario, notas, alertas y consultas — pseudonimizados cuando es posible (sin identificadores directos del menor)</td><td>Estados Unidos</td></tr>
+          <tr><td>Expo (Expo Application Services)</td><td>Distribucion de la aplicacion mobile y actualizaciones over-the-air</td><td>Bundle de la aplicacion (no datos personales del menor)</td><td>Estados Unidos</td></tr>
+          <tr><td>Microsoft 365</td><td>Correo electronico corporativo de <code>@tommiai.com</code> y herramientas de productividad interna</td><td>Comunicaciones operativas con caregivers y especialistas (no datos clinicos del menor en cuerpo de correos)</td><td>Estados Unidos / Union Europea</td></tr>
+          <tr><td>GoDaddy</td><td>Registro de dominio</td><td>Datos publicos de WHOIS del dominio (no datos de usuarios)</td><td>Estados Unidos</td></tr>
+          <tr><td>Ollama (opcional, solo en entornos de desarrollo o fallback local)</td><td>Inferencia local de LLM cuando el operador lo configura</td><td>Datos procesados en infraestructura controlada por Tommi.AI o por el operador local</td><td>Local</td></tr>
+        </table>
+      </div>
+      <p>Adicionalmente, podemos compartir datos cuando:</p>
+      <ul>
+        <li>Lo exija una autoridad competente mediante orden judicial o requerimiento legal valido.</li>
+        <li>Sea estrictamente necesario para proteger la vida o integridad del menor en una emergencia.</li>
+        <li>El caregiver lo autorice expresamente para compartir con un especialista u otro tercero especifico.</li>
+      </ul>
+    </section>
+
+    <!-- 7 -->
+    <section id="sec-7">
+      <h2>7. Transferencias internacionales de datos</h2>
+      <p>Conforme a los articulos 28 y siguientes de la Ley N&deg; 21.719, declaramos expresamente que la operacion de Tommi.AI involucra <strong>transferencias internacionales de datos personales fuera de Chile</strong>, principalmente hacia Estados Unidos, por las siguientes razones tecnicas:</p>
+      <ul>
+        <li>Los datos se almacenan en AWS region <code>us-east-1</code> (Virginia, EE.UU.).</li>
+        <li>Los procesamientos de inteligencia artificial se ejecutan en infraestructura de OpenAI en EE.UU.</li>
+        <li>Algunos servicios auxiliares (Expo, Microsoft 365) operan parcialmente desde EE.UU. y la Union Europea.</li>
+      </ul>
+
+      <h3>Salvaguardas adoptadas</h3>
+      <ul>
+        <li><strong>Cifrado en transito.</strong> Toda comunicacion entre la aplicacion y la infraestructura usa TLS 1.2 o superior.</li>
+        <li><strong>Cifrado en reposo.</strong> Los datos en DynamoDB y S3 se cifran con llaves administradas por AWS KMS.</li>
+        <li><strong>Compromisos contractuales.</strong> AWS, OpenAI y Microsoft 365 declaran adherencia a estandares internacionales de seguridad (ISO 27001, SOC 2, ISO 27018). Tommi.AI opera bajo las condiciones contractuales (Data Processing Agreements) que ofrecen estos proveedores.</li>
+        <li><strong>Minimizacion.</strong> Cuando enviamos datos a OpenAI para procesamiento de IA, omitimos identificadores directos del menor siempre que el caso de uso lo permite.</li>
+      </ul>
+
+      <h3>Consentimiento</h3>
+      <p>Al aceptar esta politica y al activar las funcionalidades correspondientes dentro de la aplicacion, el caregiver <strong>autoriza expresamente</strong> las transferencias internacionales aqui descritas. Esta autorizacion es revocable, con las consecuencias operacionales descritas en la seccion <a href="#sec-11">11</a>.</p>
+
+      <h3>Plan de migracion</h3>
+      <p>Tommi.AI tiene la intencion de migrar los datos a la region AWS Chile (anunciada por AWS para H2 2026) tan pronto este operativa, para reducir las transferencias internacionales y residir los datos sensibles en territorio nacional.</p>
+    </section>
+
+    <!-- 8 -->
+    <section id="sec-8">
+      <h2>8. Seguridad de los datos</h2>
+      <p>Implementamos controles tecnicos y organizativos alineados con ISO/IEC 27001, ISO/IEC 27018 (PII en la nube) y los principios de ISO 27799 (informatica de salud), proporcionales a la sensibilidad de los datos tratados.</p>
+
+      <h3>8.1 Controles tecnicos</h3>
+      <ul>
+        <li><strong>Cifrado en transito:</strong> TLS 1.2 o superior en toda comunicacion cliente-servidor.</li>
+        <li><strong>Cifrado en reposo:</strong> DynamoDB y S3 cifrados con AWS KMS (con plan de migracion a Customer Managed Keys segregadas por dominio: CMK-PII, CMK-Clinical, CMK-Audit, CMK-Backup).</li>
+        <li><strong>Autenticacion robusta:</strong> Amazon Cognito en produccion; JWT con argon2 en entornos locales. Soporte de MFA en hoja de ruta cercana.</li>
+        <li><strong>Control de acceso basado en roles (RBAC):</strong> Tres roles diferenciados (caregiver, specialist, admin) con autorizacion aplicada en el backend (no unicamente en la interfaz). Ver decision de arquitectura en <code>docs/architecture/decisions/002-rbac-tres-roles.md</code>.</li>
+        <li><strong>Almacenamiento seguro en mobile:</strong> Los tokens de sesion en la aplicacion mobile se guardan con <code>expo-secure-store</code> (Keychain en iOS, Keystore en Android).</li>
+        <li><strong>Proteccion anti-captura de pantalla en mobile:</strong> Las pantallas que muestran datos Tier 4 estan protegidas con la capa <code>Tier4Cover</code> que bloquea capturas y grabacion de pantalla en Android, alineada con la Ley N&deg; 21.719 art. 24-26 y 46, y con los controles ISO/IEC 27001 A.8.11 y A.8.12.</li>
+        <li><strong>Audit log inmutable:</strong> Eventos criticos (acceso a datos del menor, cambios de consentimiento, exportaciones, acciones administrativas) se registran en logs inmutables con retencion de 7 anos.</li>
+        <li><strong>Hardening del backend:</strong> Validacion de entrada con Pydantic, manejo seguro de errores sin filtrar informacion, dependencias auditadas.</li>
+      </ul>
+
+      <h3>8.2 Controles organizativos</h3>
+      <ul>
+        <li><strong>Compromiso de adherencia a ISO/IEC 27001 y 27018</strong> (no certificacion vigente al momento de publicacion; certificacion en plan dentro de los 12 meses siguientes).</li>
+        <li><strong>Principio de minimo privilegio:</strong> Acceso a infraestructura productiva limitado al personal estrictamente necesario.</li>
+        <li><strong>Separacion de ambientes:</strong> Desarrollo, staging y produccion aislados; los datos productivos no se replican a desarrollo.</li>
+        <li><strong>Politica de no exponer datos reales</strong> en repositorios, documentacion o sistemas no productivos.</li>
+      </ul>
+
+      <h3>8.3 Limitaciones</h3>
+      <p>Ningun sistema es 100% inmune a riesgos de seguridad. A pesar de los controles aqui descritos, no podemos garantizar absolutamente que un incidente no ocurrira. Por eso mantenemos un plan formal de respuesta a incidentes (ver seccion <a href="#sec-12">12</a>).</p>
+    </section>
+
+    <!-- 9 -->
+    <section id="sec-9">
+      <h2>9. Retencion de datos</h2>
+      <p>Aplicamos el principio de <strong>conservacion limitada</strong>: los datos se retienen unicamente por el tiempo necesario para cumplir las finalidades declaradas, salvo obligacion legal de conservacion superior.</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Categoria de dato</th><th>Plazo de retencion</th></tr>
+          <tr><td>Datos de la cuenta del caregiver / especialista</td><td>Mientras la cuenta este activa</td></tr>
+          <tr><td>Datos sensibles del menor (Tier 4)</td><td>Mientras el caregiver mantenga la cuenta activa y no revoque el consentimiento parental</td></tr>
+          <tr><td>Datos de cuentas inactivas (sin acceso por 24 meses)</td><td>Se notifica al caregiver y se procede a archivado</td></tr>
+          <tr><td>Datos archivados (post solicitud de eliminacion o cuenta cerrada)</td><td>30 dias en estado <strong>soft-delete</strong> (recuperables) -&gt; luego <strong>hard-delete</strong> permanente</td></tr>
+          <tr><td>Logs de auditoria y seguridad</td><td>7 anos (alineado con ISO/IEC 27001 y practicas de retencion medico-legal)</td></tr>
+          <tr><td>Documentos clinicos cargados</td><td>Mismo plazo que los datos sensibles del menor, salvo obligacion legal mayor</td></tr>
+          <tr><td>Registros clinicos formales</td><td>Hasta 15 anos, conforme al articulo 13 de la Ley N&deg; 20.584</td></tr>
+        </table>
+      </div>
+
+      <h3>Excepciones</h3>
+      <p>Los plazos arriba descritos pueden ser extendidos cuando una orden judicial o requerimiento de autoridad competente lo exija, sea necesario para el ejercicio o defensa de acciones legales, o exista una obligacion legal especifica de conservacion (por ejemplo, ficha clinica).</p>
+
+      <h3>Borrado</h3>
+      <p>El borrado se ejecuta con tecnicas que impiden la recuperacion posterior. Los respaldos cifrados se purgan dentro de los 90 dias siguientes al borrado primario.</p>
+    </section>
+
+    <!-- 10 -->
+    <section id="derechos-arco">
+      <h2>10. Derechos del titular (ARCO + portabilidad)</h2>
+      <p>Conforme a los articulos 14 a 19 de la Ley N&deg; 21.719, todo titular de datos personales tiene derecho a:</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Derecho</th><th>Que significa</th></tr>
+          <tr><td>Acceso</td><td>Saber que datos tuyos (o del menor que representas) procesamos y como lo hacemos.</td></tr>
+          <tr><td>Rectificacion</td><td>Corregir datos inexactos o incompletos.</td></tr>
+          <tr><td>Cancelacion / supresion</td><td>Solicitar el borrado de los datos cuando no exista una base legal vigente para conservarlos.</td></tr>
+          <tr><td>Oposicion</td><td>Oponerse a un tratamiento especifico cuando proceda.</td></tr>
+          <tr><td>Portabilidad</td><td>Recibir tus datos en un formato estructurado y de uso comun, o solicitar su transmision a otro responsable cuando sea tecnicamente posible.</td></tr>
+          <tr><td>Bloqueo</td><td>Suspender temporalmente un tratamiento mientras se resuelve una controversia.</td></tr>
+          <tr><td>No discriminacion por decisiones automatizadas</td><td>Solicitar revision humana de decisiones tomadas unicamente por algoritmos que produzcan efectos juridicos o significativos.</td></tr>
+        </table>
+      </div>
+
+      <h3>Como ejercerlos</h3>
+      <ul>
+        <li>Escribe a <a href="mailto:contacto@tommiai.com?subject=Derechos%20ARCO">contacto@tommiai.com</a> con el asunto <strong>&quot;Derechos ARCO&quot;</strong>.</li>
+        <li>Indica claramente tu identidad, que derecho ejerces, sobre que datos y cualquier antecedente necesario para procesar la solicitud.</li>
+        <li>En el caso de datos del menor, el caregiver actua en representacion legal.</li>
+      </ul>
+
+      <h3>Plazos</h3>
+      <p>Responderemos dentro de <strong>20 dias habiles</strong> desde la recepcion de la solicitud, conforme a la Ley N&deg; 21.719. En casos complejos podremos extender este plazo, comunicandolo por escrito.</p>
+
+      <h3>Costo</h3>
+      <p>El ejercicio de estos derechos es <strong>gratuito</strong>. Solo podriamos cobrar un costo razonable si la solicitud es manifiestamente infundada o excesivamente repetitiva.</p>
+
+      <blockquote><strong>Nota tecnica.</strong> Al momento de publicacion de esta politica, las solicitudes ARCO se atienden manualmente via correo. Estamos desarrollando funcionalidades de autoservicio dentro de la aplicacion (descarga de datos, eliminacion de cuenta) que estaran disponibles progresivamente.</blockquote>
+    </section>
+
+    <!-- 11 -->
+    <section id="sec-11">
+      <h2>11. Revocacion de consentimiento</h2>
+      <p>El caregiver puede revocar el consentimiento parental otorgado en cualquier momento, sin necesidad de justificar su decision, y sin que esto afecte la licitud del tratamiento previo.</p>
+      <h3>Como revocar</h3>
+      <ul>
+        <li>Desde la aplicacion: opcion de eliminacion de cuenta (cuando este disponible) o solicitud explicita via configuracion.</li>
+        <li>Escribiendo a <a href="mailto:contacto@tommiai.com?subject=Revocaci%C3%B3n%20de%20consentimiento">contacto@tommiai.com</a> con el asunto <strong>&quot;Revocacion de consentimiento&quot;</strong>.</li>
+      </ul>
+      <h3>Consecuencias</h3>
+      <ul>
+        <li>Cesa el procesamiento de datos del menor para las finalidades cubiertas por el consentimiento revocado.</li>
+        <li>Si la revocacion abarca la totalidad del consentimiento, la cuenta se desactiva, los datos pasan a <strong>estado soft-delete</strong> durante 30 dias, y luego se eliminan de forma definitiva.</li>
+        <li>Algunos datos pueden conservarse por imperativos legales (por ejemplo, logs de auditoria requeridos por ley), informandose siempre al titular.</li>
+      </ul>
+    </section>
+
+    <!-- 12 -->
+    <section id="sec-12">
+      <h2>12. Notificacion de incidentes de seguridad</h2>
+      <p>Conforme al articulo 27 de la Ley N&deg; 21.719, Tommi.AI se compromete a notificar incidentes de seguridad que comprometan datos personales:</p>
+      <ul>
+        <li><strong>A la Agencia de Proteccion de Datos Personales</strong> (cuando este operativa, conforme a la Ley N&deg; 21.719) <strong>sin demora indebida y, en todo caso, dentro de las 72 horas</strong> siguientes a la toma de conocimiento del incidente.</li>
+        <li><strong>A los titulares afectados</strong> (caregivers, especialistas y, a traves de los caregivers, a los menores) cuando el incidente represente un riesgo alto para sus derechos.</li>
+        <li>La notificacion incluira: naturaleza del incidente, datos potencialmente afectados, medidas adoptadas, recomendaciones y canales de contacto para consultas.</li>
+      </ul>
+      <p>Mantenemos un plan formal de respuesta a incidentes con fases de deteccion, triage, contencion, notificacion y recuperacion.</p>
+    </section>
+
+    <!-- 13 -->
+    <section id="sec-13">
+      <h2>13. Inteligencia artificial: como y por que la usamos</h2>
+      <p>Tommi.AI utiliza inteligencia artificial para apoyar a cuidadores y especialistas en dos funcionalidades centrales:</p>
+      <ol>
+        <li><strong>Perfil integrado del menor.</strong> A partir de los datos ingresados por el caregiver y el especialista, un modelo de lenguaje sintetiza un panorama estructurado del menor: regulacion basal, patrones de crisis, mapa de detonantes, respuesta a medicacion, comorbilidades observadas, estrategias efectivas y banderas de escalamiento.</li>
+        <li><strong>Asistente de especialistas.</strong> Profesionales habilitados pueden consultar al modelo con el contexto del menor bajo su cuidado; el sistema responde indicando un nivel de riesgo estimado, un plan sugerido y referencias a literatura cientifica curada (PubMed, ClinicalTrials.gov, RxNorm, DailyMed, OpenFDA).</li>
+      </ol>
+
+      <h3>Como lo hacemos</h3>
+      <ul>
+        <li>Usamos modelos de OpenAI (<code>gpt-4o-mini</code> para razonamiento y <code>text-embedding-3-small</code> para embeddings vectoriales).</li>
+        <li>En entornos donde esta habilitado, el sistema puede usar Ollama como alternativa local de inferencia.</li>
+        <li>Los datos enviados a OpenAI consisten en <strong>resumenes</strong> de informacion del menor, <strong>omitiendo identificadores directos</strong> (nombre y RUT del menor) siempre que el caso de uso lo permite.</li>
+        <li>Las respuestas del modelo se almacenan asociadas al contexto del menor para trazabilidad clinica.</li>
+      </ul>
+
+      <div class="disclaimer">
+        <strong>Lo que la IA no es.</strong>
+        <ul style="margin-top: 0.5rem;">
+          <li><strong>No es diagnostico.</strong> Las salidas del modelo no constituyen diagnostico medico ni reemplazan el criterio clinico de profesionales habilitados.</li>
+          <li><strong>No es decision vinculante.</strong> Las recomendaciones son sugerencias; toda decision clinica corresponde al especialista tratante y al caregiver.</li>
+          <li><strong>No es infalible.</strong> Los modelos pueden producir errores. La plataforma muestra de manera prominente el disclaimer correspondiente.</li>
+        </ul>
+      </div>
+
+      <h3>Tu control</h3>
+      <ul>
+        <li>Puedes <strong>solicitar la exclusion del procesamiento por IA</strong> para el perfil del menor escribiendo a <a href="mailto:contacto@tommiai.com">contacto@tommiai.com</a>. La plataforma seguira funcionando para registro y visualizacion de datos, pero no generara el perfil integrado ni habilitara el asistente de IA para ese menor.</li>
+        <li>Puedes solicitar revision humana de cualquier salida automatizada que consideres incorrecta o injusta.</li>
+      </ul>
+    </section>
+
+    <!-- 14 -->
+    <section id="sec-14">
+      <h2>14. Cookies y tecnologias similares</h2>
+      <h3>Aplicacion web (<code>dev.tommiai.com</code>, <code>app.tommiai.com</code>)</h3>
+      <p>Usamos cookies y almacenamiento local <strong>estrictamente necesarios</strong> para:</p>
+      <ul>
+        <li>Mantener la sesion iniciada (cookie de sesion / <code>localStorage</code> para token JWT).</li>
+        <li>Preferencias de interfaz (idioma, nino activo seleccionado).</li>
+      </ul>
+      <p><strong>No</strong> usamos cookies de publicidad, ni cookies de redes sociales con seguimiento, ni cookies analiticas de terceros que perfilen al usuario fuera de la plataforma.</p>
+
+      <h3>Aplicacion mobile (iOS, Android)</h3>
+      <ul>
+        <li><strong>No</strong> integramos SDKs de publicidad ni de tracking de terceros.</li>
+        <li><strong>No</strong> usamos identificadores publicitarios (IDFA en iOS, AAID en Android).</li>
+        <li>Los tokens se almacenan en <code>expo-secure-store</code> (Keychain / Keystore).</li>
+      </ul>
+    </section>
+
+    <!-- 15 -->
+    <section id="sec-15">
+      <h2>15. Cambios a esta politica</h2>
+      <p>Podemos actualizar esta politica para reflejar cambios legales, tecnicos u operacionales. Cuando lo hagamos:</p>
+      <ul>
+        <li>Actualizaremos la <strong>fecha de ultima actualizacion</strong> y el numero de <strong>version</strong> al inicio del documento.</li>
+        <li>Notificaremos los cambios sustantivos por correo electronico al caregiver registrado, mediante un aviso destacado dentro de la aplicacion, y publicando la nueva version en <a href="https://tommiai.com/privacy">https://tommiai.com/privacy</a> con al menos <strong>30 dias de anticipacion</strong> a su entrada en vigencia.</li>
+        <li>Conservaremos versiones historicas accesibles a pedido en <a href="mailto:contacto@tommiai.com">contacto@tommiai.com</a>.</li>
+      </ul>
+      <p>El uso continuo de la plataforma despues de la entrada en vigencia de una nueva version implica la aceptacion de los terminos actualizados. Si no estas de acuerdo, puedes ejercer tu derecho de revocacion de consentimiento conforme a la seccion <a href="#sec-11">11</a>.</p>
+    </section>
+
+    <!-- 16 -->
+    <section id="sec-16">
+      <h2>16. Contacto y reclamos</h2>
+      <h3>Canal unico de contacto</h3>
+      <ul>
+        <li><strong>Correo electronico:</strong> <a href="mailto:contacto@tommiai.com">contacto@tommiai.com</a></li>
+        <li><strong>Sitio web:</strong> <a href="https://tommiai.com">https://tommiai.com</a></li>
+        <li><strong>Plazo maximo de respuesta:</strong> 20 dias habiles desde la recepcion de la solicitud.</li>
+      </ul>
+      <p>Para consultas de privacidad, indica en el asunto: <strong>&quot;Privacidad&quot;</strong>, <strong>&quot;Derechos ARCO&quot;</strong>, <strong>&quot;Revocacion de consentimiento&quot;</strong> o <strong>&quot;Incidente de seguridad&quot;</strong> segun corresponda.</p>
+
+      <h3>Reclamo ante la autoridad</h3>
+      <p>Sin perjuicio de tu derecho a contactarnos directamente, puedes presentar reclamos ante la <strong>Agencia de Proteccion de Datos Personales de Chile</strong> (creada por la Ley N&deg; 21.719) una vez que se encuentre operativa, conforme al procedimiento que dicha autoridad establezca.</p>
+    </section>
+
+    <!-- 17 -->
+    <section id="sec-17">
+      <h2>17. Jurisdiccion y ley aplicable</h2>
+      <p>Esta politica se rige por las leyes de la Republica de Chile, en particular:</p>
+      <ul>
+        <li><strong>Ley N&deg; 21.719</strong> sobre proteccion y tratamiento de datos personales.</li>
+        <li><strong>Ley N&deg; 20.584</strong> sobre derechos y deberes que tienen las personas en relacion con acciones vinculadas a su atencion en salud.</li>
+        <li><strong>Ley N&deg; 21.430</strong> sobre garantias y proteccion integral de los derechos de la ninez y la adolescencia.</li>
+      </ul>
+      <p>Cualquier controversia derivada de la interpretacion o aplicacion de esta politica sera sometida a la jurisdiccion de los tribunales ordinarios de justicia con asiento en la comuna de Santiago, Chile, sin perjuicio de los derechos del titular ante la autoridad administrativa competente.</p>
+    </section>
+
+  </article>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <img src="../assets/logo-icon.png" alt="Tommi.AI" />
+    </div>
+    <div class="footer-links">
+      <a href="../index.html">Inicio</a>
+      <a href="../index.html#ecosistema">Ecosistema</a>
+      <a href="../index.html#plataforma">Plataforma</a>
+      <a href="../index.html#contacto">Contacto</a>
+      <a href="/privacy">Privacidad</a>
+    </div>
+    <p class="footer-meta">Politica de Privacidad &middot; Version 1.0 &middot; Vigente desde 12 de mayo de 2026</p>
+    <p class="footer-meta">Contacto de privacidad: <a href="mailto:contacto@tommiai.com" style="color: rgba(255,255,255,0.85);">contacto@tommiai.com</a></p>
+    <p class="footer-copy">&copy; 2026 Tommi.AI — Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+</body>
+</html>
