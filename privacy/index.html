@@ -48,6 +48,7 @@
     .navbar {
       position: sticky; top: 0; z-index: 100;
       background: rgba(250, 249, 255, 0.92);
+      -webkit-backdrop-filter: blur(16px);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--pw-100);
     }
@@ -380,9 +381,8 @@
           <tr><th>Campo</th><th>Valor</th></tr>
           <tr><td>Razon social</td><td>Tommi.AI SpA</td></tr>
           <tr><td>RUT</td><td>78.279.633-K</td></tr>
-          <tr><td>Domicilio postal</td><td>Pedro Lagos 1390, Casa 1031, Santiago, Region Metropolitana, Chile</td></tr>
-          <tr><td>Representante legal</td><td>Adelaida Aguayo Villanueva (CEO y Co-Founder)</td></tr>
-          <tr><td>DUNS</td><td>776186741</td></tr>
+          <tr><td>Domicilio postal</td><td>Santiago, Region Metropolitana, Chile (direccion disponible a solicitud de autoridad competente)</td></tr>
+          <tr><td>Representante legal</td><td>CEO y Co-Founder de Tommi.AI SpA</td></tr>
           <tr><td>Sitio web</td><td><a href="https://tommiai.com">https://tommiai.com</a></td></tr>
           <tr><td>Correo de contacto</td><td><a href="mailto:soporte@tommiai.com">soporte@tommiai.com</a></td></tr>
           <tr><td>Encargado de proteccion de datos (DPO)</td><td>Adelaida Aguayo Villanueva (contacto provisorio mientras se formaliza el cargo)</td></tr>
@@ -730,7 +730,7 @@
       <h3>Aplicacion web (<code>dev.tommiai.com</code>, <code>app.tommiai.com</code>)</h3>
       <p>Usamos cookies y almacenamiento local <strong>estrictamente necesarios</strong> para:</p>
       <ul>
-        <li>Mantener la sesion iniciada (cookie de sesion / <code>localStorage</code> para token JWT).</li>
+        <li>Mantener la sesion iniciada mediante cookie de sesion <code>httpOnly</code> y <code>Secure</code>.</li>
         <li>Preferencias de interfaz (idioma, nino activo seleccionado).</li>
       </ul>
       <p><strong>No</strong> usamos cookies de publicidad, ni cookies de redes sociales con seguimiento, ni cookies analiticas de terceros que perfilen al usuario fuera de la plataforma.</p>
