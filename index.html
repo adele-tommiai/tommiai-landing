@@ -92,13 +92,29 @@
     .btn-platform {
       display: inline-flex; align-items: center; gap: 0.5rem;
       padding: 0.6rem 1.4rem;
-      background: var(--pw-500); color: #fff;
+      background: linear-gradient(135deg, #6e5ddc 0%, #2ecfc8 100%);
+      color: #fff;
       border-radius: 999px; font-size: 0.9rem; font-weight: 600;
-      transition: background 0.2s, transform 0.2s;
       border: none; cursor: pointer;
+      box-shadow: 0 2px 14px rgba(46, 207, 200, 0.38);
+      position: relative; overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .btn-platform:hover { background: var(--pw-600); transform: translateY(-1px); color: #fff; }
-    .btn-platform svg { width: 16px; height: 16px; }
+    .btn-platform::before {
+      content: '';
+      position: absolute; inset: 0; border-radius: 999px;
+      background: linear-gradient(135deg, #5a47c4 0%, #1eb8b3 100%);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .btn-platform:hover::before { opacity: 1; }
+    .btn-platform:hover {
+      transform: translateY(-1px);
+      color: #fff;
+      box-shadow: 0 4px 22px rgba(46, 207, 200, 0.55);
+    }
+    .btn-platform svg { width: 16px; height: 16px; position: relative; }
+    .btn-platform span, .btn-platform > * { position: relative; }
 
     .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
     .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--pw-700); margin: 5px 0; transition: 0.3s; }
