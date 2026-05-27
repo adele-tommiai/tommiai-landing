@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src https://www.youtube-nocookie.com; connect-src 'self'; base-uri 'self'; form-action 'self' mailto:; object-src 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src https://www.youtube-nocookie.com; connect-src 'self' https://uri8rbwvm0.execute-api.us-east-1.amazonaws.com; base-uri 'self'; form-action 'self' mailto:; object-src 'none'" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>Tommi.AI · Comprender cómo siente tu hijo, día a día</title>
   <meta name="description" content="Tommi.AI acompaña a familias y especialistas que cuidan a niños, niñas y adolescentes neurodivergentes. Sensores, diario y una IA que escucha, sin reemplazar al especialista." />
@@ -1141,10 +1141,16 @@
       <input id="contact-email" type="email" name="email" placeholder="tu@correo.com" required autocomplete="email" />
       <label for="contact-mensaje">Tu mensaje</label>
       <textarea id="contact-mensaje" name="mensaje" placeholder="Cuéntanos en qué podemos ayudarte..." required></textarea>
+      <!-- Honeypot anti-bots: invisible para personas, ignorar -->
+      <div aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;">
+        <label for="contact-company">No completar este campo</label>
+        <input id="contact-company" type="text" name="company" tabindex="-1" autocomplete="off" />
+      </div>
       <button type="submit">Enviar mensaje</button>
       <p class="contact-note">
-        Al enviar se abrirá tu aplicación de correo con el mensaje listo para <strong>soporte@tommiai.com</strong>. Te respondemos en 48&nbsp;h hábiles. Al continuar aceptas nuestra <a href="privacy/">Política de Privacidad</a>.
+        Te respondemos en 48&nbsp;h hábiles. Al enviar aceptas nuestra <a href="privacy/">Política de Privacidad</a>.
       </p>
+      <p class="contact-note" id="contactStatus" role="status" aria-live="polite" hidden></p>
       <p class="contact-note" id="contactFallback" hidden>
         ¿No se abrió tu correo? Escríbenos directamente a <a href="mailto:soporte@tommiai.com">soporte@tommiai.com</a>.
       </p>
@@ -1395,20 +1401,63 @@
     });
   }
 
-  // Formulario de contacto -> compone un correo a soporte@tommiai.com
+  // Formulario de contacto -> envía al endpoint; si falla, cae a mailto.
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+    const CONTACT_ENDPOINT = 'https://uri8rbwvm0.execute-api.us-east-1.amazonaws.com/contact';
+    const statusEl = document.getElementById('contactStatus');
+    const fallbackEl = document.getElementById('contactFallback');
+    const btn = contactForm.querySelector('button[type="submit"]');
+
+    function getVals() {
+      return {
+        nombre: document.getElementById('contact-nombre').value.trim(),
+        email: document.getElementById('contact-email').value.trim(),
+        mensaje: document.getElementById('contact-mensaje').value.trim(),
+        company: document.getElementById('contact-company').value
+      };
+    }
+
+    function openMailto(v) {
+      const subject = encodeURIComponent('Contacto desde tommiai.com — ' + v.nombre);
+      const body = encodeURIComponent('Nombre: ' + v.nombre + '\nEmail: ' + v.email + '\n\n' + v.mensaje);
+      if (fallbackEl) fallbackEl.hidden = false;
+      window.location.href = 'mailto:soporte@tommiai.com?subject=' + subject + '&body=' + body;
+    }
+
+    contactForm.addEventListener('submit', async function(e) {
       e.preventDefault();
       if (!contactForm.checkValidity()) { contactForm.reportValidity(); return; }
-      const nombre = document.getElementById('contact-nombre').value.trim();
-      const email = document.getElementById('contact-email').value.trim();
-      const mensaje = document.getElementById('contact-mensaje').value.trim();
-      const subject = encodeURIComponent('Contacto desde tommiai.com — ' + nombre);
-      const body = encodeURIComponent('Nombre: ' + nombre + '\nEmail: ' + email + '\n\n' + mensaje);
-      const fallback = document.getElementById('contactFallback');
-      if (fallback) fallback.hidden = false;
-      window.location.href = 'mailto:soporte@tommiai.com?subject=' + subject + '&body=' + body;
+      const v = getVals();
+      if (!CONTACT_ENDPOINT) { openMailto(v); return; }
+
+      const original = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
+      if (statusEl) { statusEl.hidden = true; statusEl.textContent = ''; }
+      if (fallbackEl) fallbackEl.hidden = true;
+
+      try {
+        const r = await fetch(CONTACT_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(v)
+        });
+        const data = await r.json().catch(() => ({}));
+        if (r.ok && data.ok) {
+          contactForm.reset();
+          if (statusEl) { statusEl.hidden = false; statusEl.textContent = data.message || '¡Gracias! Te responderemos pronto.'; }
+        } else if (r.status === 422) {
+          if (statusEl) { statusEl.hidden = false; statusEl.textContent = (data && data.message) || 'Revisa el nombre, el email y el mensaje.'; }
+        } else {
+          openMailto(v); // 5xx / problema del servidor -> correo
+        }
+      } catch (err) {
+        openMailto(v); // sin red o bloqueado -> correo
+      } finally {
+        btn.disabled = false;
+        btn.textContent = original;
+      }
     });
   }
 </script>
