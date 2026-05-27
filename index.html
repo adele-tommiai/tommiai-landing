@@ -3,9 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src https://www.youtube-nocookie.com; connect-src 'self'; base-uri 'self'; form-action 'self' mailto:; object-src 'none'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>Tommi.AI · Comprender cómo siente tu hijo, día a día</title>
   <meta name="description" content="Tommi.AI acompaña a familias y especialistas que cuidan a niños, niñas y adolescentes neurodivergentes. Sensores, diario y una IA que escucha, sin reemplazar al especialista." />
+  <link rel="canonical" href="https://tommiai.com/" />
   <link rel="icon" type="image/png" href="assets/logo-icon.png" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tommiai.com/" />
+  <meta property="og:title" content="Tommi.AI · Comprender cómo siente tu hijo, día a día" />
+  <meta property="og:description" content="Tommi.AI acompaña a familias y especialistas que cuidan a niños, niñas y adolescentes neurodivergentes. Sensores, diario y una IA que escucha, sin reemplazar al especialista." />
+  <meta property="og:image" content="https://tommiai.com/assets/logo-full.png" />
+  <meta property="og:locale" content="es_CL" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tommi.AI · Comprender cómo siente tu hijo, día a día" />
+  <meta name="twitter:description" content="Tommi.AI acompaña a familias y especialistas que cuidan a niños, niñas y adolescentes neurodivergentes, sin reemplazar al especialista." />
+  <meta name="twitter:image" content="https://tommiai.com/assets/logo-full.png" />
 
   <!-- Google Fonts: Inter (body) + Fraunces (display serif) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -804,6 +819,32 @@
       .btn-primary, .btn-secondary { width: 100%; text-align: center; }
       .hero-cta { flex-direction: column; align-items: stretch; }
     }
+
+    /* Video poster (sin llamada a Google hasta el clic) */
+    .video-poster {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--pw-500) 0%, var(--pw-700) 55%, #1eb8b3 100%);
+      display: flex; align-items: flex-end;
+    }
+    .video-poster-label {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 600; color: #fff;
+      font-size: clamp(1.05rem, 2.4vw, 1.55rem);
+      letter-spacing: -0.01em;
+      padding: 1.5rem 1.75rem;
+      text-shadow: 0 1px 12px rgba(30,27,75,0.35);
+    }
+
+    /* Reduced motion — respeta la preferencia del sistema */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+      .tommi-fab::before { animation: none !important; opacity: 0 !important; }
+    }
   </style>
 </head>
 <body>
@@ -817,7 +858,7 @@
     <a href="#" class="nav-logo" aria-label="Tommi.AI · inicio">
       <img src="assets/logo-icon.png" alt="Tommi.AI" />
     </a>
-    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
       <span></span><span></span><span></span>
     </button>
     <div class="nav-links" id="navLinks">
@@ -872,7 +913,7 @@
   <div class="video-inner">
     <div class="video-wrapper">
       <div class="video-thumb" id="videoThumb" role="button" tabindex="0" aria-label="Reproducir video de Tommi.AI">
-        <img src="https://img.youtube.com/vi/lz4Sd9EF9I0/maxresdefault.jpg" alt="Video Tommi.AI" />
+        <div class="video-poster"><span class="video-poster-label">Conoce Tommi.AI</span></div>
         <div class="video-play-btn" aria-hidden="true">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.64 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="red"/><path d="M45 24 27 14v20" fill="#fff"/></svg>
         </div>
@@ -1093,15 +1134,20 @@
   <div class="contact-inner">
     <h2>Hablemos</h2>
     <p>Escríbenos a <a href="mailto:soporte@tommiai.com">soporte@tommiai.com</a> o usa el formulario. Te respondemos en 48 horas hábiles.</p>
-    <form class="contact-form" action="mailto:soporte@tommiai.com" method="post" enctype="text/plain">
+    <form class="contact-form" id="contactForm" novalidate>
       <label for="contact-nombre">Tu nombre</label>
-      <input id="contact-nombre" type="text" name="nombre" placeholder="¿Cómo te llamas?" required aria-label="Tu nombre" />
+      <input id="contact-nombre" type="text" name="nombre" placeholder="¿Cómo te llamas?" required autocomplete="name" />
       <label for="contact-email">Tu email</label>
-      <input id="contact-email" type="email" name="email" placeholder="tu@correo.com" required aria-label="Tu email" />
+      <input id="contact-email" type="email" name="email" placeholder="tu@correo.com" required autocomplete="email" />
       <label for="contact-mensaje">Tu mensaje</label>
-      <textarea id="contact-mensaje" name="mensaje" placeholder="Cuéntanos en qué podemos ayudarte..." required aria-label="Tu mensaje"></textarea>
+      <textarea id="contact-mensaje" name="mensaje" placeholder="Cuéntanos en qué podemos ayudarte..." required></textarea>
       <button type="submit">Enviar mensaje</button>
-      <p class="contact-note">Te responderemos a soporte@tommiai.com en 48h hábiles.</p>
+      <p class="contact-note">
+        Al enviar se abrirá tu aplicación de correo con el mensaje listo para <strong>soporte@tommiai.com</strong>. Te respondemos en 48&nbsp;h hábiles. Al continuar aceptas nuestra <a href="privacy/">Política de Privacidad</a>.
+      </p>
+      <p class="contact-note" id="contactFallback" hidden>
+        ¿No se abrió tu correo? Escríbenos directamente a <a href="mailto:soporte@tommiai.com">soporte@tommiai.com</a>.
+      </p>
     </form>
   </div>
 </section>
@@ -1134,12 +1180,12 @@
 </footer>
 
 <!-- Tommi Chat Widget -->
-<button class="tommi-fab" id="tommiFab" aria-label="Hablar con Tommi">
+<button class="tommi-fab" id="tommiFab" aria-label="Hablar con Tommi" aria-expanded="false" aria-controls="tommiChat">
   <img src="assets/logo-icon.png" alt="Tommi" />
   <span class="fab-close" aria-hidden="true">&times;</span>
 </button>
 
-<div class="tommi-chat" id="tommiChat" role="dialog" aria-label="Chat con Tommi">
+<div class="tommi-chat" id="tommiChat" role="dialog" aria-modal="true" aria-label="Chat con Tommi">
   <div class="tommi-chat-header">
     <div class="tommi-chat-avatar">
       <img src="assets/logo-icon.png" alt="Tommi" />
@@ -1190,8 +1236,20 @@
     fab.addEventListener('click', () => {
       const open = chat.classList.toggle('open');
       fab.classList.toggle('open');
+      fab.setAttribute('aria-expanded', open ? 'true' : 'false');
       if (open && body.children.length === 0) initChat();
       if (open) input.focus();
+      else fab.focus();
+    });
+
+    // Cerrar el chat con Escape y devolver el foco al botón
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && chat.classList.contains('open')) {
+        chat.classList.remove('open');
+        fab.classList.remove('open');
+        fab.setAttribute('aria-expanded', 'false');
+        fab.focus();
+      }
     });
 
     const KNOWLEDGE = {
@@ -1322,17 +1380,35 @@
     function playVideo() {
       const wrapper = thumb.parentElement;
       const iframe = document.createElement('iframe');
-      iframe.src = 'https://www.youtube.com/embed/lz4Sd9EF9I0?start=1&autoplay=1';
-      iframe.title = 'Tommi.AI';
+      iframe.src = 'https://www.youtube-nocookie.com/embed/lz4Sd9EF9I0?start=1&autoplay=1';
+      iframe.title = 'Video de presentación de Tommi.AI';
       iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
       iframe.allowFullscreen = true;
       iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:1.25rem;';
       thumb.remove();
       wrapper.appendChild(iframe);
+      iframe.focus();
     }
     thumb.addEventListener('click', playVideo);
     thumb.addEventListener('keydown', function(e) {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); playVideo(); }
+    });
+  }
+
+  // Formulario de contacto -> compone un correo a soporte@tommiai.com
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (!contactForm.checkValidity()) { contactForm.reportValidity(); return; }
+      const nombre = document.getElementById('contact-nombre').value.trim();
+      const email = document.getElementById('contact-email').value.trim();
+      const mensaje = document.getElementById('contact-mensaje').value.trim();
+      const subject = encodeURIComponent('Contacto desde tommiai.com — ' + nombre);
+      const body = encodeURIComponent('Nombre: ' + nombre + '\nEmail: ' + email + '\n\n' + mensaje);
+      const fallback = document.getElementById('contactFallback');
+      if (fallback) fallback.hidden = false;
+      window.location.href = 'mailto:soporte@tommiai.com?subject=' + subject + '&body=' + body;
     });
   }
 </script>

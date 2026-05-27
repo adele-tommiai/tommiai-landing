@@ -3,9 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:; base-uri 'self'; form-action 'self' mailto:; object-src 'none'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>Politica de Privacidad — Tommi.AI</title>
   <meta name="description" content="Politica de Privacidad de Tommi.AI: como recolectamos, usamos, almacenamos y protegemos los datos personales de cuidadores, especialistas y datos sensibles de salud de menores con autismo y TDAH." />
   <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://tommiai.com/privacy" />
   <link rel="icon" type="image/png" href="../assets/logo-icon.png" />
 
   <!-- Google Fonts -->
@@ -535,7 +538,7 @@
       <div class="table-wrap">
         <table>
           <tr><th>Proveedor</th><th>Rol</th><th>Datos a los que accede</th><th>Ubicacion</th></tr>
-          <tr><td>Amazon Web Services (AWS) — Lambda, DynamoDB, S3, Cognito, CloudFront, KMS</td><td>Infraestructura cloud (computo, almacenamiento, autenticacion, CDN, gestion de llaves)</td><td>Todos los datos en reposo y en transito de la plataforma</td><td>Estados Unidos (region <code>us-east-1</code>)</td></tr>
+          <tr><td>Amazon Web Services (AWS) — Lambda, DynamoDB, S3, Cognito, CloudFront, KMS</td><td>Infraestructura cloud (computo, almacenamiento, autenticacion, CDN, gestion de llaves)</td><td>Todos los datos en reposo y en transito de la plataforma</td><td>Estados Unidos</td></tr>
           <tr><td>OpenAI — API de modelos de lenguaje y embeddings (<code>gpt-4o-mini</code>, <code>text-embedding-3-small</code>)</td><td>Procesamiento de IA para el perfil integrado y el asistente de especialistas</td><td>Resumenes de texto de diario, notas, alertas y consultas — pseudonimizados cuando es posible (sin identificadores directos del menor)</td><td>Estados Unidos</td></tr>
           <tr><td>Expo (Expo Application Services)</td><td>Distribucion de la aplicacion mobile y actualizaciones over-the-air</td><td>Bundle de la aplicacion (no datos personales del menor)</td><td>Estados Unidos</td></tr>
           <tr><td>Microsoft 365</td><td>Correo electronico corporativo de <code>@tommiai.com</code> y herramientas de productividad interna</td><td>Comunicaciones operativas con caregivers y especialistas (no datos clinicos del menor en cuerpo de correos)</td><td>Estados Unidos / Union Europea</td></tr>
@@ -556,7 +559,7 @@
       <h2>7. Transferencias internacionales de datos</h2>
       <p>Conforme a los articulos 28 y siguientes de la Ley N&deg; 21.719, declaramos expresamente que la operacion de Tommi.AI involucra <strong>transferencias internacionales de datos personales fuera de Chile</strong>, principalmente hacia Estados Unidos, por las siguientes razones tecnicas:</p>
       <ul>
-        <li>Los datos se almacenan en AWS region <code>us-east-1</code> (Virginia, EE.UU.).</li>
+        <li>Los datos se almacenan en infraestructura de AWS en Estados Unidos.</li>
         <li>Los procesamientos de inteligencia artificial se ejecutan en infraestructura de OpenAI en EE.UU.</li>
         <li>Algunos servicios auxiliares (Expo, Microsoft 365) operan parcialmente desde EE.UU. y la Union Europea.</li>
       </ul>
@@ -584,11 +587,11 @@
       <h3>8.1 Controles tecnicos</h3>
       <ul>
         <li><strong>Cifrado en transito:</strong> TLS 1.2 o superior en toda comunicacion cliente-servidor.</li>
-        <li><strong>Cifrado en reposo:</strong> DynamoDB y S3 cifrados con AWS KMS (con plan de migracion a Customer Managed Keys segregadas por dominio: CMK-PII, CMK-Clinical, CMK-Audit, CMK-Backup).</li>
+        <li><strong>Cifrado en reposo:</strong> DynamoDB y S3 cifrados con AWS KMS (con plan de migracion a llaves administradas por el cliente, segregadas por dominio de datos: PII, datos clinicos, auditoria y respaldos).</li>
         <li><strong>Autenticacion robusta:</strong> Amazon Cognito en produccion; JWT con argon2 en entornos locales. Soporte de MFA en hoja de ruta cercana.</li>
-        <li><strong>Control de acceso basado en roles (RBAC):</strong> Tres roles diferenciados (caregiver, specialist, admin) con autorizacion aplicada en el backend (no unicamente en la interfaz). Ver decision de arquitectura en <code>docs/architecture/decisions/002-rbac-tres-roles.md</code>.</li>
+        <li><strong>Control de acceso basado en roles (RBAC):</strong> Tres roles diferenciados (caregiver, specialist, admin) con autorizacion aplicada en el backend (no unicamente en la interfaz).</li>
         <li><strong>Almacenamiento seguro en mobile:</strong> Los tokens de sesion en la aplicacion mobile se guardan con <code>expo-secure-store</code> (Keychain en iOS, Keystore en Android).</li>
-        <li><strong>Proteccion anti-captura de pantalla en mobile:</strong> Las pantallas que muestran datos Tier 4 estan protegidas con la capa <code>Tier4Cover</code> que bloquea capturas y grabacion de pantalla en Android, alineada con la Ley N&deg; 21.719 art. 24-26 y 46, y con los controles ISO/IEC 27001 A.8.11 y A.8.12.</li>
+        <li><strong>Proteccion anti-captura de pantalla en mobile:</strong> Las pantallas que muestran datos sensibles del menor (Tier 4) bloquean capturas y grabacion de pantalla en Android, en linea con la Ley N&deg; 21.719 art. 24-26 y 46, y con los controles ISO/IEC 27001 A.8.11 y A.8.12.</li>
         <li><strong>Audit log inmutable:</strong> Eventos criticos (acceso a datos del menor, cambios de consentimiento, exportaciones, acciones administrativas) se registran en logs inmutables con retencion de 7 anos.</li>
         <li><strong>Hardening del backend:</strong> Validacion de entrada con Pydantic, manejo seguro de errores sin filtrar informacion, dependencias auditadas.</li>
       </ul>
@@ -727,13 +730,21 @@
     <!-- 14 -->
     <section id="sec-14">
       <h2>14. Cookies y tecnologias similares</h2>
-      <h3>Aplicacion web (<code>dev.tommiai.com</code>, <code>app.tommiai.com</code>)</h3>
+      <h3>Aplicacion web (<code>app.tommiai.com</code>)</h3>
       <p>Usamos cookies y almacenamiento local <strong>estrictamente necesarios</strong> para:</p>
       <ul>
         <li>Mantener la sesion iniciada mediante cookie de sesion <code>httpOnly</code> y <code>Secure</code>.</li>
         <li>Preferencias de interfaz (idioma, nino activo seleccionado).</li>
       </ul>
       <p><strong>No</strong> usamos cookies de publicidad, ni cookies de redes sociales con seguimiento, ni cookies analiticas de terceros que perfilen al usuario fuera de la plataforma.</p>
+
+      <h3>Sitio web publico (<code>tommiai.com</code>)</h3>
+      <p>El sitio informativo no usa cookies de seguimiento ni analitica de terceros. Para su funcionamiento recurre a dos servicios externos que, por su naturaleza tecnica, pueden recibir la direccion IP del visitante:</p>
+      <ul>
+        <li><strong>Google Fonts</strong> (<code>fonts.googleapis.com</code> / <code>fonts.gstatic.com</code>): entrega las tipografias del sitio. Google puede recibir la IP del visitante al cargar las fuentes. No instala cookies de seguimiento.</li>
+        <li><strong>YouTube</strong> (modo con privacidad mejorada, <code>youtube-nocookie.com</code>): el video de presentacion <strong>solo</strong> se carga cuando el visitante pulsa &quot;reproducir&quot;. Hasta ese momento no se contacta a YouTube ni a Google.</li>
+      </ul>
+      <p>Tenemos en evaluacion auto-hospedar las tipografias para eliminar por completo esta transferencia.</p>
 
       <h3>Aplicacion mobile (iOS, Android)</h3>
       <ul>
