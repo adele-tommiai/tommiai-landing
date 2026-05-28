@@ -1152,7 +1152,7 @@
       </p>
       <p class="contact-note" id="contactStatus" role="status" aria-live="polite" hidden></p>
       <p class="contact-note" id="contactFallback" hidden>
-        ¿No se abrió tu correo? Escríbenos directamente a <a href="mailto:soporte@tommiai.com">soporte@tommiai.com</a>.
+        No pudimos enviar tu mensaje en este momento. Inténtalo más tarde o escríbenos a <a href="mailto:soporte@tommiai.com">soporte@tommiai.com</a>.
       </p>
     </form>
   </div>
@@ -1418,18 +1418,17 @@
       };
     }
 
-    function openMailto(v) {
-      const subject = encodeURIComponent('Contacto desde tommiai.com — ' + v.nombre);
-      const body = encodeURIComponent('Nombre: ' + v.nombre + '\nEmail: ' + v.email + '\n\n' + v.mensaje);
+    function showError() {
+      // muestra el mensaje de error en la pagina; NO abre ninguna app de correo
+      if (statusEl) statusEl.hidden = true;
       if (fallbackEl) fallbackEl.hidden = false;
-      window.location.href = 'mailto:soporte@tommiai.com?subject=' + subject + '&body=' + body;
     }
 
     contactForm.addEventListener('submit', async function(e) {
       e.preventDefault();
       if (!contactForm.checkValidity()) { contactForm.reportValidity(); return; }
       const v = getVals();
-      if (!CONTACT_ENDPOINT) { openMailto(v); return; }
+      if (!CONTACT_ENDPOINT) { showError(); return; }
 
       const original = btn.textContent;
       btn.disabled = true;
@@ -1450,10 +1449,10 @@
         } else if (r.status === 422) {
           if (statusEl) { statusEl.hidden = false; statusEl.textContent = (data && data.message) || 'Revisa el nombre, el email y el mensaje.'; }
         } else {
-          openMailto(v); // 5xx / problema del servidor -> correo
+          showError(); // 5xx / problema del servidor
         }
       } catch (err) {
-        openMailto(v); // sin red o bloqueado -> correo
+        showError(); // sin red o bloqueado
       } finally {
         btn.disabled = false;
         btn.textContent = original;
