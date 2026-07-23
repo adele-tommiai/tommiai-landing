@@ -264,7 +264,15 @@
       color: var(--peri-950);
       max-width: 840px;
     }
-    .hero h1 .lead { font-style: italic; }
+    .hero h1 .lead { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 400; }
+    .hero-note {
+      margin: 1.1rem auto 0; max-width: 580px;
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      font-size: 0.86rem; font-weight: 600; color: var(--peri-800);
+      background: rgba(255,255,255,0.62); border: 1px solid var(--hairline);
+      padding: 0.5rem 0.95rem; border-radius: 999px; line-height: 1.4;
+    }
+    .hero-note svg { width: 15px; height: 15px; flex-shrink: 0; stroke: currentColor; fill: none; }
     .hero-sub {
       margin: 1.5rem auto 0;
       font-size: clamp(1.02rem, 1.4vw, 1.2rem);
@@ -378,11 +386,58 @@
     }
     .mission p { margin-top: 1.75rem; font-size: 1.05rem; color: var(--ink-soft); max-width: 680px; line-height: 1.75; }
     .clinical-disclaimer {
-      margin-top: 2rem; font-size: 0.82rem; color: var(--peri-800);
+      margin-top: 2rem; font-size: 0.9rem; color: var(--peri-800);
       max-width: 640px; line-height: 1.55;
       display: flex; gap: 0.55rem; align-items: flex-start;
     }
-    .clinical-disclaimer svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; stroke: currentColor; fill: none; }
+    .clinical-disclaimer svg { width: 17px; height: 17px; flex-shrink: 0; margin-top: 2px; stroke: currentColor; fill: none; }
+
+    /* Como funciona (3 pasos) */
+    .como-funciona { background: var(--surface); }
+    .how-steps {
+      max-width: 1000px; margin: 0 auto; list-style: none; counter-reset: step;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 1.5rem;
+    }
+    .how-steps li {
+      background: var(--bg); border: 1px solid var(--hairline); border-radius: var(--radius-xl);
+      padding: 1.75rem; box-shadow: var(--shadow-sm);
+    }
+    .how-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 999px;
+      background: var(--grad-brand); color: #fff; font-weight: 800; font-size: 1.05rem;
+      margin-bottom: 0.9rem; box-shadow: var(--shadow-brand);
+    }
+    .how-steps h3 { font-size: 1.1rem; font-weight: 800; color: var(--peri-950); letter-spacing: -0.01em; }
+    .how-steps p { margin-top: 0.5rem; color: var(--ink-soft); font-size: 0.95rem; line-height: 1.6; }
+
+    /* Nota de alcance en tarjeta de alertas */
+    .eco-note {
+      margin-top: 0.7rem; font-size: 0.8rem; color: var(--peri-800);
+      background: var(--peri-50); border-radius: 10px; padding: 0.4rem 0.65rem; line-height: 1.45;
+    }
+
+    /* Banda CTA de cierre */
+    .cta-band { background: var(--peri-50); text-align: center; }
+    .cta-band-inner { max-width: 680px; margin: 0 auto; }
+    .cta-band h2 { font-size: clamp(1.6rem, 3.2vw, 2.2rem); color: var(--peri-950); }
+    .cta-band p { margin-top: 0.9rem; color: var(--ink-soft); font-size: 1.05rem; line-height: 1.65; }
+    .cta-band .hero-cta { justify-content: center; }
+    /* Etiqueta 'vista de ejemplo' del mock */
+    .mock-tag {
+      position: absolute; top: 0.65rem; right: 0.75rem; z-index: 2;
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+      color: var(--peri-800); background: rgba(255,255,255,0.9);
+      border: 1px solid var(--hairline); border-radius: 999px; padding: 0.2rem 0.6rem;
+    }
+    .mockup-placeholder { position: relative; }
+    /* Card de seguridad de datos (confianza) */
+    .trust-card.data-card-trust { border-color: rgba(45,196,156,0.4); }
+    .trust-card.data-card-trust .trust-label { background: var(--mint-100); color: #0F6E54; }
+    .trust-card a.trust-more { display: inline-block; margin-top: 0.75rem; color: var(--peri-700); font-weight: 700; font-size: 0.9rem; }
+    .trust-card a.trust-more:hover { color: var(--peri-800); text-decoration: underline; }
+    /* Legibilidad: cuerpo de texto alineado a la izquierda (los encabezados siguen centrados) */
+    .realidad-inner p, .quienes-mission { text-align: left; }
 
     /* Plataforma */
     .platform-preview { background: var(--surface); }
@@ -542,7 +597,7 @@
     .tommi-fab.open .fab-close { display: block; }
     .tommi-fab::before {
       content: ''; position: absolute; inset: -4px; border-radius: 50%;
-      border: 3px solid var(--peri-300); animation: tommi-pulse 2s ease-out infinite;
+      border: 3px solid var(--peri-300); animation: tommi-pulse 2s ease-out 3; animation-fill-mode: forwards;
     }
     .tommi-fab.open::before { animation: none; opacity: 0; }
     @keyframes tommi-pulse { 0% { transform: scale(1); opacity: 0.6; } 100% { transform: scale(1.35); opacity: 0; } }
@@ -567,6 +622,7 @@
     }
     .tommi-chat-avatar .tommi-mark { width: 34px; height: 34px; }
     .tommi-chat-header-text .ct-name { font-size: 0.95rem; font-weight: 800; }
+    .tommi-chat-note { margin: 0; padding: 0.5rem 1rem; font-size: 0.72rem; line-height: 1.35; color: var(--peri-800); background: var(--peri-50); border-bottom: 1px solid var(--hairline); }
     .tommi-chat-header-text p { font-size: 0.75rem; opacity: 0.85; margin-top: 1px; }
     .tommi-chat-body { flex: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 0.75rem; min-height: 200px; background: var(--peri-50); }
     .tommi-msg { max-width: 85%; padding: 0.7rem 1rem; border-radius: 1rem; font-size: 0.88rem; line-height: 1.5; animation: msg-in 0.3s ease; }
@@ -670,7 +726,7 @@
       <a class="nav-link" href="#contacto">Contacto</a>
       <a href="https://app.tommiai.com" class="btn-brand" target="_blank" rel="noopener">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m9 12 2 2 4-4"/></svg>
-        Ingresar
+        Ir a la plataforma
       </a>
     </div>
   </div>
@@ -685,7 +741,7 @@
   <div class="hero-inner">
     <div class="hero-mascot" aria-hidden="true"><svg class="tommi-mark" aria-hidden="true"><use href="#tommi-mark"/></svg></div>
     <span class="eyebrow"><span class="dot" aria-hidden="true"></span>Diario sensorial inteligente</span>
-    <h1 class="serif-accent">Comprender cómo siente tu hijo, día a día.</h1>
+    <h1 class="h-sans">Comprender <span class="lead">cómo siente tu hijo</span>, día a día.</h1>
     <p class="hero-sub">
       Tommi.AI acompaña a familias y especialistas que cuidan a niños, niñas y adolescentes neurodivergentes. Sensores, diario y una IA que escucha, sin reemplazar al especialista.
     </p>
@@ -700,9 +756,13 @@
       </span>
     </div>
     <div class="hero-cta">
-      <a href="https://app.tommiai.com" class="btn-primary" target="_blank" rel="noopener">Ingresar a la plataforma</a>
-      <a href="#ecosistema" class="btn-secondary">Cómo funciona</a>
+      <a href="https://app.tommiai.com" class="btn-primary" target="_blank" rel="noopener">Ir a la plataforma</a>
+      <a href="#como-funciona" class="btn-secondary">Cómo funciona</a>
     </div>
+    <p class="hero-note">
+      <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      Herramienta de apoyo. No diagnostica ni reemplaza a tu especialista.
+    </p>
   </div>
 </section>
 
@@ -720,12 +780,41 @@
   </div>
 </section>
 
+<!-- Cómo funciona (3 pasos) -->
+<section class="section como-funciona" id="como-funciona">
+  <div class="section-header">
+    <h2 class="h-sans">Cómo funciona, en 3 pasos</h2>
+    <p>Del registro diario a una conversación con más contexto con tu especialista.</p>
+  </div>
+  <ol class="how-steps">
+    <li>
+      <span class="how-num" aria-hidden="true">1</span>
+      <h3>Registra en un minuto</h3>
+      <p>Anota emociones, detonantes y notas del día, o conecta tus sensores. Sin planillas ni cuadernos sueltos.</p>
+    </li>
+    <li>
+      <span class="how-num" aria-hidden="true">2</span>
+      <h3>Descubre patrones</h3>
+      <p>Tommi organiza la información y muestra tendencias que a simple vista quedan invisibles.</p>
+    </li>
+    <li>
+      <span class="how-num" aria-hidden="true">3</span>
+      <h3>Compártelo con tu especialista</h3>
+      <p>Llegas a la consulta con un panorama claro. La IA es apoyo; las decisiones clínicas son del profesional.</p>
+    </li>
+  </ol>
+</section>
+
 <!-- Video -->
 <section class="video-section" id="video">
   <div class="video-inner">
+    <div class="section-header">
+      <h2 class="h-sans">Conoce Tommi.AI en video</h2>
+      <p>Un recorrido breve por cómo acompañamos a tu familia, día a día.</p>
+    </div>
     <div class="video-wrapper">
-      <div class="video-thumb" id="videoThumb" role="button" tabindex="0" aria-label="Reproducir video de Tommi.AI">
-        <div class="video-poster"><span class="video-poster-label">Conoce Tommi.AI</span></div>
+      <div class="video-thumb" id="videoThumb" role="button" tabindex="0" aria-label="Reproducir video de presentación de Tommi.AI">
+        <div class="video-poster"><span class="video-poster-label">Ver presentación</span></div>
         <div class="video-play-btn" aria-hidden="true">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.64 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#fff" opacity="0.95"/><path d="M45 24 27 14v20" fill="#5A62E0"/></svg>
         </div>
@@ -758,7 +847,7 @@
         </svg>
       </div>
       <h3>Perfil sensorial</h3>
-      <p>Mapea sensibilidades en seis canales (auditivo, visual, táctil, olfativo, propioceptivo, vestibular) y reconoce qué calma y qué sobrecarga.</p>
+      <p>Mapea sensibilidades en seis canales (auditivo, visual, táctil, olfativo, propioceptivo y vestibular, es decir cómo percibe su cuerpo y el equilibrio) y reconoce qué calma y qué sobrecarga.</p>
     </div>
     <div class="eco-card">
       <div class="eco-icon c-honey" aria-hidden="true">
@@ -767,7 +856,8 @@
         </svg>
       </div>
       <h3>Alertas inteligentes</h3>
-      <p>Cuando un patrón supera el umbral del niño, Tommi avisa al cuidador antes de que la situación duela.</p>
+      <p>Cuando un patrón cruza el umbral que definiste, Tommi avisa al cuidador para que puedas anticiparte.</p>
+      <p class="eco-note">Tommi no es un canal de emergencia ni monitorea en tiempo real.</p>
     </div>
     <div class="eco-card">
       <div class="eco-icon c-blush" aria-hidden="true">
@@ -805,6 +895,7 @@
 <!-- Misión -->
 <section class="section mission">
   <div class="mission-inner">
+    <h2 class="eyebrow" style="margin-bottom: 1.25rem;">Nuestra misión</h2>
     <blockquote>
       Creemos que cada niño, niña y adolescente siente el mundo de manera única. Nuestra misión es crear tecnología que lo comprenda y lo acompañe.
     </blockquote>
@@ -829,20 +920,17 @@
       <ul class="preview-features">
         <li><span class="check" aria-hidden="true">&#10003;</span><span>Diario emocional con análisis de patrones y detonantes</span></li>
         <li><span class="check" aria-hidden="true">&#10003;</span><span>Perfil sensorial personalizado por cada niño, niña o adolescente</span></li>
-        <li><span class="check" aria-hidden="true">&#10003;</span><span>Datos de sensores en tiempo real (FC, movimiento, ruido, sueño)</span></li>
-        <li><span class="check" aria-hidden="true">&#10003;</span><span>Especialistas AI que responden con evidencia y plan de acción</span></li>
-        <li><span class="check" aria-hidden="true">&#10003;</span><span>Alertas inteligentes por severidad con múltiples canales</span></li>
+        <li><span class="check" aria-hidden="true">&#10003;</span><span>Datos de tus sensores: frecuencia cardíaca, movimiento, ruido y sueño</span></li>
+        <li><span class="check" aria-hidden="true">&#10003;</span><span>Asistente de IA que organiza evidencia y sugiere temas para tu consulta con el especialista</span></li>
+        <li><span class="check" aria-hidden="true">&#10003;</span><span>Alertas según la urgencia, por la vía que elijas (push, correo o WhatsApp)</span></li>
         <li><span class="check" aria-hidden="true">&#10003;</span><span>Dashboard con hallazgos y tendencias semanales</span></li>
       </ul>
       <div style="margin-top: 2rem;">
-        <a href="https://app.tommiai.com" class="btn-primary" target="_blank" rel="noopener">Explorar la plataforma</a>
+        <a href="https://app.tommiai.com" class="btn-primary" target="_blank" rel="noopener">Ir a la plataforma</a>
       </div>
-      <p class="clinical-disclaimer" style="margin-top: 1.5rem;">
-        <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-        <span>Tommi.AI no reemplaza el diagnóstico ni el tratamiento clínico de profesionales habilitados.</span>
-      </p>
     </div>
-    <div class="mockup-placeholder" role="img" aria-label="Vista previa del dashboard de Tommi.AI">
+    <div class="mockup-placeholder" role="img" aria-label="Vista de ejemplo del panel de Tommi.AI, sin datos reales">
+      <span class="mock-tag" aria-hidden="true">Vista de ejemplo</span>
       <div class="mockup-browser-bar">
         <span class="mockup-dot"></span><span class="mockup-dot"></span><span class="mockup-dot"></span>
         <span class="mockup-url">app.tommiai.com/dashboard</span>
@@ -866,10 +954,16 @@
 <!-- Confianza -->
 <section class="section trust" id="confianza">
   <div class="section-header">
-    <h2 class="h-sans">Respaldo y reconocimiento</h2>
-    <p>Construimos con transparencia y cuidado de los datos de menores.</p>
+    <h2 class="h-sans">Por qué puedes confiar en Tommi.AI</h2>
+    <p>Los datos de salud de menores son lo más sensible que existe. Los cuidamos como corresponde.</p>
   </div>
   <div class="trust-grid">
+    <div class="trust-card data-card-trust">
+      <span class="trust-label">Datos protegidos</span>
+      <h3>La seguridad de tu familia, primero</h3>
+      <p>Consentimiento parental explícito, cifrado en tránsito y en reposo, control de acceso por roles y derecho a borrar todo cuando quieras. Cumplimos la Ley 21.719 de Chile.</p>
+      <a class="trust-more" href="privacy/">Cómo protegemos los datos de tu familia</a>
+    </div>
     <div class="trust-card">
       <span class="trust-label">Apoyado por</span>
       <h3>CORFO · Semilla Inicia Mujeres</h3>
@@ -879,11 +973,6 @@
       <span class="trust-label">Reconocimiento</span>
       <h3>2do lugar · eCommerce Day 2026</h3>
       <p>Obtuvimos el 2do lugar en la Startup Competition del eCommerce Day 2026.</p>
-    </div>
-    <div class="trust-card">
-      <span class="trust-label">Compliance</span>
-      <h3>Ley 21.719 · Datos protegidos</h3>
-      <p>Cumplimos la Ley 21.719 de protección de datos personales de Chile. Los datos de salud de menores se protegen con encriptación, RBAC y consentimiento parental explícito.</p>
     </div>
   </div>
 </section>
@@ -911,15 +1000,24 @@
   </div>
 </section>
 
+<!-- CTA de cierre -->
+<section class="section cta-band">
+  <div class="cta-band-inner">
+    <h2 class="h-sans">Comienza a comprender a tu hijo, con más claridad</h2>
+    <p>Crea el perfil, registra el día a día y descubre patrones para compartir con tu especialista.</p>
+    <div class="hero-cta">
+      <a href="https://app.tommiai.com" class="btn-primary" target="_blank" rel="noopener">Ir a la plataforma</a>
+      <a href="#contacto" class="btn-secondary">Hablar con el equipo</a>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ invite -->
 <section class="faq-invite" id="faq-invite">
   <div class="faq-invite-inner">
     <h2 class="h-sans">¿Tienes dudas?</h2>
-    <p>Habla con Tommi, nuestra asistente virtual. Responde sobre la plataforma, los sensores, el diario emocional y cómo cuidamos los datos de tu familia.</p>
-    <div class="faq-invite-arrow" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      Botón flotante abajo a la derecha
-    </div>
+    <p>Habla con Tommi, nuestra asistente virtual. Responde sobre la plataforma, los sensores, el diario emocional y cómo cuidamos los datos de tu familia. Son respuestas automáticas, no consejo clínico.</p>
+    <button type="button" class="btn-secondary" id="faqOpenChat">Abrir el chat con Tommi</button>
   </div>
 </section>
 
@@ -935,6 +1033,7 @@
       <input id="contact-email" type="email" name="email" placeholder="tu@correo.com" required autocomplete="email" />
       <label for="contact-mensaje">Tu mensaje</label>
       <textarea id="contact-mensaje" name="mensaje" placeholder="Cuéntanos en qué podemos ayudarte..." required></textarea>
+      <p class="contact-note" style="text-align:left; margin-top:0.1rem;">Para tu privacidad, no incluyas datos de salud ni el nombre del niño o niña aquí. Para temas de tu cuenta, escríbenos a <a href="mailto:soporte@tommiai.com">soporte@tommiai.com</a>.</p>
       <!-- Honeypot anti-bots: invisible para personas, ignorar -->
       <div aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;">
         <label for="contact-company">No completar este campo</label>
@@ -942,7 +1041,7 @@
       </div>
       <button type="submit" class="btn-primary">Enviar mensaje</button>
       <p class="contact-note">
-        Te respondemos en 48&nbsp;h hábiles. Al enviar aceptas nuestra <a href="privacy/">Política de Privacidad</a>.
+        Solo usamos tu nombre y correo para responderte. Al enviar aceptas nuestra <a href="privacy/">Política de Privacidad</a>. Te respondemos en 48&nbsp;h hábiles.
       </p>
       <p class="contact-note" id="contactStatus" role="status" aria-live="polite" hidden></p>
       <p class="contact-note" id="contactFallback" role="alert" hidden>
@@ -968,7 +1067,7 @@
       <a href="#contacto">Contacto</a>
       <a href="privacy/">Privacidad</a>
       <a href="eliminar-cuenta/">Eliminar cuenta</a>
-      <a href="https://app.tommiai.com" target="_blank" rel="noopener">Ingresar</a>
+      <a href="https://app.tommiai.com" target="_blank" rel="noopener">Ir a la plataforma</a>
     </div>
     <div class="footer-social">
       <a href="https://www.linkedin.com/company/tommi-ai/" target="_blank" rel="noopener" aria-label="LinkedIn de Tommi.AI">
@@ -996,6 +1095,7 @@
       <p>Asistente virtual de Tommi.AI</p>
     </div>
   </div>
+  <p class="tommi-chat-note">Respuestas automáticas sobre Tommi.AI. No es consejo clínico ni un canal de emergencia.</p>
   <div class="tommi-chat-body" id="tommiBody" role="log" aria-live="polite" aria-atomic="false"></div>
   <div class="tommi-suggestions" id="tommiSuggestions"></div>
   <div class="tommi-chat-input">
@@ -1067,10 +1167,10 @@
 
     const KNOWLEDGE = {
       que_es: "Tommi.AI es un ecosistema inteligente que acompaña a familias y especialistas que cuidan a niños, niñas y adolescentes neurodivergentes. Integra sensores, diario emocional, perfil sensorial e inteligencia artificial. Nunca reemplaza al especialista.",
-      plataforma: "La plataforma permite registrar emociones, crear perfiles sensoriales, visualizar datos de sensores en tiempo real, recibir alertas automáticas y consultar especialistas virtuales con IA. Funciona en web y mobile. Puedes explorarla en app.tommiai.com",
+      plataforma: "La plataforma permite registrar emociones, crear perfiles sensoriales, visualizar los datos de tus sensores, recibir alertas automáticas y consultar un asistente de IA que apoya a los especialistas. Funciona en web y mobile. Puedes explorarla en app.tommiai.com",
       sensores: "Monitoreamos frecuencia cardíaca, movimiento, ruido ambiental, calidad de sueño, tiempo de pantalla y más. Los datos llegan desde wearables (Garmin, Fitbit, Apple Watch), HealthKit, Health Connect, sensores del teléfono o ingreso manual.",
       alertas: "El sistema genera alertas automáticas cuando detecta valores críticos: frecuencia cardíaca elevada, ruido alto, sueño insuficiente, etc. Las alertas llegan por push, email, WhatsApp o in-app según la configuración del usuario.",
-      ia: "Nuestro motor de IA analiza patrones emocionales, datos de sensores y notas clínicas para generar hallazgos personalizados. También puedes consultar especialistas virtuales que responden con evidencia y plan de acción. Siempre como apoyo, no como diagnóstico.",
+      ia: "Nuestro motor de IA analiza patrones emocionales, datos de sensores y notas clínicas para generar hallazgos personalizados. Un asistente de IA organiza evidencia y sugiere temas para tu conversación con el especialista. Siempre como apoyo, nunca como diagnóstico ni reemplazo del profesional.",
       diario: "El diario emocional permite registrar qué emoción siente el niño, su intensidad, detonantes, contexto (casa, escuela, terapia), tipo de episodio y tiempo de recuperación.",
       sensorial: "El perfil sensorial mapea las sensibilidades en 6 canales: auditivo, visual, táctil, olfativo, propioceptivo y vestibular. También registra estímulos que calman y los que sobrecargan.",
       equipo: "Tommi.AI fue creado por un equipo fundador: Adelaida Aguayo, Francisca Valenzuela e Isidora Guerrero Valenzuela. El proyecto es apoyado por CORFO a través del programa Semilla Inicia Mujeres, y obtuvo el 2do lugar en la Startup Competition eCommerce Day 2026.",
@@ -1108,6 +1208,10 @@
     }
 
     const FALLBACK = "Buena pregunta. Te invito a explorar la plataforma en app.tommiai.com o a escribirnos a soporte@tommiai.com para que una persona del equipo te ayude con más detalle.";
+
+    const CRISIS_MSG = "Si tú o el niño, niña o adolescente están en peligro o es una emergencia, busca ayuda de inmediato. En Chile: SAMU 131, Salud Responde 600 360 7777, o acude al servicio de urgencias más cercano. Tommi no es un canal de emergencia y no reemplaza a un profesional. Cuando quieras, te cuento cómo Tommi puede acompañarte en el día a día.";
+    const CRISIS_KW = ['suicid', 'matarme', 'me quiero morir', 'quitarme la vida', 'autolesion', 'hacerme dano', 'hacerse dano', 'lastimarme', 'lastimar a', 'no puedo mas', 'no doy mas', 'emergencia', 'urgencia', 'urgente', 'peligro', 'me esta pegando', 'se esta lastimando'];
+    function isCrisis(norm) { return CRISIS_KW.some(k => norm.includes(k)); }
 
     function addMsg(text, type) {
       const div = document.createElement('div');
@@ -1173,6 +1277,12 @@
       const delay = 600 + Math.random() * 800;
       setTimeout(() => {
         hideTyping();
+        const norm = q.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+        if (isCrisis(norm)) {
+          addMsg(CRISIS_MSG, 'bot');
+          showSuggestions(['¿Cómo protegen los datos?', '¿Qué es Tommi.AI?']);
+          return;
+        }
         const answer = findAnswer(q) || FALLBACK;
         addMsg(answer, 'bot');
 
@@ -1191,6 +1301,13 @@
     sendBtn.addEventListener('click', () => handleSend(input.value));
     input.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') handleSend(input.value);
+    });
+
+    // Botón de la sección FAQ abre el chat (accesible por teclado y lector de pantalla)
+    const faqBtn = document.getElementById('faqOpenChat');
+    if (faqBtn) faqBtn.addEventListener('click', () => {
+      if (!chat.classList.contains('open')) fab.click();
+      input.focus();
     });
   })();
 

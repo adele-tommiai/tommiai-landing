@@ -53,7 +53,7 @@
     /* Navbar */
     .navbar {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(250, 249, 255, 0.92);
+      background: rgba(245, 246, 251, 0.9);
       -webkit-backdrop-filter: blur(16px);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--pw-100);
@@ -65,6 +65,8 @@
     }
     .nav-logo { display: flex; align-items: center; gap: 0.5rem; }
     .nav-logo img { height: 40px; width: auto; }
+    .nav-wm { font-weight: 800; color: var(--pw-950); font-size: 1.15rem; letter-spacing: -0.02em; }
+    .nav-wm .dot-ai { color: #2DC49C; }
     .nav-back {
       display: inline-flex; align-items: center; gap: 0.4rem;
       padding: 0.55rem 1.1rem;
@@ -92,8 +94,9 @@
       margin-bottom: 1.25rem;
     }
     .hero h1 {
+      font-family: 'Fraunces', Georgia, serif;
       font-size: clamp(1.75rem, 4vw, 2.6rem);
-      font-weight: 800; line-height: 1.2;
+      font-weight: 600; line-height: 1.2;
       color: var(--pw-950);
     }
     .hero-meta {
@@ -244,9 +247,9 @@
     /* Placeholder marker */
     .placeholder {
       display: inline-block;
-      background: #fef3c7;
-      color: #92400e;
-      border: 1px dashed #f59e0b;
+      background: #FEF8E0;
+      color: #7A5600;
+      border: 1px dashed #F5C030;
       padding: 0.05rem 0.4rem;
       border-radius: 4px;
       font-size: 0.85em;
@@ -255,16 +258,16 @@
 
     /* Disclaimer banner */
     .disclaimer {
-      background: #fff7ed;
-      border: 1px solid #fed7aa;
-      border-left: 4px solid #f97316;
+      background: #FEF8E0;
+      border: 1px solid #F5C030;
+      border-left: 4px solid #F5C030;
       border-radius: 0.5rem;
       padding: 1rem 1.25rem;
       margin: 1.5rem 0;
       font-size: 0.95rem;
-      color: #7c2d12;
+      color: #7A5600;
     }
-    .disclaimer strong { color: #7c2d12; }
+    .disclaimer strong { color: #7A5600; }
 
     /* Footer */
     .footer {
@@ -313,7 +316,8 @@
 <nav class="navbar" aria-label="Navegacion principal">
   <div class="nav-inner">
     <a href="../index.html" class="nav-logo" aria-label="Tommi.AI inicio">
-      <img src="../assets/logo-icon.png" alt="Tommi.AI" />
+      <img src="../assets/logo-icon.png" alt="" />
+      <span class="nav-wm">Tommi<span class="dot-ai">.AI</span></span>
     </a>
     <a href="../index.html" class="nav-back">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
