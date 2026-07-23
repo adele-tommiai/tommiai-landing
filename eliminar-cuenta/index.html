@@ -3,44 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:; base-uri 'self'; form-action 'self' mailto:; object-src 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:; base-uri 'self'; form-action 'none'; object-src 'none'" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <title>Eliminar cuenta — Tommi.AI</title>
-  <meta name="description" content="Como solicitar la eliminacion de tu cuenta Tommi.AI y los datos asociados. Proceso conforme a la Ley 21.719 de Chile." />
+  <title>Eliminar cuenta · Tommi.AI</title>
+  <meta name="description" content="Cómo solicitar la eliminación de tu cuenta Tommi.AI y los datos asociados. Proceso conforme a la Ley 21.719 de Chile." />
   <link rel="canonical" href="https://tommiai.com/eliminar-cuenta" />
   <link rel="icon" type="image/png" href="../assets/logo-icon.png" />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      color: #1e1b4b;
-      background: #faf9ff;
+      font-family: 'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: #23285C;
+      background: #F5F6FB;
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
     }
     img { max-width: 100%; height: auto; display: block; }
-    a { color: var(--pw-600); text-decoration: underline; text-underline-offset: 2px; }
-    a:hover { color: var(--pw-700); }
+    a { color: var(--pw-700); text-decoration: underline; text-underline-offset: 2px; }
+    a:hover { color: var(--pw-800); }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--pw-700); outline-offset: 2px; border-radius: 4px; }
+    .skip-link { position: absolute; left: -9999px; top: 0.5rem; background: var(--pw-700); color: #fff; padding: 0.6rem 1rem; border-radius: 10px; z-index: 300; font-weight: 700; font-size: 0.9rem; }
+    .skip-link:focus { left: 0.75rem; }
+    #main:focus { outline: none; }
 
     :root {
-      --pw-50:  #f0eeff;
-      --pw-100: #e0ddff;
-      --pw-200: #c6c1f7;
-      --pw-300: #a9a1f0;
-      --pw-400: #8b7fe8;
-      --pw-500: #6e5ddc;
-      --pw-600: #5a47c4;
-      --pw-700: #4a3aa6;
-      --pw-800: #3a2d85;
-      --pw-900: #2a2064;
-      --pw-950: #1e1b4b;
+      --pw-50:  #F2F3FE;
+      --pw-100: #EEF0FE;
+      --pw-200: #D9DDFB;
+      --pw-300: #A9B1F8;
+      --pw-400: #9AA4F6;
+      --pw-500: #8B95F5;
+      --pw-600: #6E79EE;
+      --pw-700: #5A62E0;
+      --pw-800: #464DB5;
+      --pw-900: #343A88;
+      --pw-950: #23285C;
     }
 
     /* Navbar */
@@ -60,14 +64,14 @@
     .nav-logo img { height: 40px; width: auto; }
     .nav-logo span { font-weight: 800; color: var(--pw-700); font-size: 1.05rem; }
     .nav-back {
-      font-size: 0.9rem; font-weight: 600; color: var(--pw-600);
+      font-size: 0.9rem; font-weight: 600; color: var(--pw-700);
       text-decoration: none;
     }
-    .nav-back:hover { color: var(--pw-700); }
+    .nav-back:hover { color: var(--pw-800); }
 
     /* Hero */
     .hero {
-      background: linear-gradient(180deg, var(--pw-50) 0%, #faf9ff 100%);
+      background: linear-gradient(180deg, var(--pw-50) 0%, #F5F6FB 100%);
       padding: 3rem 1.5rem 2.5rem;
       border-bottom: 1px solid var(--pw-100);
     }
@@ -78,7 +82,7 @@
       display: inline-block;
       padding: 0.3rem 0.8rem;
       background: var(--pw-100);
-      color: var(--pw-700);
+      color: var(--pw-800);
       border-radius: 999px;
       font-size: 0.75rem;
       font-weight: 700;
@@ -167,7 +171,7 @@
       top: 1.2rem;
       width: 2.2rem;
       height: 2.2rem;
-      background: var(--pw-500);
+      background: var(--pw-700);
       color: #fff;
       border-radius: 50%;
       display: flex;
@@ -205,7 +209,7 @@
       padding: 1.2rem;
     }
     .data-card.kept { border-left: 4px solid #f5c030; }
-    .data-card.deleted { border-left: 4px solid #6e5ddc; }
+    .data-card.deleted { border-left: 4px solid #8B95F5; }
     .data-card h4 {
       font-size: 0.95rem;
       font-weight: 700;
@@ -214,7 +218,7 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
-    .data-card.kept h4 { color: #a87d1a; }
+    .data-card.kept h4 { color: #7A5600; }
     .data-card ul { margin-left: 1.2rem; }
     .data-card li { font-size: 0.92rem; margin-bottom: 0.3rem; }
 
@@ -276,6 +280,8 @@
 </head>
 <body>
 
+<a href="#main" class="skip-link">Saltar al contenido</a>
+
 <nav class="navbar">
   <div class="nav-inner">
     <a href="../" class="nav-logo">
@@ -288,48 +294,48 @@
 
 <header class="hero">
   <div class="hero-inner">
-    <span class="hero-badge">Gestion de cuenta</span>
+    <span class="hero-badge">Gestión de cuenta</span>
     <h1>Eliminar mi cuenta de Tommi.AI</h1>
     <p class="hero-meta">
       Vigente desde <strong>12 de mayo de 2026</strong> &middot;
-      Aplica a usuarios de la app Tommi.AI (Android e iOS) y de <a href="https://app.tommiai.com">app.tommiai.com</a>
+      Aplica a usuarios de la app Tommi.AI (Android e iOS) y de <a href="https://app.tommiai.com" target="_blank" rel="noopener">app.tommiai.com</a>
     </p>
   </div>
 </header>
 
-<main class="container">
+<main class="container" id="main" tabindex="-1">
 
   <div class="summary-box">
-    <strong>Resumen:</strong> Para eliminar tu cuenta de Tommi.AI envia un correo a
+    <strong>Resumen:</strong> Para eliminar tu cuenta de Tommi.AI envía un correo a
     <a href="mailto:soporte@tommiai.com?subject=Eliminar%20cuenta">soporte@tommiai.com</a>
     con el asunto <strong>"Eliminar cuenta"</strong> desde el correo registrado.
-    Procesamos la solicitud en hasta <strong>20 dias habiles</strong>. Eliminamos
+    Procesamos la solicitud en hasta <strong>20 días hábiles</strong>. Eliminamos
     todos los datos personales y de los menores bajo tu cuidado, salvo los registros
-    de auditoria que la ley exige conservar.
+    de auditoría que la ley exige conservar.
     <br>
     <a href="#pasos">Ver pasos detallados &darr;</a>
   </div>
 
   <section id="quien">
-    <h2>Quien puede solicitar la eliminacion</h2>
+    <h2>Quién puede solicitar la eliminación</h2>
     <p>
-      Puede solicitar la eliminacion de la cuenta unicamente <strong>el titular de la cuenta</strong>,
-      es decir, la persona caregiver, especialista o administrador que la creo originalmente,
-      escribiendo desde el correo electronico registrado.
+      Puede solicitar la eliminación de la cuenta únicamente <strong>el titular de la cuenta</strong>,
+      es decir, la persona caregiver, especialista o administrador que la creó originalmente,
+      escribiendo desde el correo electrónico registrado.
     </p>
     <p>
-      Si eres especialista o administrador con cuenta organizacional, debes solicitar la eliminacion
-      a traves del administrador de tu organizacion o validando tu identidad con documentacion
+      Si eres especialista o administrador con cuenta organizacional, debes solicitar la eliminación
+      a través del administrador de tu organización o validando tu identidad con documentación
       adicional.
     </p>
   </section>
 
   <section id="pasos">
-    <h2>Como solicitar la eliminacion</h2>
+    <h2>Cómo solicitar la eliminación</h2>
     <ol class="steps">
       <li>
-        <strong>Envia el correo</strong>
-        Desde el correo asociado a tu cuenta de Tommi.AI, envia un mensaje a
+        <strong>Envía el correo</strong>
+        Desde el correo asociado a tu cuenta de Tommi.AI, envía un mensaje a
         <code>soporte@tommiai.com</code> con el asunto <strong>"Eliminar cuenta"</strong>.
       </li>
       <li>
@@ -341,29 +347,29 @@
       </li>
       <li>
         <strong>Verificamos tu identidad</strong>
-        Por la sensibilidad de los datos (salud de menores, Tier 4 segun nuestra
-        <a href="../privacy/">politica de privacidad</a>), podemos pedirte una verificacion
+        Por la sensibilidad de los datos (salud de menores, Tier 4 según nuestra
+        <a href="../privacy/">política de privacidad</a>), podemos pedirte una verificación
         adicional: respuesta desde el mismo correo registrado, o respuesta a una pregunta
         sobre el contenido de tu cuenta.
       </li>
       <li>
         <strong>Confirmamos y procesamos</strong>
-        Te respondemos con un correo de confirmacion dentro de <strong>20 dias habiles</strong>.
-        El proceso de eliminacion es definitivo y no se puede revertir despues de la confirmacion.
+        Te respondemos con un correo de confirmación dentro de <strong>20 días hábiles</strong>.
+        El proceso de eliminación es definitivo y no se puede revertir después de la confirmación.
       </li>
       <li>
         <strong>Tu cuenta queda eliminada</strong>
-        Recibes un correo final cuando la eliminacion esta completa. A partir de ese momento
-        no podras acceder con esas credenciales.
+        Recibes un correo final cuando la eliminación está completa. A partir de ese momento
+        no podrás acceder con esas credenciales.
       </li>
     </ol>
   </section>
 
   <section id="que-se-elimina">
-    <h2>Que datos se eliminan y cuales se retienen</h2>
+    <h2>Qué datos se eliminan y cuáles se retienen</h2>
     <p>
       Conforme a la <strong>Ley N&deg; 21.719</strong> de Chile y nuestra
-      <a href="../privacy/">politica de privacidad</a>, eliminamos toda la informacion
+      <a href="../privacy/">política de privacidad</a>, eliminamos toda la información
       personal asociada a tu cuenta. Sin embargo, hay registros que la ley exige conservar.
     </p>
 
@@ -371,34 +377,34 @@
       <div class="data-card deleted">
         <h4>Se elimina (todos)</h4>
         <ul>
-          <li>Datos personales del titular: nombre, correo, telefono, password</li>
-          <li>Perfil y datos de los menores asociados: nombre, edad, diagnostico, RUT</li>
+          <li>Datos personales del titular: nombre, correo, teléfono, password</li>
+          <li>Perfil y datos de los menores asociados: nombre, edad, diagnóstico, RUT</li>
           <li>Diario emocional: emociones, intensidad, notas, fechas</li>
-          <li>Notas clinicas y documentos cargados</li>
-          <li>Registros de sensores: sueno, frecuencia cardiaca, actividad, etc.</li>
-          <li>Logs de medicacion y dosis</li>
+          <li>Notas clínicas y documentos cargados</li>
+          <li>Registros de sensores: sueño, frecuencia cardíaca, actividad, etc.</li>
+          <li>Logs de medicación y dosis</li>
           <li>Evaluaciones semanales y perfil integrado generado por IA</li>
           <li>Vinculaciones con especialistas</li>
           <li>Consultas al asistente AI</li>
           <li>Notificaciones y preferencias</li>
-          <li>Tokens de autenticacion y sesiones</li>
+          <li>Tokens de autenticación y sesiones</li>
         </ul>
       </div>
 
       <div class="data-card kept">
-        <h4>Se retiene (por obligacion legal)</h4>
+        <h4>Se retiene (por obligación legal)</h4>
         <ul>
-          <li><strong>Registros de auditoria:</strong> 7 anos (estandar ISO 27001 y exigencias medico legales). Estos registros estan anonimizados al hash del usuario y no permiten identificar a la persona ni a los menores.</li>
-          <li><strong>Registros de facturacion:</strong> conforme exigencias del SII chileno, los comprobantes de pago se conservan por el plazo tributario aplicable (6 anos).</li>
-          <li><strong>Comunicaciones por reclamos:</strong> los correos de la solicitud de eliminacion en si, por trazabilidad del cumplimiento de la solicitud.</li>
+          <li><strong>Registros de auditoría:</strong> 7 años (estándar ISO 27001 y exigencias médico legales). Estos registros están anonimizados al hash del usuario y no permiten identificar a la persona ni a los menores.</li>
+          <li><strong>Registros de facturación:</strong> conforme exigencias del SII chileno, los comprobantes de pago se conservan por el plazo tributario aplicable (6 años).</li>
+          <li><strong>Comunicaciones por reclamos:</strong> los correos de la solicitud de eliminación en sí, por trazabilidad del cumplimiento de la solicitud.</li>
         </ul>
       </div>
     </div>
 
     <p style="margin-top: 1rem; font-size: 0.92rem; color: var(--pw-700);">
-      <strong>Nota:</strong> los datos retenidos por obligacion legal estan
-      desidentificados o pseudonimizados al maximo posible, y no se utilizan para
-      ningun otro fin distinto al cumplimiento legal o regulatorio.
+      <strong>Nota:</strong> los datos retenidos por obligación legal están
+      desidentificados o pseudonimizados al máximo posible, y no se utilizan para
+      ningún otro fin distinto al cumplimiento legal o regulatorio.
     </p>
   </section>
 
@@ -406,39 +412,39 @@
     <h2>Plazos del proceso</h2>
     <div class="timeline">
       <div class="timeline-row">
-        <div class="timeline-when">Dia 0</div>
+        <div class="timeline-when">Día 0</div>
         <div class="timeline-what">Recibimos tu correo de solicitud.</div>
       </div>
       <div class="timeline-row">
-        <div class="timeline-when">Dia 1 a 5</div>
-        <div class="timeline-what">Verificacion de identidad y confirmacion al titular.</div>
+        <div class="timeline-when">Día 1 a 5</div>
+        <div class="timeline-what">Verificación de identidad y confirmación al titular.</div>
       </div>
       <div class="timeline-row">
-        <div class="timeline-when">Dia 5 a 20</div>
-        <div class="timeline-what">Soft-delete: la cuenta y los datos asociados se marcan como eliminados y dejan de ser accesibles. Plazo de gracia para recuperacion en caso de error.</div>
+        <div class="timeline-when">Día 5 a 20</div>
+        <div class="timeline-what">Soft-delete: la cuenta y los datos asociados se marcan como eliminados y dejan de ser accesibles. Plazo de gracia para recuperación en caso de error.</div>
       </div>
       <div class="timeline-row">
-        <div class="timeline-when">Dia 20 a 30</div>
-        <div class="timeline-what">Confirmacion final al titular y, si no hay reversion, comienza el hard-delete.</div>
+        <div class="timeline-when">Día 20 a 30</div>
+        <div class="timeline-what">Confirmación final al titular y, si no hay reversión, comienza el hard-delete.</div>
       </div>
       <div class="timeline-row">
-        <div class="timeline-when">Dia 30 a 60</div>
-        <div class="timeline-what">Hard-delete: eliminacion fisica de los datos en bases de datos productivas, copias de respaldo activas y caches.</div>
+        <div class="timeline-when">Día 30 a 60</div>
+        <div class="timeline-what">Hard-delete: eliminación física de los datos en bases de datos productivas, copias de respaldo activas y cachés.</div>
       </div>
       <div class="timeline-row">
         <div class="timeline-when">Mes 6 a 12</div>
-        <div class="timeline-what">Backups y archivos historicos: las copias de seguridad existentes al momento de la solicitud se rotan y eliminan en sus ciclos normales (maximo 12 meses).</div>
+        <div class="timeline-what">Backups y archivos históricos: las copias de seguridad existentes al momento de la solicitud se rotan y eliminan en sus ciclos normales (máximo 12 meses).</div>
       </div>
     </div>
   </section>
 
   <section id="alternativas">
-    <h2>Alternativas a la eliminacion total</h2>
+    <h2>Alternativas a la eliminación total</h2>
     <p>Si no necesitas eliminar la cuenta completa, puedes ejercer otros derechos sin perder acceso:</p>
     <ul>
       <li><strong>Eliminar solo los datos de un menor</strong> (manteniendo tu cuenta activa): escribe a <a href="mailto:soporte@tommiai.com?subject=Eliminar%20datos%20de%20menor">soporte@tommiai.com</a> con asunto <strong>"Eliminar datos de menor"</strong>.</li>
-      <li><strong>Excluir el procesamiento por IA</strong> manteniendo el registro de datos: asunto <strong>"Excluir procesamiento IA"</strong>. La app sigue funcionando para registro y visualizacion, pero no genera el perfil integrado.</li>
-      <li><strong>Rectificar datos incorrectos:</strong> asunto <strong>"Rectificacion ARCO"</strong>.</li>
+      <li><strong>Excluir el procesamiento por IA</strong> manteniendo el registro de datos: asunto <strong>"Excluir procesamiento IA"</strong>. La app sigue funcionando para registro y visualización, pero no genera el perfil integrado.</li>
+      <li><strong>Rectificar datos incorrectos:</strong> asunto <strong>"Rectificación ARCO"</strong>.</li>
       <li><strong>Solicitar copia portable de tus datos:</strong> asunto <strong>"Portabilidad de datos"</strong>.</li>
     </ul>
   </section>
@@ -446,30 +452,31 @@
   <section id="contacto">
     <h2>Contacto y reclamos</h2>
     <p>
-      Para cualquier consulta sobre el proceso de eliminacion:
+      Para cualquier consulta sobre el proceso de eliminación:
     </p>
     <ul>
       <li><strong>Correo:</strong> <a href="mailto:soporte@tommiai.com">soporte@tommiai.com</a></li>
-      <li><strong>Plazo de respuesta:</strong> 20 dias habiles conforme Ley N&deg; 21.719</li>
+      <li><strong>Plazo de respuesta:</strong> 20 días hábiles conforme Ley N&deg; 21.719</li>
       <li><strong>Responsable de datos:</strong> Tommi.AI SpA (RUT 78.279.633-K), Santiago, Chile</li>
       <li><strong>Representante legal:</strong> Adelaida Aguayo Villanueva (CEO)</li>
     </ul>
     <p>
       Si consideras que tu solicitud no fue atendida adecuadamente, tienes derecho a presentar
-      un reclamo ante la <strong>Agencia de Proteccion de Datos Personales de Chile</strong>
+      un reclamo ante la <strong>Agencia de Protección de Datos Personales de Chile</strong>
       una vez que se encuentre operativa, conforme a la entrada en vigencia plena de la Ley
       N&deg; 21.719 en diciembre de 2026.
     </p>
   </section>
 
   <section id="relacion">
-    <h2>Relacion con la politica de privacidad</h2>
+    <h2>Relación con la política de privacidad</h2>
     <p>
-      Esta pagina describe el proceso operacional de eliminacion de cuenta y complementa
-      lo establecido en nuestra <a href="../privacy/">Politica de Privacidad v1.1</a>,
-      especificamente las secciones 11 (Retencion), 12 (Derechos ARCO) y 13 (Revocacion
-      de consentimiento). En caso de discrepancia, prevalece lo establecido en la
-      politica de privacidad.
+      Esta página describe el proceso operacional de eliminación de cuenta y complementa
+      lo establecido en nuestra <a href="../privacy/">Política de Privacidad v1.1</a>,
+      específicamente las secciones <a href="../privacy/#sec-9">9 (Retención de datos)</a>,
+      <a href="../privacy/#derechos-arco">10 (Derechos del titular / ARCO)</a> y
+      <a href="../privacy/#sec-11">11 (Revocación de consentimiento)</a>. En caso de discrepancia, prevalece lo establecido en la
+      política de privacidad.
     </p>
   </section>
 
@@ -479,7 +486,7 @@
   <p><strong>Tommi.AI SpA</strong> &middot; RUT 78.279.633-K</p>
   <p class="footer-meta">Santiago, Chile</p>
   <p class="footer-meta">Soporte: <a href="mailto:soporte@tommiai.com">soporte@tommiai.com</a></p>
-  <p class="footer-meta">Esta pagina cumple los requisitos de Google Play User Data Policy y de la Ley N&deg; 21.719 de Chile.</p>
+  <p class="footer-meta">Esta página cumple los requisitos de Google Play User Data Policy y de la Ley N&deg; 21.719 de Chile.</p>
 </footer>
 
 </body>
