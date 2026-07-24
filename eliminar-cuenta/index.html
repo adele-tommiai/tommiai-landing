@@ -13,7 +13,8 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="../assets/theme.js"></script>
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -277,6 +278,50 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
     }
+
+    /* ===== Toggle de tema ===== */
+    :root { color-scheme: light; }
+    .theme-toggle {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 999px;
+      border: 1px solid var(--pw-200); background: transparent;
+      color: var(--pw-700); cursor: pointer; flex-shrink: 0;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .theme-toggle:hover { background: var(--pw-50); }
+    .theme-toggle svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .theme-toggle .icon-sun { display: none; }
+
+    /* ===== Modo oscuro ===== */
+    :root[data-theme="dark"] { color-scheme: dark; --pw-50: #141D31; --pw-100: #1B2540; }
+    :root[data-theme="dark"] body { color: #F8FAFF; background: #0F1729; }
+    :root[data-theme="dark"] .navbar { background: rgba(15,23,41,0.9); border-bottom-color: rgba(169,177,248,0.16); }
+    :root[data-theme="dark"] .nav-back { color: var(--pw-300); }
+    :root[data-theme="dark"] .nav-back:hover { color: var(--pw-200); }
+    :root[data-theme="dark"] .nav-logo span { color: #F8FAFF; }
+    :root[data-theme="dark"] .theme-toggle { color: var(--pw-200); border-color: rgba(169,177,248,0.3); }
+    :root[data-theme="dark"] .theme-toggle:hover { background: rgba(255,255,255,0.06); }
+    :root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+    :root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+    :root[data-theme="dark"] .hero { background: linear-gradient(180deg, #17203A 0%, #0F1729 100%); }
+    :root[data-theme="dark"] .hero h1 { color: #F8FAFF; }
+    :root[data-theme="dark"] .hero-badge { color: var(--pw-200); background: rgba(169,177,248,0.14); }
+    :root[data-theme="dark"] .hero-meta { color: rgba(248,250,255,0.72); }
+    :root[data-theme="dark"] a { color: var(--pw-300); }
+    :root[data-theme="dark"] .summary-box { background: #182136; border-color: rgba(169,177,248,0.16); border-left-color: var(--pw-400); }
+    :root[data-theme="dark"] .summary-box strong { color: var(--pw-200); }
+    :root[data-theme="dark"] section h2 { color: var(--pw-200); border-bottom-color: rgba(169,177,248,0.16); }
+    :root[data-theme="dark"] section h3 { color: var(--pw-300); }
+    :root[data-theme="dark"] section p, :root[data-theme="dark"] section li { color: rgba(248,250,255,0.82); }
+    :root[data-theme="dark"] .steps > li { background: #182136; }
+    :root[data-theme="dark"] .steps > li strong { color: var(--pw-200); }
+    :root[data-theme="dark"] .steps code { background: #0F1729; border-color: rgba(169,177,248,0.3); color: var(--pw-200); }
+    :root[data-theme="dark"] .data-card { background: #182136; border-color: rgba(169,177,248,0.16); }
+    :root[data-theme="dark"] .data-card h4 { color: var(--pw-200); }
+    :root[data-theme="dark"] .data-card.kept h4 { color: #F5C030; }
+    :root[data-theme="dark"] .data-card.kept { border-left-color: #F5C030; }
+    :root[data-theme="dark"] .timeline { background: #182136; border-color: rgba(169,177,248,0.16); }
+    :root[data-theme="dark"] .footer { background: #0B1220; }
   </style>
 </head>
 <body>
@@ -289,7 +334,13 @@
       <img src="../assets/logo-icon.png" alt="" />
       <span>Tommi<span style="color:#2DC49C">.AI</span></span>
     </a>
-    <a href="../" class="nav-back">&larr; Volver al sitio</a>
+    <div style="display:flex; align-items:center; gap:0.6rem;">
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Cambiar entre tema claro y oscuro">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+      <a href="../" class="nav-back">&larr; Volver al sitio</a>
+    </div>
   </div>
 </nav>
 

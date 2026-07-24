@@ -14,7 +14,8 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="../assets/theme.js"></script>
 
   <style>
     /* Reset & Base */
@@ -306,6 +307,60 @@
     @media (prefers-reduced-motion: reduce) {
       * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
     }
+
+    /* ===== Toggle de tema ===== */
+    :root { color-scheme: light; }
+    .theme-toggle {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 999px;
+      border: 1px solid var(--pw-200); background: transparent;
+      color: var(--pw-700); cursor: pointer; flex-shrink: 0;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .theme-toggle:hover { background: var(--pw-50); }
+    .theme-toggle svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .theme-toggle .icon-sun { display: none; }
+
+    /* ===== Modo oscuro ===== */
+    :root[data-theme="dark"] { color-scheme: dark; --pw-50: #141D31; --pw-100: #1B2540; }
+    :root[data-theme="dark"] body { color: #F8FAFF; background: #0F1729; }
+    :root[data-theme="dark"] .navbar { background: rgba(15,23,41,0.9); border-bottom-color: rgba(169,177,248,0.16); }
+    :root[data-theme="dark"] .nav-back { color: var(--pw-300); border-color: rgba(169,177,248,0.3); }
+    :root[data-theme="dark"] .nav-back:hover { color: var(--pw-200); }
+    :root[data-theme="dark"] .nav-wm { color: #F8FAFF; }
+    :root[data-theme="dark"] .theme-toggle { color: var(--pw-200); border-color: rgba(169,177,248,0.3); }
+    :root[data-theme="dark"] .theme-toggle:hover { background: rgba(255,255,255,0.06); }
+    :root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+    :root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+    :root[data-theme="dark"] .hero { background: linear-gradient(180deg, #17203A 0%, #0F1729 100%); }
+    :root[data-theme="dark"] .hero h1 { color: #F8FAFF; }
+    :root[data-theme="dark"] .hero-badge { color: var(--pw-200); background: rgba(169,177,248,0.14); }
+    :root[data-theme="dark"] .hero-meta { color: rgba(248,250,255,0.72); }
+    :root[data-theme="dark"] .hero-meta strong { color: var(--pw-300); }
+    :root[data-theme="dark"] a { color: var(--pw-300); }
+    :root[data-theme="dark"] .toc { background: #182136; border-color: rgba(169,177,248,0.16); }
+    :root[data-theme="dark"] .toc h2 { color: var(--pw-300); }
+    :root[data-theme="dark"] .toc li { color: rgba(248,250,255,0.8); }
+    :root[data-theme="dark"] .toc a { color: var(--pw-300); }
+    :root[data-theme="dark"] .toc a:hover { color: var(--pw-200); }
+    :root[data-theme="dark"] .summary { background: #182136; border-color: rgba(169,177,248,0.16); border-left-color: var(--pw-400); }
+    :root[data-theme="dark"] .summary h2 { color: var(--pw-300); }
+    :root[data-theme="dark"] .summary p, :root[data-theme="dark"] .summary li { color: rgba(248,250,255,0.82); }
+    :root[data-theme="dark"] .summary strong { color: var(--pw-200); }
+    :root[data-theme="dark"] article h2 { color: #F8FAFF; border-bottom-color: rgba(169,177,248,0.16); }
+    :root[data-theme="dark"] article h3 { color: var(--pw-200); }
+    :root[data-theme="dark"] article h4 { color: var(--pw-300); }
+    :root[data-theme="dark"] article p, :root[data-theme="dark"] article ul, :root[data-theme="dark"] article ol, :root[data-theme="dark"] article li { color: rgba(248,250,255,0.82); }
+    :root[data-theme="dark"] article strong { color: var(--pw-100); }
+    :root[data-theme="dark"] .table-wrap { border-color: rgba(169,177,248,0.16); }
+    :root[data-theme="dark"] table { background: #182136; }
+    :root[data-theme="dark"] th { background: #1B2540; color: var(--pw-200); }
+    :root[data-theme="dark"] th, :root[data-theme="dark"] td { border-bottom-color: rgba(169,177,248,0.12); }
+    :root[data-theme="dark"] blockquote { background: rgba(169,177,248,0.08); border-left-color: var(--pw-400); }
+    :root[data-theme="dark"] .disclaimer { background: rgba(245,192,48,0.12); border-color: rgba(245,192,48,0.4); border-left-color: #F5C030; color: #F5C030; }
+    :root[data-theme="dark"] .disclaimer strong { color: #F5C030; }
+    :root[data-theme="dark"] .placeholder { background: rgba(245,192,48,0.14); color: #F5C030; border-color: rgba(245,192,48,0.5); }
+    :root[data-theme="dark"] .footer { background: #0B1220; }
   </style>
 </head>
 <body>
@@ -319,10 +374,16 @@
       <img src="../assets/logo-icon.png" alt="" />
       <span class="nav-wm">Tommi<span class="dot-ai">.AI</span></span>
     </a>
-    <a href="../index.html" class="nav-back">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      Volver al inicio
-    </a>
+    <div style="display:flex; align-items:center; gap:0.6rem;">
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Cambiar entre tema claro y oscuro">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+      <a href="../index.html" class="nav-back">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Volver al inicio
+      </a>
+    </div>
   </div>
 </nav>
 
