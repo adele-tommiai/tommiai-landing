@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src https://www.youtube-nocookie.com; connect-src 'self' https://uri8rbwvm0.execute-api.us-east-1.amazonaws.com; base-uri 'self'; form-action 'self'; object-src 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; img-src 'self' data:; frame-src https://www.youtube-nocookie.com; connect-src 'self' https://uri8rbwvm0.execute-api.us-east-1.amazonaws.com https://cloudflareinsights.com; base-uri 'self'; form-action 'self'; object-src 'none'" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="theme-color" content="#8B95F5" />
   <script>
@@ -1547,5 +1547,7 @@
   }
 </script>
 
+<!-- Cloudflare Web Analytics (sin cookies, sin datos personales) -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "7d2dcc036ab948779ba067e9c74c1448"}'></script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:; base-uri 'self'; form-action 'none'; object-src 'none'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' https://static.cloudflareinsights.com; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'none'; object-src 'none'" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>Política de Privacidad · Tommi.AI</title>
   <meta name="description" content="Política de Privacidad de Tommi.AI: cómo recolectamos, usamos, almacenamos y protegemos los datos personales de cuidadores, especialistas y datos sensibles de salud de menores con autismo y TDAH." />
@@ -613,6 +613,7 @@
           <tr><td>Amazon Bedrock (servicio de IA de AWS), con modelos Anthropic Claude (<code>claude-haiku-4-5</code>) y embeddings Amazon Titan (<code>amazon.titan-embed-text-v2</code>)</td><td>Procesamiento de IA para el perfil integrado y el asistente de especialistas</td><td>Resúmenes de texto de diario, notas, alertas y consultas, pseudonimizados cuando es posible (sin identificadores directos del menor)</td><td>Estados Unidos (AWS us-east-1)</td></tr>
           <tr><td>Expo (Expo Application Services)</td><td>Distribución de la aplicación mobile y actualizaciones over-the-air</td><td>Bundle de la aplicación (no datos personales del menor)</td><td>Estados Unidos</td></tr>
           <tr><td>Microsoft 365</td><td>Correo electrónico corporativo de <code>@tommiai.com</code> y herramientas de productividad interna</td><td>Comunicaciones operativas con caregivers y especialistas (no datos clínicos del menor en cuerpo de correos)</td><td>Estados Unidos / Unión Europea</td></tr>
+          <tr><td>Cloudflare, Inc. (Web Analytics)</td><td>Analítica web anónima y sin cookies del sitio informativo público</td><td>Señales técnicas agregadas de navegación (IP para conteo anónimo, sin perfilar); no accede a datos de la plataforma ni del menor</td><td>Estados Unidos / global</td></tr>
           <tr><td>GoDaddy</td><td>Registro de dominio</td><td>Datos públicos de WHOIS del dominio (no datos de usuarios)</td><td>Estados Unidos</td></tr>
           <tr><td>Ollama (opcional, solo en entornos de desarrollo o fallback local)</td><td>Inferencia local de LLM cuando el operador lo configura</td><td>Datos procesados en infraestructura controlada por Tommi.AI o por el operador local</td><td>Local</td></tr>
         </table>
@@ -810,10 +811,11 @@
       <p><strong>No</strong> usamos cookies de publicidad, ni cookies de redes sociales con seguimiento, ni cookies analíticas de terceros que perfilen al usuario fuera de la plataforma.</p>
 
       <h3>Sitio web público (<code>tommiai.com</code>)</h3>
-      <p>El sitio informativo no usa cookies de seguimiento ni analítica de terceros. Para su funcionamiento recurre a dos servicios externos que, por su naturaleza técnica, pueden recibir la dirección IP del visitante:</p>
+      <p>El sitio informativo no usa cookies de seguimiento ni analítica que perfile al visitante. Para medir el uso emplea una analítica web <strong>sin cookies y anónima</strong>. Recurre a los siguientes servicios externos que, por su naturaleza técnica, pueden recibir la dirección IP del visitante:</p>
       <ul>
         <li><strong>Google Fonts</strong> (<code>fonts.googleapis.com</code> / <code>fonts.gstatic.com</code>): entrega las tipografías del sitio. Google puede recibir la IP del visitante al cargar las fuentes. No instala cookies de seguimiento.</li>
         <li><strong>YouTube</strong> (modo con privacidad mejorada, <code>youtube-nocookie.com</code>): el video de presentación <strong>solo</strong> se carga cuando el visitante pulsa &quot;reproducir&quot;. Hasta ese momento no se contacta a YouTube ni a Google.</li>
+        <li><strong>Cloudflare Web Analytics</strong> (<code>static.cloudflareinsights.com</code>): mide de forma <strong>anónima y agregada</strong> las visitas del sitio público. No usa cookies, no crea perfiles ni identifica a personas; Cloudflare declara que no rastrea a visitantes individuales.</li>
       </ul>
       <p>Tenemos en evaluación auto-hospedar las tipografías para eliminar por completo esta transferencia.</p>
 
@@ -887,5 +889,7 @@
   </div>
 </footer>
 
+<!-- Cloudflare Web Analytics (sin cookies, sin datos personales) -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "7d2dcc036ab948779ba067e9c74c1448"}'></script>
 </body>
 </html>
