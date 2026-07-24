@@ -9,6 +9,11 @@
   } catch (e) {
     document.documentElement.setAttribute('data-theme', 'light');
   }
+  /* Activa las fuentes sin bloquear el render (media=print -> all) */
+  try {
+    var g = document.getElementById('gfonts');
+    if (g) { if (g.sheet) g.media = 'all'; else g.addEventListener('load', function () { g.media = 'all'; }); }
+  } catch (e) {}
   function wire() {
     var btn = document.getElementById('themeToggle');
     if (!btn) return;

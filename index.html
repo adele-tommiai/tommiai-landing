@@ -32,7 +32,8 @@
   <!-- Google Fonts: Plus Jakarta Sans (base, misma que la app) + Fraunces (acento serif) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link id="gfonts" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
 
   <style>
     /* =====================================================
@@ -742,6 +743,9 @@
     :root[data-theme="dark"] .contact-inner a:hover,
     :root[data-theme="dark"] .trust-card a.trust-more:hover { color: var(--peri-200); }
     :root[data-theme="dark"] #contactStatus { color: var(--peri-200); }
+    :root[data-theme="dark"] .contact-form label { color: var(--peri-200); }
+    :root[data-theme="dark"] .quienes-founders .serif-accent { color: var(--peri-300); }
+    :root[data-theme="dark"] .tommi-msg.bot .msg-name { color: var(--peri-300); }
     /* Chips / labels: tinta clara sobre tinte translúcido */
     :root[data-theme="dark"] .eyebrow,
     :root[data-theme="dark"] .trust-label { color: var(--peri-200); background: rgba(169,177,248,0.14); }
@@ -912,10 +916,10 @@
   <div class="realidad-inner">
     <h2 class="h-sans">Cada día, miles de familias navegan sin mapa</h2>
     <p>
-      Acompañar a un niño, niña o adolescente neurodivergente significa decisiones constantes: qué detonó la crisis, qué estrategia funcionó, cuándo consultar al especialista. Demasiada información, poco tiempo para procesarla.
+      Acompañar a un niño, niña o adolescente neurodivergente significa decisiones constantes: qué lo desbordó, qué lo ayudó a calmarse, cuándo pedir apoyo al especialista. Demasiada información y muy poco tiempo para procesarla.
     </p>
     <p>
-      Los registros se pierden entre cuadernos, mensajes y memoria. Los patrones quedan invisibles hasta que duelen.
+      Los registros se pierden entre cuadernos, mensajes y memoria. Y los patrones que más ayudarían quedan invisibles.
     </p>
     <p><strong>Por eso construimos Tommi.AI.</strong></p>
   </div>
@@ -931,7 +935,7 @@
     <li>
       <span class="how-num" aria-hidden="true">1</span>
       <h3>Registra en un minuto</h3>
-      <p>Anota emociones, detonantes y notas del día, o conecta tus sensores. Sin planillas ni cuadernos sueltos.</p>
+      <p>Anota emociones, qué las activó y notas del día, o conecta tus sensores. Sin planillas ni cuadernos sueltos.</p>
     </li>
     <li>
       <span class="how-num" aria-hidden="true">2</span>
@@ -954,7 +958,7 @@
       <p>Un recorrido breve por cómo acompañamos a tu familia, día a día.</p>
     </div>
     <div class="video-wrapper">
-      <div class="video-thumb" id="videoThumb" role="button" tabindex="0" aria-label="Reproducir video de presentación de Tommi.AI">
+      <div class="video-thumb" id="videoThumb" role="button" tabindex="0" aria-label="Ver presentación: reproducir el video de Tommi.AI">
         <div class="video-poster"><span class="video-poster-label">Ver presentación</span></div>
         <div class="video-play-btn" aria-hidden="true">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.64 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#fff" opacity="0.95"/><path d="M45 24 27 14v20" fill="#5A62E0"/></svg>
@@ -988,7 +992,7 @@
         </svg>
       </div>
       <h3>Perfil sensorial</h3>
-      <p>Mapea sensibilidades en seis canales (auditivo, visual, táctil, olfativo, propioceptivo y vestibular, es decir cómo percibe su cuerpo y el equilibrio) y reconoce qué calma y qué sobrecarga.</p>
+      <p>Mapea sensibilidades en seis canales (auditivo, visual, táctil, olfativo, propioceptivo y vestibular, es decir cómo percibe su cuerpo y el equilibrio) y reconoce qué lo calma y qué lo sobrecarga.</p>
     </div>
     <div class="eco-card">
       <div class="eco-icon c-honey" aria-hidden="true">
@@ -997,7 +1001,7 @@
         </svg>
       </div>
       <h3>Alertas inteligentes</h3>
-      <p>Cuando un patrón cruza el umbral que definiste, Tommi avisa al cuidador para que puedas anticiparte.</p>
+      <p>Cuando un patrón cruza el límite que definiste, Tommi te avisa para que puedas anticiparte.</p>
       <p class="eco-note">Tommi no es un canal de emergencia ni monitorea en tiempo real.</p>
     </div>
     <div class="eco-card">
@@ -1008,7 +1012,7 @@
         </svg>
       </div>
       <h3>Diario emocional</h3>
-      <p>Registra emociones, intensidad, detonantes y tiempo de recuperación. Cada entrada cuenta una parte de la historia.</p>
+      <p>Registra emociones, intensidad, qué las activó y cuánto tardó en calmarse. Cada entrada cuenta una parte de la historia.</p>
     </div>
     <div class="eco-card">
       <div class="eco-icon c-lavender" aria-hidden="true">
@@ -1059,12 +1063,12 @@
         Una experiencia web y mobile donde cuidadores y especialistas registran y analizan patrones emocionales, perfiles sensoriales y datos de sensores, con apoyo de inteligencia artificial.
       </p>
       <ul class="preview-features">
-        <li><span class="check" aria-hidden="true">&#10003;</span><span>Diario emocional con análisis de patrones y detonantes</span></li>
+        <li><span class="check" aria-hidden="true">&#10003;</span><span>Diario emocional que hace visibles los patrones y sus desencadenantes</span></li>
         <li><span class="check" aria-hidden="true">&#10003;</span><span>Perfil sensorial personalizado por cada niño, niña o adolescente</span></li>
         <li><span class="check" aria-hidden="true">&#10003;</span><span>Datos de tus sensores: frecuencia cardíaca, movimiento, ruido y sueño</span></li>
         <li><span class="check" aria-hidden="true">&#10003;</span><span>Asistente de IA que organiza evidencia y sugiere temas para tu consulta con el especialista</span></li>
         <li><span class="check" aria-hidden="true">&#10003;</span><span>Alertas según la urgencia, por la vía que elijas (push, correo o WhatsApp)</span></li>
-        <li><span class="check" aria-hidden="true">&#10003;</span><span>Dashboard con hallazgos y tendencias semanales</span></li>
+        <li><span class="check" aria-hidden="true">&#10003;</span><span>Panel con descubrimientos y tendencias semanales</span></li>
       </ul>
       <div style="margin-top: 2rem;">
         <a href="https://app.tommiai.com" class="btn-primary" target="_blank" rel="noopener">Ir a la plataforma</a>
@@ -1249,6 +1253,9 @@
 
 <!-- Scripts -->
 <script>
+  // Activar las fuentes sin bloquear el render (patrón media=print -> all)
+  (function(){ var g = document.getElementById('gfonts'); if (!g) return; if (g.sheet) g.media = 'all'; else g.addEventListener('load', function(){ g.media = 'all'; }); })();
+
   // Navbar scroll effect
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
@@ -1320,11 +1327,11 @@
       sensores: "Monitoreamos frecuencia cardíaca, movimiento, ruido ambiental, calidad de sueño, tiempo de pantalla y más. Los datos llegan desde wearables (Garmin, Fitbit, Apple Watch), HealthKit, Health Connect, sensores del teléfono o ingreso manual.",
       alertas: "El sistema genera alertas automáticas cuando detecta valores críticos: frecuencia cardíaca elevada, ruido alto, sueño insuficiente, etc. Las alertas llegan por push, email, WhatsApp o in-app según la configuración del usuario.",
       ia: "Nuestro motor de IA analiza patrones emocionales, datos de sensores y notas clínicas para generar hallazgos personalizados. Un asistente de IA organiza evidencia y sugiere temas para tu conversación con el especialista. Siempre como apoyo, nunca como diagnóstico ni reemplazo del profesional.",
-      diario: "El diario emocional permite registrar qué emoción siente el niño, su intensidad, detonantes, contexto (casa, escuela, terapia), tipo de episodio y tiempo de recuperación.",
+      diario: "El diario emocional permite registrar qué emoción siente el niño o niña, su intensidad, qué la desencadenó, el contexto (casa, escuela, terapia) y cuánto tardó en calmarse.",
       sensorial: "El perfil sensorial mapea las sensibilidades en 6 canales: auditivo, visual, táctil, olfativo, propioceptivo y vestibular. También registra estímulos que calman y los que sobrecargan.",
       equipo: "Tommi.AI fue creado por un equipo fundador: Adelaida Aguayo, Francisca Valenzuela e Isidora Guerrero Valenzuela. El proyecto es apoyado por CORFO a través del programa Semilla Inicia Mujeres, y obtuvo el 2do lugar en la Startup Competition eCommerce Day 2026.",
       corfo: "Sí, Tommi.AI es un proyecto apoyado por CORFO a través del programa Semilla Inicia Mujeres. Esto nos permite desarrollar tecnología con foco en familias y especialistas en Chile.",
-      prueba: "Puedes explorar la plataforma ahora mismo en app.tommiai.com. Regístrate, crea el perfil de un niño y descubre cómo funciona el diario emocional, el perfil sensorial y los hallazgos con IA.",
+      prueba: "Puedes explorar la plataforma ahora mismo en app.tommiai.com. Regístrate, crea el perfil de un niño o niña y descubre cómo funciona el diario emocional, el perfil sensorial y los descubrimientos con IA.",
       privacidad: "Tommi.AI cumple con la Ley 21.719 de protección de datos personales de Chile. Los datos de salud de menores tienen el máximo nivel de protección: encriptación, consentimiento parental explícito, RBAC y derecho a borrado.",
     };
 
