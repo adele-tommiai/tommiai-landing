@@ -9,8 +9,7 @@
   <title>Descarga Tommi.AI · Próximamente en App Store y Google Play</title>
   <meta name="description" content="Muy pronto podrás instalar la app de Tommi.AI en iOS y Android. Registra momentos y descubre patrones para acompañar mejor a tu hijo." />
   <link rel="canonical" href="https://tommiai.com/descargar/" />
-  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
-  <link rel="icon" type="image/png" href="../assets/logo-icon.png" />
+  <link rel="icon" type="image/png" href="../assets/favicon.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -52,11 +51,10 @@
 
     .brand-gem {
       display: inline-flex; align-items: center; justify-content: center;
-      width: 76px; height: 76px; border-radius: 22px; margin: 0 auto 1.5rem;
-      background: rgba(255,255,255,0.08); border: 1px solid rgba(169,177,248,0.25);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+      width: 92px; height: 92px; margin: 0 auto 1.25rem;
+      filter: drop-shadow(0 14px 26px rgba(0,0,0,0.45));
     }
-    .brand-gem svg { width: 52px; height: 52px; }
+    .brand-gem .tommi-mark { width: 92px; height: 92px; object-fit: contain; display: block; }
     .wordmark { font-weight: 800; letter-spacing: -0.02em; font-size: clamp(2.4rem, 8vw, 3.2rem); line-height: 1; color: #F5EFE4; }
     .wordmark .dot-ai { background: linear-gradient(100deg, #8A6FE0 0%, #6E8BF5 55%, #47C7EA 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .tagline { margin-top: 2rem; font-size: clamp(1.5rem, 5vw, 2rem); font-weight: 800; letter-spacing: -0.02em; }
@@ -108,33 +106,11 @@
 
 <a href="#main" class="skip-link">Saltar al contenido</a>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <symbol id="tommi-mark" viewBox="0 0 48 48">
-    <ellipse cx="10" cy="11" rx="7" ry="7" fill="#A9B1F8"/>
-    <ellipse cx="10" cy="11" rx="4.5" ry="4.5" fill="#C8CCFA"/>
-    <ellipse cx="38" cy="11" rx="7" ry="7" fill="#A9B1F8"/>
-    <ellipse cx="38" cy="11" rx="4.5" ry="4.5" fill="#C8CCFA"/>
-    <path d="M24 8C14 8 9 15 9 22C9 32 15 39 24 40C33 39 39 32 39 22C39 15 34 8 24 8Z" fill="#C0C5F8"/>
-    <ellipse cx="24" cy="30" rx="9" ry="7" fill="#A9B1F8"/>
-    <path d="M20.5 25.5 Q24 24 27.5 25.5 Q27 28 24 29 Q21 28 20.5 25.5 Z" fill="#5A62E0"/>
-    <path d="M20 31 Q24 35 28 31" stroke="#5A62E0" stroke-width="1.3" stroke-linecap="round" fill="none"/>
-    <path d="M15.5 20 Q18 17.5 20.5 20" stroke="#1A2340" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-    <path d="M27.5 20 Q30 17.5 32.5 20" stroke="#1A2340" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-    <circle cx="24" cy="15.5" r="3" fill="none" stroke="#EEF0FE" stroke-width="1.1" opacity="0.9"/>
-    <circle cx="24" cy="15.5" r="1.2" fill="#2DC49C"/>
-    <line x1="24" y1="12.5" x2="24" y2="10" stroke="#EEF0FE" stroke-width="1" stroke-linecap="round" opacity="0.8"/>
-    <line x1="27.2" y1="15.5" x2="29.5" y2="15.5" stroke="#EEF0FE" stroke-width="1" stroke-linecap="round" opacity="0.8"/>
-    <line x1="20.8" y1="15.5" x2="18.5" y2="15.5" stroke="#EEF0FE" stroke-width="1" stroke-linecap="round" opacity="0.8"/>
-    <ellipse cx="13.5" cy="27" rx="3.5" ry="2.5" fill="#F0DAD2" opacity="0.8"/>
-    <ellipse cx="34.5" cy="27" rx="3.5" ry="2.5" fill="#F0DAD2" opacity="0.8"/>
-  </symbol>
-</svg>
-
 <main id="main" class="wrap">
   <div class="orb a" aria-hidden="true"></div>
   <div class="orb b" aria-hidden="true"></div>
   <div class="inner">
-    <span class="brand-gem"><svg aria-hidden="true"><use href="#tommi-mark"/></svg></span>
+    <span class="brand-gem"><img class="tommi-mark" src="../assets/peluche.png" alt="" /></span>
     <div class="wordmark">Tommi<span class="dot-ai">.AI</span></div>
 
     <h1 class="tagline">Cada señal importa<span class="dot">.</span></h1>

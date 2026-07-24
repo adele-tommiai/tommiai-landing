@@ -13,9 +13,8 @@
   <title>Tommi.AI · Comprender cómo siente tu hijo, día a día</title>
   <meta name="description" content="Tommi.AI acompaña a familias y especialistas que cuidan a niños, niñas y adolescentes neurodivergentes. Sensores, diario y una IA que escucha, sin reemplazar al especialista." />
   <link rel="canonical" href="https://tommiai.com/" />
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-  <link rel="icon" type="image/png" href="assets/logo-icon.png" />
-  <link rel="apple-touch-icon" href="assets/logo-icon.png" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
 
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website" />
@@ -155,16 +154,13 @@
     /* =====================================================
        Wordmark + mascota
     ===================================================== */
-    .tommi-mark { display: block; }
+    .tommi-mark { display: block; object-fit: contain; }
     .brand-gem {
       display: inline-flex; align-items: center; justify-content: center;
-      background: var(--peri-300);
-      border-radius: 14px;
-      box-shadow: 0 6px 12px rgba(90, 98, 224, 0.28);
       flex-shrink: 0;
     }
-    .brand-gem.sm { width: 40px; height: 40px; border-radius: 11px; }
-    .brand-gem.sm .tommi-mark { width: 26px; height: 26px; }
+    .brand-gem.sm { width: 42px; height: 42px; }
+    .brand-gem.sm .tommi-mark { width: 42px; height: 42px; }
     .wordmark {
       font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
       font-weight: 800; letter-spacing: -0.02em;
@@ -257,12 +253,11 @@
     .hero-orb.b { width: 300px; height: 300px; bottom: -100px; left: -80px; background: rgba(139,149,245,0.30); }
     .hero-inner { position: relative; max-width: 880px; margin: 0 auto; text-align: center; }
     .hero-mascot {
-      width: 88px; height: 88px; margin: 0 auto 1.5rem;
-      border-radius: 24px; background: rgba(255,255,255,0.55);
+      width: 96px; height: 96px; margin: 0 auto 1.25rem;
       display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 10px 30px rgba(90,98,224,0.22), inset 0 1px 0 rgba(255,255,255,0.6);
+      filter: drop-shadow(0 12px 22px rgba(90,98,224,0.28));
     }
-    .hero-mascot .tommi-mark { width: 62px; height: 62px; }
+    .hero-mascot .tommi-mark { width: 96px; height: 96px; }
     .hero h1 {
       margin: 1.25rem auto 0;
       font-size: clamp(2.15rem, 5.4vw, 3.7rem);
@@ -755,7 +750,7 @@
     :root[data-theme="dark"] .hero-note { color: var(--peri-200); background: rgba(255,255,255,0.06); }
     :root[data-theme="dark"] .badge { color: var(--peri-200); background: rgba(255,255,255,0.06); }
     :root[data-theme="dark"] .quienes-badge { color: var(--peri-200); background: rgba(169,177,248,0.12); }
-    :root[data-theme="dark"] .hero-mascot { background: rgba(255,255,255,0.06); }
+    :root[data-theme="dark"] .hero-mascot { filter: drop-shadow(0 12px 22px rgba(0,0,0,0.45)); }
     /* Botón secundario y toggle */
     :root[data-theme="dark"] .btn-secondary { color: var(--peri-200); background: rgba(255,255,255,0.04); border-color: rgba(169,177,248,0.3); }
     :root[data-theme="dark"] .btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: rgba(169,177,248,0.5); color: var(--ink); }
@@ -828,34 +823,11 @@
 
 <a href="#main" class="skip-link">Saltar al contenido</a>
 
-<!-- Mascota Tommi (canonica) definida una vez y reutilizada via <use> -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <symbol id="tommi-mark" viewBox="0 0 48 48">
-    <ellipse cx="10" cy="11" rx="7" ry="7" fill="#A9B1F8"/>
-    <ellipse cx="10" cy="11" rx="4.5" ry="4.5" fill="#C8CCFA"/>
-    <ellipse cx="38" cy="11" rx="7" ry="7" fill="#A9B1F8"/>
-    <ellipse cx="38" cy="11" rx="4.5" ry="4.5" fill="#C8CCFA"/>
-    <path d="M24 8C14 8 9 15 9 22C9 32 15 39 24 40C33 39 39 32 39 22C39 15 34 8 24 8Z" fill="#C0C5F8"/>
-    <ellipse cx="24" cy="30" rx="9" ry="7" fill="#A9B1F8"/>
-    <path d="M20.5 25.5 Q24 24 27.5 25.5 Q27 28 24 29 Q21 28 20.5 25.5 Z" fill="#5A62E0"/>
-    <path d="M20 31 Q24 35 28 31" stroke="#5A62E0" stroke-width="1.3" stroke-linecap="round" fill="none"/>
-    <path d="M15.5 20 Q18 17.5 20.5 20" stroke="#1A2340" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-    <path d="M27.5 20 Q30 17.5 32.5 20" stroke="#1A2340" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-    <circle cx="24" cy="15.5" r="3" fill="none" stroke="#EEF0FE" stroke-width="1.1" opacity="0.9"/>
-    <circle cx="24" cy="15.5" r="1.2" fill="#2DC49C"/>
-    <line x1="24" y1="12.5" x2="24" y2="10" stroke="#EEF0FE" stroke-width="1" stroke-linecap="round" opacity="0.8"/>
-    <line x1="27.2" y1="15.5" x2="29.5" y2="15.5" stroke="#EEF0FE" stroke-width="1" stroke-linecap="round" opacity="0.8"/>
-    <line x1="20.8" y1="15.5" x2="18.5" y2="15.5" stroke="#EEF0FE" stroke-width="1" stroke-linecap="round" opacity="0.8"/>
-    <ellipse cx="13.5" cy="27" rx="3.5" ry="2.5" fill="#F0DAD2" opacity="0.8"/>
-    <ellipse cx="34.5" cy="27" rx="3.5" ry="2.5" fill="#F0DAD2" opacity="0.8"/>
-  </symbol>
-</svg>
-
 <!-- Navbar -->
 <nav class="navbar" id="navbar">
   <div class="nav-inner">
     <a href="#main" class="nav-logo" aria-label="Tommi.AI, inicio">
-      <span class="brand-gem sm"><svg class="tommi-mark" aria-hidden="true"><use href="#tommi-mark"/></svg></span>
+      <span class="brand-gem sm"><img class="tommi-mark" src="assets/peluche.png" alt="" /></span>
       <span class="wordmark">Tommi<span class="dot-ai">.AI</span></span>
     </a>
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
@@ -885,7 +857,7 @@
   <div class="hero-orb a" aria-hidden="true"></div>
   <div class="hero-orb b" aria-hidden="true"></div>
   <div class="hero-inner">
-    <div class="hero-mascot" aria-hidden="true"><svg class="tommi-mark" aria-hidden="true"><use href="#tommi-mark"/></svg></div>
+    <div class="hero-mascot" aria-hidden="true"><img class="tommi-mark" src="assets/peluche.png" alt="" /></div>
     <span class="eyebrow"><span class="dot" aria-hidden="true"></span>Diario sensorial inteligente</span>
     <h1 class="h-sans">Comprender <span class="lead">cómo siente tu hijo</span>, día a día.</h1>
     <p class="hero-sub">
@@ -1203,7 +1175,7 @@
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-logo">
-      <span class="brand-gem sm"><svg class="tommi-mark" aria-hidden="true"><use href="#tommi-mark"/></svg></span>
+      <span class="brand-gem sm"><img class="tommi-mark" src="assets/peluche.png" alt="" /></span>
       <span class="wordmark">Tommi<span class="dot-ai">.AI</span></span>
     </div>
     <div class="footer-links">
@@ -1229,13 +1201,13 @@
 
 <!-- Chat widget (asistente Tommi) -->
 <button class="tommi-fab" id="tommiFab" aria-label="Hablar con Tommi" aria-expanded="false" aria-controls="tommiChat">
-  <span class="fab-mark"><svg class="tommi-mark" aria-hidden="true"><use href="#tommi-mark"/></svg></span>
+  <span class="fab-mark"><img class="tommi-mark" src="assets/peluche.png" alt="" /></span>
   <span class="fab-close" aria-hidden="true">&times;</span>
 </button>
 
 <div class="tommi-chat" id="tommiChat" role="dialog" aria-label="Chat con Tommi" inert>
   <div class="tommi-chat-header">
-    <div class="tommi-chat-avatar"><svg class="tommi-mark" aria-hidden="true"><use href="#tommi-mark"/></svg></div>
+    <div class="tommi-chat-avatar"><img class="tommi-mark" src="assets/peluche.png" alt="" /></div>
     <div class="tommi-chat-header-text">
       <p class="ct-name">Tommi</p>
       <p>Asistente virtual de Tommi.AI</p>
