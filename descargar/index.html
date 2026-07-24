@@ -41,10 +41,11 @@
       min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center;
       text-align: center; padding: 3rem 1.5rem;
       background:
-        radial-gradient(120% 80% at 50% -10%, #202a55 0%, rgba(32,42,85,0) 60%),
-        linear-gradient(170deg, #141d3a 0%, #0F1729 55%, #0c1122 100%);
+        linear-gradient(180deg, rgba(15,23,41,0.55) 0%, rgba(15,23,41,0.72) 52%, #0F1729 100%),
+        url("../assets/welcome-bg.jpg");
+      background-size: cover; background-position: center; background-repeat: no-repeat;
     }
-    .orb { position: absolute; border-radius: 999px; filter: blur(70px); opacity: 0.45; pointer-events: none; }
+    .orb { display: none; }
     .orb.a { width: 360px; height: 360px; top: -80px; right: -80px; background: rgba(124,90,224,0.45); }
     .orb.b { width: 340px; height: 340px; bottom: -120px; left: -90px; background: rgba(45,196,156,0.28); }
     .inner { position: relative; max-width: 460px; width: 100%; }
@@ -63,8 +64,8 @@
     .sub { margin-top: 0.75rem; color: var(--ink-soft); font-size: 1.02rem; max-width: 380px; margin-left: auto; margin-right: auto; }
 
     .badge-soon {
-      display: inline-flex; align-items: center; gap: 0.4rem; margin: 1.75rem 0 0.25rem;
-      font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      display: inline-flex; align-items: center; gap: 0.4rem; margin: 1.75rem 0 0.25rem; max-width: 100%;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; white-space: normal; justify-content: center;
       color: var(--peri-300); background: rgba(169,177,248,0.12); border: 1px solid rgba(169,177,248,0.25);
       padding: 0.4rem 0.9rem; border-radius: 999px;
     }
@@ -72,16 +73,16 @@
 
     .stores { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1.5rem; }
     .store {
-      display: flex; align-items: center; gap: 0.8rem; width: 100%;
-      padding: 0.85rem 1.15rem; border-radius: 16px;
+      display: flex; align-items: center; gap: 0.65rem; width: 100%;
+      padding: 0.8rem 0.9rem; border-radius: 16px;
       background: rgba(255,255,255,0.05); border: 1px solid rgba(169,177,248,0.22);
       text-align: left; cursor: not-allowed;
     }
-    .store svg.logo { width: 26px; height: 26px; flex-shrink: 0; fill: #fff; }
-    .store-text { display: flex; flex-direction: column; line-height: 1.15; }
-    .store-text .small { font-size: 0.72rem; color: var(--ink-soft); }
-    .store-text .big { font-size: 1.05rem; font-weight: 700; }
-    .store .soon { margin-left: auto; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mint); background: rgba(45,196,156,0.14); padding: 0.25rem 0.55rem; border-radius: 999px; }
+    .store svg.logo { width: 24px; height: 24px; flex-shrink: 0; fill: #fff; }
+    .store-text { display: flex; flex-direction: column; line-height: 1.15; min-width: 0; }
+    .store-text .small { font-size: 0.7rem; color: var(--ink-soft); }
+    .store-text .big { font-size: 1rem; font-weight: 700; }
+    .store .soon { align-self: flex-start; margin-top: 0.3rem; white-space: nowrap; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mint); background: rgba(45,196,156,0.14); padding: 0.2rem 0.55rem; border-radius: 999px; }
 
     .notify { margin-top: 1.75rem; color: var(--ink-soft); font-size: 0.95rem; }
     .btn-notify {
@@ -144,13 +145,11 @@
     <div class="stores">
       <div class="store" role="group" aria-label="App para iPhone y iPad, próximamente en App Store">
         <svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 8.31 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.79 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
-        <span class="store-text"><span class="small">Para iPhone y iPad</span><span class="big">App Store</span></span>
-        <span class="soon">Próximamente</span>
+        <span class="store-text"><span class="small">Para iPhone y iPad</span><span class="big">App Store</span><span class="soon">Próximamente</span></span>
       </div>
       <div class="store" role="group" aria-label="App para Android, próximamente en Google Play">
         <svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 2.3c-.3.2-.5.6-.5 1.1v17.2c0 .5.2.9.5 1.1l.1.1L13 12.6v-.2L3.7 2.2l-.1.1z" fill="#8B95F5"/><path d="M16.4 15.9l-3.4-3.3v-.2l3.4-3.3.1.1 4 2.3c1.1.6 1.1 1.7 0 2.3l-4 2.3-.1-.2z" fill="#2DC49C"/><path d="M16.5 15.8L13 12.4 3.6 21.8c.4.4 1 .4 1.6.1l11.3-6.1z" fill="#A9B1F8"/><path d="M16.5 9L5.2 2.9c-.6-.3-1.2-.3-1.6.1L13 12.4 16.5 9z" fill="#C8CCFA"/></svg>
-        <span class="store-text"><span class="small">Para Android</span><span class="big">Google Play</span></span>
-        <span class="soon">Próximamente</span>
+        <span class="store-text"><span class="small">Para Android</span><span class="big">Google Play</span><span class="soon">Próximamente</span></span>
       </div>
     </div>
 
